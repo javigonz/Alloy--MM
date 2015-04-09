@@ -1,0 +1,12 @@
+<Alloy>
+	
+	<View class="viewPressDetail" id="viewPressDetail" >
+		
+		<WebView id="viewWeb" url="/html/article.html" class="viewWeb" cacheMode="true"  enableZoomControls="false" >
+			
+			
+		</WebView>
+		
+	</View>
+	
+</Alloy>

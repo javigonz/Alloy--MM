@@ -1,0 +1,89 @@
+// ANDROID *********************************************************
+
+".viewScheduler[platform=android]": { 
+	width: Alloy.CFG.WidthDeviceAndroid,
+	backgroundColor: Alloy.CFG.WHITE,
+	top: 0,
+	left: 0
+}
+
+".rowList[platform=android]": {
+	height: 70,
+	backgroundColor: Alloy.CFG.WHITE,
+	focusable: "true",
+	left: 0,
+	layout: 'vertical'
+}
+
+".textTitle[platform=android]": {
+	color: Alloy.CFG.BLACK,
+	font: {
+		fontFamily: Alloy.CFG.ARIAL_NORMAL, 
+		fontSize: 	13,
+		fontWeight: 'bold'
+	},
+	left: 0
+}
+
+".textDescription[platform=android]": {
+	color: Alloy.CFG.BLUE1,
+	font: {
+		fontFamily: Alloy.CFG.ARIAL_NORMAL, 
+		fontSize: 	11,
+		fontWeight: 'bold'
+	},
+	left: 0
+}
+
+".viewWeb[platform=android]": {
+    width: Ti.UI.FILL,
+    top: 0
+}
+
+
+
+
+// IPHONE *********************************************************
+
+".viewScheduler[platform=ios]": { 
+	width: Alloy.CFG.WidthDeviceIphone,
+	backgroundColor: Alloy.CFG.WHITE,
+	top: 0,
+	left: 0
+}
+
+".rowList[platform=ios]": {
+	height: 70,
+	backgroundColor: Alloy.CFG.WHITE,
+	focusable: "true",
+	left: 0,
+	layout: 'vertical'
+}
+
+".textTitle[platform=ios]": {
+	color: Alloy.CFG.BLACK,
+	font: {
+		fontFamily: Alloy.CFG.ARIAL_NORMAL, 
+		fontSize: 	13,
+		fontWeight: 'bold'
+	},
+	left: 0
+}
+
+".textDescription[platform=ios]": {
+	color: Alloy.CFG.BLUE1,
+	font: {
+		fontFamily: Alloy.CFG.ARIAL_NORMAL, 
+		fontSize: 	11,
+		fontWeight: 'bold'
+	},
+	left: 0
+}
+
+".viewWeb[platform=ios]": {
+    width: Ti.UI.FILL,
+    top: 0
+}
+
+
+

@@ -1,0 +1,24 @@
+<Alloy>
+	
+	<View class="viewMap" id="viewMap" >
+		
+		<View class="viewGoogleMap" id="viewGoogleMap"></View>
+		
+		<View class="viewHowArrived" id="viewHowArrived" visible="false">
+			<View class="viewHowArrivedTitle" id="viewHowArrivedTitle">
+				<ImageView class="iconTitle" image="/images/menuIcon10.png"></ImageView>
+				<Label class="textTitle" text="L('text_19')"></Label>
+			</View>
+			
+			<View class="viewHowArrivedContainer" id="viewHowArrivedContainer" >
+				<TextField class="combo" platform="ios" id="comboHowArrived" touchEnabled="true"  hintText="L('text_22')" ></TextField>
+				<View class="combo" platform="android"  id="comboHowArrived"  ></View>
+			</View>
+			
+		</View>
+		
+	</View>
+	
+	
+	
+</Alloy>

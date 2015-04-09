@@ -1,0 +1,121 @@
+// ANDROID *********************************************************
+
+".viewPress[platform=android]": { 
+	width: Alloy.CFG.WidthDeviceAndroid,
+	backgroundColor: Alloy.CFG.WHITE,
+	top: 0,
+	left: 0
+}
+
+".tableList[platform=android]": {
+	 separatorColor: Alloy.CFG.GREY5,
+	}
+".rowList[platform=android]": {
+	height: 115,
+	backgroundColor: Alloy.CFG.WHITE,
+	backgroundSelectedColor: Alloy.CFG.RED,
+	left: 0,
+	layout: 'horizontal'
+	}
+	
+	".imagePress[platform=android]": {
+		height: 75,
+		width: 150,
+		top: 20,
+		left: 10,
+		bottom: 20
+	}
+		
+	".viewDescription[platform=android]": {
+		top: 20,
+		width: Ti.UI.FILL,
+		left: 10,
+		right: 10,
+		layout: 'vertical'
+		}
+
+		".textTitle[platform=android]": {
+			color: Alloy.CFG.RED,
+			font: {
+				fontFamily: Alloy.CFG.MYRIAD_REGULAR, 
+				fontSize: 	14,
+				fontWeight: 'bold'
+			},
+			left: 0,
+			top: 0
+		}
+
+		".textDescription[platform=android]": {
+			color: Alloy.CFG.GREY5,
+			font: {
+				fontFamily: Alloy.CFG.MYRIAD_REGULAR, 
+				fontSize: 	12,
+				fontWeight: 'normal'
+			},
+			left: 0
+		}
+
+
+
+// IPHONE *********************************************************
+
+".viewPress[platform=ios]": { 
+	width: Alloy.CFG.WidthDeviceIphone,
+	backgroundColor: Alloy.CFG.WHITE,
+	top: 0,
+	left: 0
+}
+
+
+".tableList[platform=ios]": {
+	 separatorColor: Alloy.CFG.GREY5,
+	}
+".rowList[platform=ios]": {
+	height: 115,
+	backgroundColor: Alloy.CFG.WHITE,
+	backgroundSelectedColor: Alloy.CFG.RED,
+	left: 0,
+	layout: 'horizontal'
+	}
+	
+	".imagePress[platform=ios]": {
+		height: 75,
+		width: 150,
+		top: 20,
+		bottom: 20,
+		left: 10
+	}
+		
+	".viewDescription[platform=ios]": {
+		top: 20,
+		width: Ti.UI.FILL,
+		left: 10,
+		right: 10,
+		layout: 'vertical'
+		}
+
+		".textTitle[platform=ios]": {
+			color: Alloy.CFG.RED,
+			font: {
+				fontFamily: Alloy.CFG.MYRIAD_REGULAR, 
+				fontSize: 	13,
+				fontWeight: 'bold'
+			},
+			left: 0,
+			top: 0
+		}
+
+
+		".textDescription[platform=ios]": {
+			color: Alloy.CFG.GREY5,
+			font: {
+				fontFamily: Alloy.CFG.MYRIAD_REGULAR, 
+				fontSize: 	12,
+				fontWeight: 'normal'
+			},
+			left: 0
+		}
+
+
+
+

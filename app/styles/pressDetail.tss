@@ -1,0 +1,29 @@
+// ANDROID *********************************************************
+
+".viewPressDetail[platform=android]": { 
+	width: Alloy.CFG.WidthDeviceAndroid,
+	backgroundColor: Alloy.CFG.WHITE,
+	top: 0,
+	left: 0
+}
+
+".viewWeb[platform=android]": {
+    width: Ti.UI.FILL,
+    top: 0
+}
+
+
+
+// IPHONE *********************************************************
+
+".viewPressDetail[platform=ios]": { 
+	width: Alloy.CFG.WidthDeviceIphone,
+	backgroundColor: Alloy.CFG.WHITE,
+	top: 0,
+	left: 0
+}
+
+".viewWeb[platform=ios]": {
+    width: Ti.UI.FILL,
+    top: 0
+}

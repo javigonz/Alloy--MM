@@ -1,0 +1,37 @@
+<Alloy>
+	
+	<Window class="winInitContainer" id="winInitContainer" navBarHidden="true" tabBarHidden="true" >
+		
+		<View  id="menuContainer" class="menuContainer" > 
+			
+			<!-- Menu -->
+			<Require id="menu" src="menu"  />
+			
+		</View>
+		
+		
+		<View  id="mainContainer" class="mainContainer"> 
+			
+			<View  id="viewInitContainer" class="viewInitContainer" > 
+				 	
+				<!-- Load the section here -->
+				
+			</View>	
+			
+			<!-- Navigation Window -->
+			<Require id="header" src="header"  />
+			
+			<!-- Footer -->
+			<Require id="footer" src="footer"  />
+			
+			<!-- Loading view -->
+			<Require id="loading" src="loading"  />	
+			
+		
+		</View>	
+		
+	
+	</Window>
+		
+	
+</Alloy>

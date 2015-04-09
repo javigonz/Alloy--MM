@@ -1,0 +1,12 @@
+<Alloy>
+	
+	<View class="viewCustomer" id="viewCustomer" >
+		
+		<WebView id="viewWeb" url="/html/atencion.html" class="viewWeb" cacheMode="true"  enableZoomControls="false" >
+			
+			
+		</WebView>
+		
+	</View>
+	
+</Alloy>

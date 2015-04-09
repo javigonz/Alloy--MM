@@ -1,0 +1,1 @@
+module.exports = [{"isClass":true,"priority":10101.008,"key":"winInitContainer","style":{backgroundColor:Alloy.CFG.WHITE,navBarHidden:"true",tabBarHidden:"true",exitOnClose:"false",}},{"isClass":true,"priority":10101.0081,"key":"viewInitContainer","style":{backgroundColor:Alloy.CFG.WHITE,}}];

@@ -1,0 +1,273 @@
+// ANDROID *********************************************************
+
+".viewHome[platform=android]": { 
+	width: Alloy.CFG.WidthDeviceAndroid,
+	backgroundImage: '/images/backgroundHome.png',
+	backgroundRepeat: 'true',
+	top: 0,
+	left: 0,
+	layout: 'vertical'
+}
+
+".viewRoundedContainer[platform=android]": { 
+   top: 20, 
+   width:'100%',
+   height:130
+}
+
+".viewRounded[platform=android]": { 
+   borderRadius:5,
+   borderWidth: 5,
+   borderColor: Alloy.CFG.WHITE, 
+   backgroundColor:Alloy.CFG.WHITE,
+   width:'90%',
+   height:120,
+   top: 0
+}
+
+".viewRoundedShadow[platform=android]": { 
+   borderRadius:5,
+   borderWidth: 5,
+   borderColor: Alloy.CFG.BLACK, 
+   backgroundColor:Alloy.CFG.BLACK,
+   width:'90%',
+   opacity: 0.2,
+   height:125,
+   top: 0
+}
+
+".stylelImageLogo[platform=android]": { 
+   height:55
+}
+
+
+".viewFooter[platform=android]": { 
+	height: 90,
+	layout: 'horizontal',
+}
+
+
+
+".MenuView1[platform=android]": {
+    height: 90	
+   
+    
+}
+
+".MenuView2[platform=android]": {
+    height: 90, 
+
+    
+}
+
+".MenuView3[platform=android]": {
+    height: 90, 
+    
+    
+}
+
+".MenuView4[platform=android]": {
+    height: 90, 
+   
+    
+}
+
+
+".MenuText[platform=android]": {
+	color: Alloy.CFG.GREY5,
+	font: {
+		fontFamily: Alloy.CFG.MYRIAD_REGULAR, 
+		fontSize: 	13,
+		fontWeight: 'normal'
+	},
+	bottom:5,
+	textAlign: 'center'
+
+}
+
+
+".MenuImage1[platform=android]": { //Horarios y Tarifas
+    top: 10,
+    width: 45,
+    height: 45
+}
+
+".MenuImage2[platform=android]": {  //Noticias
+    top: 10,
+    width: 42,
+    height: 42
+}
+
+".MenuImage3[platform=android]": { //lineas
+    top: 10,
+    width: 45,
+    height: 38
+}
+
+".MenuImage4[platform=android]": { //mapa
+    top: 10,
+    width: 45,
+    height: 45
+}
+
+".verticalLine[platform=android]": { 
+   top:0,
+   right:0,
+   backgroundColor:Alloy.CFG.GREY5,
+   width:1,
+   height:125,
+}
+
+
+".textAlert[platform=android]": {
+	color: Alloy.CFG.BLACK,
+	font: {
+		fontFamily: Alloy.CFG.MYRIAD_REGULAR, 
+		fontSize: 	14,
+		fontWeight: 'normal'
+	},
+	left:10,
+	right: 10,
+	textAlign: 'center'
+
+}
+
+
+
+// IPHONE *********************************************************
+
+".viewHome[platform=ios]": { 
+	width: Alloy.CFG.WidthDeviceIphone,
+	backgroundColor:Alloy.CFG.GREEN2,
+	top: 0,
+	left: 0,
+	layout: 'vertical'
+}
+
+".viewRoundedContainer[platform=ios]": { 
+   top: 20, 
+   width:'100%',
+   height:115
+}
+
+".viewRounded[platform=ios]": { 
+   borderRadius:5,
+   borderWidth: 5,
+   borderColor: Alloy.CFG.WHITE, 
+   backgroundColor:Alloy.CFG.WHITE,
+   width:'90%',
+   height:110,
+   top: 0
+}
+
+".viewRoundedShadow[platform=ios]": { 
+   borderRadius:5,
+   borderWidth: 5,
+   borderColor: Alloy.CFG.BLACK, 
+   backgroundColor:Alloy.CFG.BLACK,
+   width:'90%',
+   opacity: 0.2,
+   height:115,
+   top: 0
+}
+
+".stylelImageLogo[platform=ios]": { 
+   height:50
+}
+
+
+".viewFooter[platform=ios]": { 
+	height: 90,
+	layout: 'horizontal',
+}
+
+
+
+".MenuView1[platform=ios]": {
+    height: 90	
+   
+    
+}
+
+".MenuView2[platform=ios]": {
+    height: 90, 
+
+    
+}
+
+".MenuView3[platform=ios]": {
+    height: 90, 
+    
+    
+}
+
+".MenuView4[platform=ios]": {
+    height: 90, 
+   
+    
+}
+
+
+".MenuText[platform=ios]": {
+	color: Alloy.CFG.GREY5,
+	font: {
+		fontFamily: Alloy.CFG.MYRIAD_REGULAR, 
+		fontSize: 	13,
+		fontWeight: 'normal'
+	},
+	bottom:5,
+	textAlign: 'center'
+
+}
+
+
+".MenuImage1[platform=ios]": { //Horarios y Tarifas
+    top: 10,
+    width: 45,
+    height: 45
+}
+
+".MenuImage2[platform=ios]": {  //Noticias
+    top: 10,
+    width: 42,
+    height: 42
+}
+
+".MenuImage3[platform=ios]": { //lineas
+    top: 10,
+    width: 45,
+    height: 38
+}
+
+".MenuImage4[platform=ios]": { //mapa
+    top: 10,
+    width: 45,
+    height: 45
+}
+
+".verticalLine[platform=ios]": { 
+   top:0,
+   right:0,
+   backgroundColor:Alloy.CFG.GREY5,
+   width:1,
+   height:115,
+}
+
+
+".textAlert[platform=ios]": {
+	color: Alloy.CFG.BLACK,
+	font: {
+		fontFamily: Alloy.CFG.MYRIAD_REGULAR, 
+		fontSize: 	14,
+		fontWeight: 'normal'
+	},
+	left:10,
+	right: 10,
+	textAlign: 'center'
+
+}
+
+
+
+
+

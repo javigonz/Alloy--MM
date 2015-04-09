@@ -1,0 +1,12 @@
+<Alloy>
+	
+	<View class="viewRegulation" id="viewRegulation" >
+		
+		<WebView id="viewWeb" url="/html/reglamento.html" class="viewWeb" cacheMode="true"  enableZoomControls="false" >
+			
+			
+		</WebView>
+		
+	</View>
+	
+</Alloy>

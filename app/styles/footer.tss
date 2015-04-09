@@ -1,0 +1,196 @@
+// ANDROID *********************************************************
+
+".viewFooter[platform=android]": { 
+	height: 60,
+	width: Alloy.CFG.WidthDeviceAndroid,
+	backgroundColor: Alloy.CFG.RED,	
+	left: 0
+}
+
+".viewFooter2[platform=android]": { 
+	height: 60,
+	width: Alloy.CFG.WidthDeviceAndroid,	
+	layout: 'horizontal',
+	left: 0
+}
+
+".MenuView1[platform=android]": {
+    height: 60, 
+   
+    
+}
+
+".MenuView2[platform=android]": {
+    height: 60, 
+
+    
+}
+
+".MenuView3[platform=android]": {
+    height: 60, 
+    
+    
+}
+
+".MenuView4[platform=android]": {
+    height: 60, 
+   
+    
+}
+
+".MenuView5[platform=android]": {
+    height: 60, 
+   
+    
+}
+
+".viewOver[platform=android]": {
+    height: 60, 
+    backgroundColor: Alloy.CFG.GREEN,
+    opacity: 1
+    
+}
+
+".MenuText[platform=android]": {
+	color: Alloy.CFG.WHITE,
+	font: {
+		fontFamily: Alloy.CFG.MYRIAD_REGULAR, 
+		fontSize: 	13,
+		fontWeight: 'normal'
+	},
+	top:38,
+	textAlign: 'center'
+
+}
+
+
+".MenuImage1[platform=android]": { //Horarios y Tarifas
+    top: 10,
+    width: 25,
+    height: 25
+}
+
+".MenuImage2[platform=android]": {  //Noticias
+    top: 10,
+    width: 27,
+    height: 22
+}
+
+".MenuImage3[platform=android]": { //Home
+    top: 10,
+    width: 31,
+    height: 25
+}
+
+".MenuImage4[platform=android]": { //Lineas
+    top: 10,
+    width: 25,
+    height: 25
+}
+
+".MenuImage5[platform=android]": { //Planos
+    top: 10,
+    width: 18,
+    height: 25
+}
+
+
+
+
+// IPHONE *********************************************************
+
+
+".viewFooter[platform=ios]": { 
+	height: 60,
+	width: Alloy.CFG.WidthDeviceIphone,
+	backgroundColor: Alloy.CFG.RED,	
+	left: 0
+}
+
+".viewFooter2[platform=ios]": { 
+	height: 60,
+	width: Alloy.CFG.WidthDeviceIphone,
+	layout: 'horizontal',
+	left: 0
+}
+
+
+".MenuImage1[platform=ios]": { //Horarios y Tarifas
+    top: 10,
+    width: 25,
+    height: 25
+}
+
+".MenuImage2[platform=ios]": {  //Noticias
+    top: 10,
+    width: 27,
+    height: 22
+}
+
+".MenuImage3[platform=ios]": { //Home
+    top: 10,
+    width: 30,
+    height: 25
+}
+
+".MenuImage4[platform=ios]": { //Lineas
+    top: 10,
+    width: 25,
+    height: 25
+}
+
+".MenuImage5[platform=ios]": { //Planos
+    top: 10,
+    width: 18,
+    height: 25
+}
+
+".MenuView1[platform=ios]": {
+    height: 60,
+   
+    
+}
+
+".MenuView2[platform=ios]": {
+    height: 60, 
+  
+    
+}
+
+".MenuView3[platform=ios]": {
+    height: 60, 
+   
+    
+}
+
+".MenuView4[platform=ios]": {
+    height: 60, 
+   
+    
+}
+
+".MenuView5[platform=ios]": {
+    height: 60, 
+   
+    
+}
+
+".viewOver[platform=ios]": {
+    height: 60, 
+    backgroundColor: Alloy.CFG.GREEN,
+    opacity: 1
+    
+}
+
+".MenuText[platform=ios]": {
+	color: Alloy.CFG.WHITE,
+	font: {
+		fontFamily: Alloy.CFG.ARIAL_NORMAL, 
+		fontSize: 	11,
+		fontWeight: 'normal'
+	},
+	top:40,
+	textAlign: 'center'
+
+}
+

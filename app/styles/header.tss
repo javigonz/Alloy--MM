@@ -1,0 +1,83 @@
+// ANDROID *********************************************************
+
+".viewHeader[platform=android]": { 
+	backgroundColor: Alloy.CFG.GREY3,
+	height: Alloy.Globals.Height_Header,
+	width: Ti.UI.FILL,
+	top: 0
+}
+
+".viewLogo[platform=android]":{
+    top: 0,
+    left: 0,
+    width: Alloy.CFG.WidthDeviceAndroid
+}
+
+".imageLogo[platform=android]":{
+    left: 0
+}
+
+".header_title[platform=android]": {
+    color: Alloy.CFG.GREEN,
+    font: {
+		fontFamily: Alloy.CFG.MYRIAD_REGULAR, 
+		fontSize: 	18,
+		fontWeight: 'normal'
+	},
+	left: 120
+}
+
+".containerBack[platform=android]":{
+    right: 0,
+    height: Alloy.Globals.Height_Header,
+	width: 50
+	}
+	".header_back[platform=android]":{
+	    right: 10,
+	    height: 35,
+		width: 18,
+	}
+
+
+// IPHONE *********************************************************
+
+".viewHeader[platform=ios]": { 
+	backgroundColor: Alloy.CFG.GREY3,
+	height: Alloy.Globals.Height_Header,
+	width: Ti.UI.FILL,
+	top: 20
+}
+
+".viewLogo[platform=ios]":{
+    top: 0,
+    left: 0,
+    width: Alloy.CFG.WidthDeviceIphone
+}
+
+".imageLogo[platform=ios]":{
+    left: 0,
+    width: 81,
+    height: 30
+}
+
+".header_title[platform=ios]": {
+    color: Alloy.CFG.GREEN,
+    font: {
+		fontFamily: Alloy.CFG.MYRIAD_REGULAR, 
+		fontSize: 	17,
+		fontWeight: 'normal'
+	},
+	left: 100
+}
+
+".containerBack[platform=ios]":{
+    right: 0,
+    height: Alloy.Globals.Height_Header,
+	width: 50
+	}
+	".header_back[platform=ios]":{
+	    right: 10,
+	    height: 35,
+		width: 18,
+	}
+

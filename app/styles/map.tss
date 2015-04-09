@@ -1,0 +1,166 @@
+// ANDROID *********************************************************
+
+".viewMap[platform=android]": { 
+	width: Alloy.CFG.WidthDeviceAndroid,
+	backgroundColor: Alloy.CFG.WHITE,
+	top: 0,
+	left: 0
+}
+
+
+".viewHowArrived[platform=android]": { 
+	width: Alloy.CFG.WidthDeviceAndroid,
+	height: 130,
+	bottom: '-75',
+	left: 0,
+	layout: 'vertical'
+}
+
+	".viewHowArrivedContainer[platform=android]": { 
+		width: Alloy.CFG.WidthDeviceAndroid,
+		height: 100,
+		//opacity: 0.9,
+		backgroundColor: Alloy.CFG.WHITE,
+		left: 0
+	}
+	
+	".viewHowArrivedTitle[platform=android]": { 
+		width: 160,
+		height: 40,
+		backgroundColor: Alloy.CFG.GREEN,
+		left: 0,
+		layout: 'horizontal'
+	}
+		".textTitle[platform=android]": {
+		    color: Alloy.CFG.WHITE,
+		    font: {
+				fontFamily: Alloy.CFG.MYRIAD_REGULAR, 
+				fontSize: 	15,
+				fontWeight: 'normal'
+			},
+			left: 10,
+			top: 10,
+			height: 20,
+		}
+		".iconTitle[platform=android]": { 
+			top: 10,
+			width: 24,
+			height: 20,
+			left: 10
+		}
+
+
+".viewGoogleMap[platform=android]": { 
+	width: Alloy.CFG.WidthDeviceAndroid,
+	top: 0,
+	left: 0
+}
+
+
+".pickerStyle[platform=android]": {
+	backgroundColor: Alloy.CFG.WHITE,
+    width: '90%',
+    left: 0,
+    font: {
+		fontFamily: Alloy.CFG.MYRIAD_REGULAR, 
+		fontSize: 	14,
+		fontWeight: 'normal'
+	}
+    
+}
+
+".combo[platform=android]": {
+    height: 40,
+    width: '90%',
+    borderColor: Alloy.CFG.GREEN,
+    top: 20,
+    paddingLeft: 10,
+    color: Alloy.CFG.BLACK,
+    borderWidth : '2px',
+    backgroundColor:'transparent',
+    font: {
+		fontFamily: Alloy.CFG.MYRIAD_REGULAR, 
+		fontSize: 	14,
+		fontWeight: 'normal'
+	}
+
+}
+
+
+
+// IPHONE *********************************************************
+
+".viewMap[platform=ios]": { 
+	width: Alloy.CFG.WidthDeviceIphone,
+	backgroundColor: Alloy.CFG.WHITE,
+	top: 0,
+	left: 0
+}
+
+".viewHowArrived[platform=ios]": { 
+	width: Alloy.CFG.WidthDeviceIphone,
+	height: 130,
+	bottom: '-80',
+	left: 0,
+	layout: 'vertical'
+}
+
+	".viewHowArrivedContainer[platform=ios]": { 
+		width: Alloy.CFG.WidthDeviceIphone,
+		height: 100,
+		//opacity: 0.9,
+		backgroundColor: Alloy.CFG.WHITE,
+		left: 0
+	}
+	
+	".viewHowArrivedTitle[platform=ios]": { 
+		width: 160,
+		height: 40,
+		backgroundColor: Alloy.CFG.GREEN,
+		left: 0,
+		layout: 'horizontal'
+	}
+		".textTitle[platform=ios]": {
+		    color: Alloy.CFG.WHITE,
+		    font: {
+				fontFamily: Alloy.CFG.MYRIAD_REGULAR, 
+				fontSize: 	15,
+				fontWeight: 'normal'
+			},
+			left: 10,
+			top: 10,
+			height: 20,
+		}
+		".iconTitle[platform=ios]": { 
+			top: 10,
+			width: 24,
+			height: 20,
+			left: 10
+		}
+
+
+".viewGoogleMap[platform=ios]": { 
+	width: Alloy.CFG.WidthDeviceIphone,
+	top: 0,
+	left: 0
+}
+
+".combo[platform=ios]": {
+    height: 40,
+    width: '90%',
+    backgroundColor: Alloy.CFG.WHITE,
+    borderColor: Alloy.CFG.GREEN,
+    top: 20,
+    paddingLeft: 10,
+    color: Alloy.CFG.BLACK,
+    font: {
+		fontFamily: Alloy.CFG.MYRIAD_REGULAR, 
+		fontSize: 	15,
+		fontWeight: 'normal'
+	}
+
+}
+
+
+
+

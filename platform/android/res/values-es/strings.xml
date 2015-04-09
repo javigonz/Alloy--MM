@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+
+	<!-- Titulos -->
+	<string name="text_1">Bienvenido</string>
+	<string name="text_2">Horarios y tarifas</string>
+	<string name="text_3">Billetes y tarifas</string>
+	<string name="text_4">Líneas y plano</string>
+	<string name="text_5">Mapa de estaciones</string>
+	<string name="text_6">Notas de prensa</string>
+	<string name="text_7">Mapa de estaciones</string>
+	<string name="text_8">Metro Málaga</string>
+	<string name="text_17">Atención al cliente</string>
+	<string name="text_18">Reglamento del viajero</string>
+
+	<!-- Menu -->
+	<string name="text_9">Inicio</string>
+	<string name="text_10">Horarios</string>
+	<string name="text_11">Noticias</string>
+	<string name="text_12">Plano</string>
+	<string name="text_13">Mapa</string>
+
+	<!-- SubMenu -->
+	<string name="text_15">Atención al cliente</string>
+	<string name="text_16">Reglamento del viajero</string>
+
+	<!-- Mapa -->
+	<string name="text_19">¿Cómo llegar?</string>
+	<string name="text_20">cancelar</string>
+	<string name="text_21">seleccionar</string>
+	<string name="text_22">Elige la estación ...</string>
+	<string name="text_26">Línea</string>
+
+	<!-- Líneas -->
+	<string name="text_23">Estación Origen ...</string>
+	<string name="text_24">Estación Destino ...</string>
+	<string name="text_25">¿Cuánto tardaré?</string>
+
+
+
+</resources>

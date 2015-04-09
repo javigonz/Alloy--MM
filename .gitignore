@@ -1,0 +1,16 @@
+.DS_Store
+BuildDistribution
+Documentacion
+DisenoGrafico
+iTunesConnect.png
+LICENSE
+LICENSE.txt
+manifest
+build.log
+build
+tmp
+.map
+.project
+.settings
+Thumbs.db
+CHANGELOG.txt

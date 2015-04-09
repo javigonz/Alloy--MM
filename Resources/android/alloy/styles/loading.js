@@ -1,0 +1,1 @@
+module.exports = [{"isClass":true,"priority":10101.0108,"key":"winloading","style":{backgroundColor:Alloy.CFG.BLACK,opacity:0.7,width:Alloy.CFG.WidthDeviceAndroid,height:Ti.UI.FILL,top:0,}},{"isClass":true,"priority":10101.0109,"key":"activityIndicator","style":{color:Alloy.CFG.WHITE,style:Ti.UI.ActivityIndicatorStyle.BIG,opacity:1,}}];

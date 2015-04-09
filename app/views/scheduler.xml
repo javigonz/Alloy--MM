@@ -1,0 +1,19 @@
+<Alloy>
+	
+	<View class="viewScheduler" id="viewScheduler" >
+		
+		<!--<TableView dataCollection="model_scheduler">
+	        <TableViewRow class="rowList"  onClick="clickHandler" scope="{id}"> 
+	            <Label class="textTitle" text="{nombre}" scope="{id}"/>
+	            <Label class="textDescription" text="{descripcion_corta}" scope="{id}"/>
+	        </TableViewRow>
+	</TableView>-->
+	
+		<WebView id="viewWeb" url="/html/horarios.html" class="viewWeb" cacheMode="true"  enableZoomControls="false" >
+			
+			
+		</WebView>
+		
+	</View>
+	
+</Alloy>

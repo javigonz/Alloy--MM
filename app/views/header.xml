@@ -1,0 +1,15 @@
+<Alloy>
+	
+	<View class="viewHeader" id="viewHeader">
+
+		<View class="viewLogo" id="viewLogo" >
+			<ImageView class="imageLogo"  image="/images/logo.png" onClick="handlerMenu"></ImageView>
+			<Label class="header_title" id="id_header_title" ></Label>	
+			<View class="containerBack" onClick="handlerBack">
+				<ImageView class="header_back" id="id_header_back" image="/images/backButton.png" ></ImageView>
+			</View>
+		</View>
+						
+	</View>
+	
+</Alloy>

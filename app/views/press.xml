@@ -1,0 +1,19 @@
+<Alloy>
+	
+	<View class="viewPress" id="viewPress" >
+		
+		<TableView  class="tableList" id="tableList">
+	     <!--   <TableViewRow class="rowList"  onClick="clickHandler" scope="{id}"> 
+	        
+		        	<ImageView class="imagePress" image="{image}" defaultImage="/images/download.png" scope="{id}"></ImageView>
+		        	<View class="viewDescription">
+		           		 <Label class="textTitle" text="{title}" scope="{id}"/>
+		            	 <Label class="textDescription" text="{date}" scope="{id}"/>
+		            </View>
+	           
+	        </TableViewRow>-->
+	    </TableView>
+		
+	</View>
+	
+</Alloy>

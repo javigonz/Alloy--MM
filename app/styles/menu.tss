@@ -1,0 +1,85 @@
+// ANDROID *********************************************************
+".menuContainer[platform=android]": { 
+	backgroundColor: Alloy.CFG.GREY2,
+	width: Ti.UI.FILL,
+	top: 0,
+	layout: 'vertical'
+}
+
+".viewHeader[platform=android]": { 
+	backgroundColor: Alloy.CFG.GREY1,
+	height: Alloy.Globals.Height_Header,
+	width: Ti.UI.FILL,
+	top: 0
+}
+
+".viewRowMenu[platform=android]": { 	
+	height: 40,
+	width: Ti.UI.FILL,
+}
+
+".labelMenu[platform=android]": {
+	color: Alloy.CFG.RED,
+	font: {
+		fontFamily: Alloy.CFG.MYRIAD_REGULAR, 
+		fontSize: 	14,
+		fontWeight: 'normal'
+	},
+	left: 40
+}
+
+".separatorLine[platform=android]": { 
+	top:39,
+	backgroundColor: Alloy.CFG.GREY4,
+	height: 1,
+	width: Ti.UI.FILL,
+}
+
+".style_icon[platform=android]": { 
+	width: 20,
+	left: 10
+}
+
+
+
+// IPHONE *********************************************************
+".menuContainer[platform=ios]": { 
+	backgroundColor: Alloy.CFG.GREY2,
+	width: Ti.UI.FILL,
+	top: 0,
+	layout: 'vertical'
+}
+
+".viewHeader[platform=ios]": { 
+	backgroundColor: Alloy.CFG.GREY1,
+	height: Alloy.Globals.Height_Header,
+	width: Ti.UI.FILL,
+	top: 20
+}
+
+".viewRowMenu[platform=ios]": { 
+	height: 40,
+	width: Ti.UI.FILL
+}
+
+".labelMenu[platform=ios]": {
+	color: Alloy.CFG.RED,
+	font: {
+		fontFamily: Alloy.CFG.MYRIAD_REGULAR, 
+		fontSize: 	14,
+		fontWeight: 'normal'
+	},
+	left: 40
+}
+
+".separatorLine[platform=ios]": { 
+	top:39,
+	backgroundColor: Alloy.CFG.GREY4,
+	height: 1,
+	width: Ti.UI.FILL,
+}
+
+".style_icon[platform=ios]": { 
+	width: 20,
+	left: 10
+}

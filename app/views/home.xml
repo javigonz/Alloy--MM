@@ -1,0 +1,55 @@
+<Alloy>
+	
+	<View class="viewHome" id="viewHome">
+		
+		<View class="viewRoundedContainer" id="viewRoundedContainer1">
+			<View class="viewRoundedShadow" id="viewRoundedShadow1"></View>
+			<View class="viewRounded" id="viewRounded1">
+				<ImageView image="/images/logoHome.png" class="stylelImageLogo"></ImageView>
+			</View>
+		</View>
+		
+		<View class="viewRoundedContainer" id="viewRoundedContainer2">
+			<View class="viewRoundedShadow" id="viewRoundedShadow2"></View>
+			<View class="viewRounded" id="viewRounded2">
+				
+				<View class="viewFooter" id="viewFooter">
+					<View class="MenuView1" id="MenuView1" onClick="eventHandler_Scheduler">
+						<Label text="L('text_10').toUpperCase()" class="MenuText"></Label>
+						<ImageView image="/images/homeIcon1.png" class="MenuImage1"></ImageView>
+						<View class="verticalLine"></View>
+					</View>
+					
+					<View class="MenuView2" id="MenuView2" onClick="eventHandler_Press">
+						<Label text="L('text_11').toUpperCase()" class="MenuText"></Label>
+						<ImageView image="/images/homeIcon2.png" class="MenuImage2"></ImageView>
+						<View class="verticalLine"></View>
+					</View>
+					
+					<View class="MenuView3" id="MenuView3" onClick="eventHandler_Lines">
+						<Label text="L('text_12').toUpperCase()" class="MenuText"></Label>
+						<ImageView image="/images/homeIcon3.png" class="MenuImage3"></ImageView>
+						<View class="verticalLine"></View>
+					</View>
+					
+					<View class="MenuView4" id="MenuView4" onClick="eventHandler_Map">
+						<Label text="L('text_13').toUpperCase()" class="MenuText"></Label>
+						<ImageView image="/images/homeIcon4.png" class="MenuImage4"></ImageView>
+					</View>
+				</View>
+					
+			</View>
+		</View>
+		
+		<View class="viewRoundedContainer" id="viewRoundedContainer3">
+			<View class="viewRoundedShadow" id="viewRoundedShadow3"></View>
+			<View class="viewRounded" id="viewRounded3">
+				
+				<Label class="textAlert" text="Vaya en metro a ver el Unicaja Baloncesto. Próximo jueves, 11 de diciembre, trenes cada 7  minutos y medio hasta el inicio del partido. "></Label>
+				
+			</View>
+		</View>
+		
+	</View>
+	
+</Alloy>

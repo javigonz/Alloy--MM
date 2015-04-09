@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ti:app xmlns:ti="http://ti.appcelerator.org">
+    <id>com.metromalaga</id>
+    <name>MetroMalaga</name>
+    <version>1.0</version>
+    <publisher>JavierGonzalez</publisher>
+    <url>http://www.metromalaga.es</url>
+    <description>Metro Málaga</description>
+    <copyright>2015 by JavierGonzalez</copyright>
+    <icon>appicon.png</icon>
+    <fullscreen>false</fullscreen>
+    <navbar-hidden>false</navbar-hidden>
+    <analytics>false</analytics>
+    <guid>516177d4-6f40-4f41-b217-b65e89b771d9</guid>
+    <ios>
+        <plist>
+            <dict>
+                <key>UISupportedInterfaceOrientations~iphone</key>
+                <array>
+                    <string>UIInterfaceOrientationPortrait</string>
+                </array>
+                <key>UISupportedInterfaceOrientations~ipad</key>
+                <array>
+                    <string>UIInterfaceOrientationPortrait</string>
+                    <string>UIInterfaceOrientationPortraitUpsideDown</string>
+                    <string>UIInterfaceOrientationLandscapeLeft</string>
+                    <string>UIInterfaceOrientationLandscapeRight</string>
+                </array>
+                <key>UIRequiresPersistentWiFi</key>
+                <false/>
+                <key>UIPrerenderedIcon</key>
+                <false/>
+                <key>UIStatusBarHidden</key>
+                <false/>
+                <key>UIStatusBarStyle</key>
+                <string>UIStatusBarStyleDefault</string>
+                <key>NSLocationWhenInUseUsageDescription</key>
+                <string>Test NSLocationWhenInUseUsageDescription</string>
+                <key>NSLocationAlwaysUsageDescription</key>
+                <string>Test NSLocationAlwaysUsageDescription</string>
+            </dict>
+        </plist>
+    </ios>
+    <android xmlns:android="http://schemas.android.com/apk/res/android">
+        <manifest android:installLocation="auto" android:versionCode="1" android:versionName="1">
+            <supports-screens android:anyDensity="true"
+                android:largeScreens="true" android:normalScreens="true" android:smallScreens="true"/>
+            <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="21"/>
+            <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
+            <uses-permission android:name="android.permission.INTERNET"/>
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+            <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+            <uses-feature android:glEsVersion="0x00020000" android:required="true"/>
+            <uses-permission android:name="com.metromalaga.permission.MAPS_RECEIVE"/>
+            <permission
+                android:name="com.metromalaga.permission.MAPS_RECEIVE" android:protectionLevel="signature"/>
+            <application android:theme="@style/Theme.NoActionBar">
+                <meta-data
+                    android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyCIozXoXGE9STUZ1kdmVBCwVUsMRfR7cz4"/>
+                <activity
+                    android:configChanges="keyboardHidden|orientation"
+                    android:largeHeap="true"
+                    android:name="org.appcelerator.titanium.TiActivity" android:screenOrientation="portrait"/>
+                <service android:name="com.appcelerator.cloud.push.PushService"/>
+            </application>
+        </manifest>
+    </android>
+    <mobileweb>
+        <precache/>
+        <splash>
+            <enabled>true</enabled>
+            <inline-css-images>true</inline-css-images>
+        </splash>
+        <theme>default</theme>
+    </mobileweb>
+    <modules>
+        <module platform="android" version="2.0.3">ti.draggable</module>
+        <module platform="iphone" version="2.0.3">ti.draggable</module>
+        <module platform="commonjs" version="3.2.7">ti.cloud</module>
+        <module platform="android" version="2.2.5">ti.map</module>
+        <module platform="iphone" version="2.2.0">ti.map</module>
+        <module platform="android" version="1.0.9">com.animecyc.animator</module>
+        <module platform="android" version="3.3.7">ti.cloudpush</module>
+    </modules>
+    <deployment-targets>
+        <target device="android">true</target>
+        <target device="blackberry">false</target>
+        <target device="ipad">false</target>
+        <target device="iphone">true</target>
+        <target device="mobileweb">false</target>
+    </deployment-targets>
+    <sdk-version>3.4.1.GA</sdk-version>
+    <plugins>
+        <plugin version="1.0">ti.alloy</plugin>
+    </plugins>
+    <property name="ti.ui.defaultunit" type="string">dp</property>
+    <property name="acs-api-key-development" type="string">CDMHYSuWyuBmr8H0rWVWXvcA93D5hBjg</property>
+    <property name="acs-oauth-secret-development" type="string">NR64Y7t5jQQd6Frtc21jrUKfPa8GGNV9</property>
+    <property name="acs-oauth-key-development" type="string">60C0hvLtjZ6bPGdKEF1MQByyZtFq0pFP</property>
+    <property name="acs-api-key-production" type="string">r7TGwq48rj1NXgYXgjeXQK9sjTME2VSU</property>
+    <property name="acs-oauth-secret-production" type="string">uXzecAtXamfm9EhwiWENQ1EWVUZSbKCN</property>
+    <property name="acs-oauth-key-production" type="string">ZHK1Jo11psrSjE1Q2APcansXqSPuuqEl</property>
+    <property name="acs-base-url" type="string">https://api.cloud.appcelerator.com</property>
+    <property name="acs-push-type-development" type="string">gcm</property>
+    <property name="acs-push-type-production" type="string">gcm</property>
+    <property name="acs-push-type" type="string">gcm</property>
+</ti:app>
