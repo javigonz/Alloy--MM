@@ -1,6 +1,5 @@
 var managment_View = require('managment_View');
 var managment_Timer = require('managment_Timer');
-var Draggable = require('ti.draggable');
 
 if (Ti.Platform.osname === "android")
 	var Animator = require('com.animecyc.animator'); //Solo para Android
@@ -67,158 +66,17 @@ function show(){
 	});
 	
 	$.viewHowArrivedTitle.addEventListener('click', handlerArrivedView);
-	
-	Ti.App.fireEvent('closeLoading');
-    if (Ti.Platform.osname === "android")
-    {
-    	drawableAndroid();  	
-    }
-    else
-    {
-    	drawableIphone();
-    }
-    
+
     loadComboOrigen();
     loadComboDestino();
-
-
+    
+	Ti.App.fireEvent('closeLoading');
+	
 }
 
 
 
-function drawableAndroid()
-{
-	
-	var viewContainerDragable = Draggable.createView({
-		left:            0,
-		top:             0,
-		width:           1000,
-		height:          650,
-		backgroundImage: '/images/lineasDeMetro.png'
-	});
-	
-	$.containerLines.add(viewContainerDragable);
-	
-	// I guess the image size is 1000x707
-	var calculateWidth1 = Alloy.CFG.WidthDeviceAndroid * (Math.floor(1000/Alloy.CFG.WidthDeviceAndroid));
-	var calculateWidth2 = Alloy.CFG.WidthDeviceAndroid - (1000 - calculateWidth1);
-	var maxHorizontalRight = calculateWidth1 - calculateWidth2;
-	
-	var calculateTop1 = Alloy.CFG.HeightDevice * (Math.floor(757/Alloy.CFG.HeightDevice)); //Add 50px to height cause the gap of the header
-	var calculateTop2 = Alloy.CFG.HeightDevice - (757 - calculateTop1);
-	var maxVerticalDown = calculateTop1 - calculateTop2;
-	
-	
-	
-	viewContainerDragable.addEventListener('end', function(e){
-		
-		if  (e.left > 0)
-		{
-			this.left = 0;
-		}
-		
-		if (e.top > 0) 
-		{
-			this.top = 0;
-		}
-		
-		if (  (((e.left / capabilities) * -1) > maxHorizontalRight) && (((e.top / capabilities) * -1) > maxVerticalDown) ) //Out of container down and right
-		{
-			Ti.API.info('Se sale por abajo y derecha');
-			Animator.animate(this, {
-		        duration : 300,
-		        easing : Animator.EXP_OUT,
-		        left: -maxHorizontalRight,
-		        top: -maxVerticalDown
-		 	});
-		}
-		else
-		{
-			if ( ((e.left / capabilities) * -1) > maxHorizontalRight ) //Out of container right
-			{	
-				Ti.API.info('Se sale por derecha');
-				Animator.animate(this, {
-			        duration : 300,
-			        easing : Animator.EXP_OUT,
-			        left: -maxHorizontalRight
-			 	});
-			}
-			
-			if ( ((e.top / capabilities) * -1) > maxVerticalDown ) //Out of container down
-			{
-				Ti.API.info('Se sale por abajo');
-				Animator.animate(this, {
-			        duration : 300,
-			        easing : Animator.EXP_OUT,
-			        top: -maxVerticalDown
-			 	});
-	
-			}
-		}
-	
-	});
-}
 
-
-
-function drawableIphone()
-{
-
-	var viewContainerDragable = Draggable.createView({
-		left:            0,
-		top:             0,
-		width:           1000,
-		height:          650,
-		backgroundImage: '/images/lineasDeMetro.png'
-	});
-	
-	$.containerLines.add(viewContainerDragable);
-	
-	// I guess the image size is 1000x707
-	var calculateWidth1 = Alloy.CFG.WidthDeviceIphone * (Math.floor(1000/Alloy.CFG.WidthDeviceIphone));
-	var calculateWidth2 = Alloy.CFG.WidthDeviceIphone - (1000 - calculateWidth1);
-	var maxHorizontalRight = calculateWidth1 - calculateWidth2;
-	
-	var calculateTop1 = Alloy.CFG.HeightDeviceIphone * (Math.floor(757/Alloy.CFG.HeightDeviceIphone)); //Add 50px to height cause the gap of the header
-	var calculateTop2 = Alloy.CFG.HeightDeviceIphone - (757 - calculateTop1);
-	var maxVerticalDown = calculateTop1 - calculateTop2;
-	
-	
-	viewContainerDragable.addEventListener('end', function(e){
-
-		if  (e.left > 0)
-		{
-			this.left = 0;
-		}
-		
-		if (e.top > 0) 
-		{
-			this.top = 0;
-		}
-		
-		if (  (((e.left ) * -1) > maxHorizontalRight) && (((e.top) * -1) > maxVerticalDown) ) //Out of container down and right
-		{
-			this.left = -maxHorizontalRight;
-			this.top = -maxVerticalDown;
-		}
-		else
-		{
-			if ( ((e.left ) * -1) > maxHorizontalRight ) //Out of container right
-			{
-				this.left = -maxHorizontalRight;
-				this.top = e.top;
-
-			}
-			
-			if ( ((e.top) * -1) > maxVerticalDown ) //Out of container down
-			{
-				this.left = e.left;
-				this.top = -maxVerticalDown;
-			}
-		}
-	
-	});
-}
 
 
 

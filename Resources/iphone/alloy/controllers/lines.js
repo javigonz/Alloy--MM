@@ -33,89 +33,9 @@ function Controller() {
             }));
         });
         $.viewHowArrivedTitle.addEventListener("click", handlerArrivedView);
-        Ti.App.fireEvent("closeLoading");
-        "android" === Ti.Platform.osname ? drawableAndroid() : drawableIphone();
         loadComboOrigen();
         loadComboDestino();
-    }
-    function drawableAndroid() {
-        var viewContainerDragable = Draggable.createView({
-            left: 0,
-            top: 0,
-            width: 1e3,
-            height: 650,
-            backgroundImage: "/images/lineasDeMetro.png"
-        });
-        $.containerLines.add(viewContainerDragable);
-        var calculateWidth1 = Alloy.CFG.WidthDeviceAndroid * Math.floor(1e3 / Alloy.CFG.WidthDeviceAndroid);
-        var calculateWidth2 = Alloy.CFG.WidthDeviceAndroid - (1e3 - calculateWidth1);
-        var maxHorizontalRight = calculateWidth1 - calculateWidth2;
-        var calculateTop1 = Alloy.CFG.HeightDevice * Math.floor(757 / Alloy.CFG.HeightDevice);
-        var calculateTop2 = Alloy.CFG.HeightDevice - (757 - calculateTop1);
-        var maxVerticalDown = calculateTop1 - calculateTop2;
-        viewContainerDragable.addEventListener("end", function(e) {
-            e.left > 0 && (this.left = 0);
-            e.top > 0 && (this.top = 0);
-            if (e.left / capabilities * -1 > maxHorizontalRight && e.top / capabilities * -1 > maxVerticalDown) {
-                Ti.API.info("Se sale por abajo y derecha");
-                Animator.animate(this, {
-                    duration: 300,
-                    easing: Animator.EXP_OUT,
-                    left: -maxHorizontalRight,
-                    top: -maxVerticalDown
-                });
-            } else {
-                if (e.left / capabilities * -1 > maxHorizontalRight) {
-                    Ti.API.info("Se sale por derecha");
-                    Animator.animate(this, {
-                        duration: 300,
-                        easing: Animator.EXP_OUT,
-                        left: -maxHorizontalRight
-                    });
-                }
-                if (e.top / capabilities * -1 > maxVerticalDown) {
-                    Ti.API.info("Se sale por abajo");
-                    Animator.animate(this, {
-                        duration: 300,
-                        easing: Animator.EXP_OUT,
-                        top: -maxVerticalDown
-                    });
-                }
-            }
-        });
-    }
-    function drawableIphone() {
-        var viewContainerDragable = Draggable.createView({
-            left: 0,
-            top: 0,
-            width: 1e3,
-            height: 650,
-            backgroundImage: "/images/lineasDeMetro.png"
-        });
-        $.containerLines.add(viewContainerDragable);
-        var calculateWidth1 = Alloy.CFG.WidthDeviceIphone * Math.floor(1e3 / Alloy.CFG.WidthDeviceIphone);
-        var calculateWidth2 = Alloy.CFG.WidthDeviceIphone - (1e3 - calculateWidth1);
-        var maxHorizontalRight = calculateWidth1 - calculateWidth2;
-        var calculateTop1 = Alloy.CFG.HeightDeviceIphone * Math.floor(757 / Alloy.CFG.HeightDeviceIphone);
-        var calculateTop2 = Alloy.CFG.HeightDeviceIphone - (757 - calculateTop1);
-        var maxVerticalDown = calculateTop1 - calculateTop2;
-        viewContainerDragable.addEventListener("end", function(e) {
-            e.left > 0 && (this.left = 0);
-            e.top > 0 && (this.top = 0);
-            if (-1 * e.left > maxHorizontalRight && -1 * e.top > maxVerticalDown) {
-                this.left = -maxHorizontalRight;
-                this.top = -maxVerticalDown;
-            } else {
-                if (-1 * e.left > maxHorizontalRight) {
-                    this.left = -maxHorizontalRight;
-                    this.top = e.top;
-                }
-                if (-1 * e.top > maxVerticalDown) {
-                    this.left = e.left;
-                    this.top = -maxVerticalDown;
-                }
-            }
-        });
+        Ti.App.fireEvent("closeLoading");
     }
     function loadComboOrigen() {
         if ("android" === Ti.Platform.osname) {
@@ -303,6 +223,14 @@ function Controller() {
         id: "containerLines"
     });
     $.__views.viewLines.add($.__views.containerLines);
+    $.__views.viewWeb = Ti.UI.createWebView({
+        id: "viewWeb",
+        url: "/html/lines.html",
+        cacheMode: "true",
+        enableZoomControls: "true",
+        scalesPageToFit: "true"
+    });
+    $.__views.containerLines.add($.__views.viewWeb);
     $.__views.viewHowArrived = Ti.UI.createView({
         width: Alloy.CFG.WidthDeviceIphone,
         height: 260,
@@ -423,9 +351,10 @@ function Controller() {
     _.extend($, $.__views);
     require("managment_View");
     var managment_Timer = require("managment_Timer");
-    var Draggable = require("ti.draggable");
-    if ("android" === Ti.Platform.osname) var Animator = require("com.animecyc.animator");
-    var capabilities = Titanium.Platform.displayCaps.dpi / 160;
+    if ("android" === Ti.Platform.osname) {
+        require("com.animecyc.animator");
+    }
+    Titanium.Platform.displayCaps.dpi / 160;
     var openArrivedView = "false";
     var picker_dataOrigen = [];
     var picker_dataDestino = [];

@@ -36,6 +36,11 @@
 	<string name="text_24">Estación Destino ...</string>
 	<string name="text_25">¿Cuánto tardaré?</string>
 
+	<!-- Común -->
+	<string name="text_27">Upss!, se produjo un error inesperado, inténtalo más tarde.</string>
+	<string name="text_28">Debes habilitar el servicio de localización.</string>
+	<string name="text_29">Ha sido imposible detectar tu localización</string>
+
 
 
 </resources>

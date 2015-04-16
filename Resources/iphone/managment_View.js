@@ -93,3 +93,22 @@ exports.handlerMenu = function() {
         });
     }
 };
+
+exports.OpenInfoWindow = function(message) {
+    if ("iphone" == Ti.Platform.osname) {
+        var opts = {
+            title: message
+        };
+        opts.buttonNames = [ L("text_8") ];
+        {
+            Ti.UI.createOptionDialog(opts).show();
+        }
+    } else {
+        var alertDialog = Titanium.UI.createAlertDialog({
+            title: "Info",
+            message: message,
+            buttonNames: [ L("text_8") ]
+        });
+        alertDialog.show();
+    }
+};

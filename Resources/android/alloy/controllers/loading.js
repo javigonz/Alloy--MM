@@ -12,7 +12,7 @@ function Controller() {
         Ti.App.removeEventListener("openLoading", function() {
             openLoading();
         });
-        $.winloading.opacity = 0;
+        $.winloading.opacity = 0, 6;
         $.winloading.width = Ti.UI.FILL;
         $.winloading.height = Ti.UI.FILL;
         $.winloading.animate(FadeInMid_Opacity);
@@ -77,7 +77,7 @@ function Controller() {
     });
     var FadeInMid_Opacity = Titanium.UI.createAnimation({
         curve: Ti.UI.ANIMATION_CURVE_EASE_OUT,
-        opacity: .7,
+        opacity: .6,
         duration: 300
     });
     _.extend($, exports);

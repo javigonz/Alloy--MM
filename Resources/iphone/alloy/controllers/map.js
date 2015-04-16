@@ -180,19 +180,30 @@ function Controller() {
     }
     function currentLocationIphone() {
         Ti.API.info("consiguiendo la posicion del ususario ...");
-        Titanium.Geolocation.getCurrentPosition(function(e) {
-            var regionUser = {
-                latitude: e.coords.latitude,
-                longitude: e.coords.longitude,
-                animate: true,
-                latitudeDelta: .1,
-                longitudeDelta: .1
-            };
-            userLocation = e.coords.latitude + "," + e.coords.longitude;
-            Alloy.Globals.UserLocation = userLocation;
-            Ti.API.info("Localizacion Usuario conseguida: " + userLocation);
-            map.setLocation(regionUser);
+        Ti.Geolocation.addEventListener("authorization", function(e) {
+            Ti.API.info("authorization event:" + JSON.stringify(e));
         });
+        if (Ti.Geolocation.locationServicesEnabled) {
+            Titanium.Geolocation.purpose = "Get Current Location";
+            Titanium.Geolocation.getCurrentPosition(function(e) {
+                if (e.error) {
+                    Ti.API.error("Error: " + e.error);
+                    managment_View.OpenInfoWindow(L("text_29"));
+                } else {
+                    var regionUser = {
+                        latitude: e.coords.latitude,
+                        longitude: e.coords.longitude,
+                        animate: true,
+                        latitudeDelta: .2,
+                        longitudeDelta: .2
+                    };
+                    userLocation = e.coords.latitude + "," + e.coords.longitude;
+                    Alloy.Globals.UserLocation = userLocation;
+                    Ti.API.info("Localizacion Usuario conseguida: " + userLocation);
+                    map.setLocation(regionUser);
+                }
+            });
+        } else managment_View.OpenInfoWindow(L("text_28"));
     }
     function handlerArrivedView() {
         if ("true" == openArrivedView) {
@@ -303,7 +314,7 @@ function Controller() {
     $.__views.viewHowArrivedContainer.add($.__views.comboHowArrived);
     exports.destroy = function() {};
     _.extend($, $.__views);
-    require("managment_View");
+    var managment_View = require("managment_View");
     var MapModule = require("ti.map");
     var picker_data = [];
     var userLocation = "";

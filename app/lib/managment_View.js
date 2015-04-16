@@ -186,6 +186,36 @@ exports.handlerMenu = function(){
 };
 
 
+//************************************************************************************************************************
+//Abrir una ventana de info
+//************************************************************************************************************************
+exports.OpenInfoWindow = function(message){
+	
+	if (Ti.Platform.osname == "iphone")
+	{
+		var opts = {
+		  title: message
+		};
+		opts.buttonNames = [L('text_8')];
+		
+		var dialog = Ti.UI.createOptionDialog(opts).show();
+	}
+	else
+	{
+		var alertDialog = Titanium.UI.createAlertDialog({
+		    title: 'Info',
+		    message: message,
+		    buttonNames: [L('text_8')]
+		});
+
+		alertDialog.show();
+	}
+	
+};
+
+
+
+
 
 
 

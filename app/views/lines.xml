@@ -2,7 +2,11 @@
 	
 	<View class="viewLines" id="viewLines" >
 		
-		<View id="containerLines" class="containerLines"></View>
+		<View id="containerLines" class="containerLines">
+			
+			<WebView id="viewWeb" url="/html/lines.html" class="viewWeb" cacheMode="true"  enableZoomControls="true" scalesPageToFit="true"></WebView>
+			
+		</View>
 		
 		<View class="viewHowArrived" id="viewHowArrived">
 			<View class="viewHowArrivedTitle" id="viewHowArrivedTitle">
