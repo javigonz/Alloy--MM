@@ -12,12 +12,12 @@ function Controller() {
         Alloy.Globals.ActualContainer = $.viewPress;
         Alloy.Globals.ActualSection = "press";
         Alloy.Globals.Header.children[0].children[1].text = L("text_6");
-        Ti.App.addEventListener("loadScheduler", loadScheduler);
-        managment_Data.LoadWebService_Scheduler();
+        Ti.App.addEventListener("loadNews", loadNews);
+        managment_Data.LoadWebService_News();
     }
-    function loadScheduler() {
-        Ti.App.removeEventListener("loadScheduler", loadScheduler);
-        if ("1" == Alloy.Collections.model__Press.code) {
+    function loadNews() {
+        Ti.App.removeEventListener("loadNews", loadNews);
+        if ("ok" == Alloy.Collections.model__Press.code) {
             var rows = [];
             var rowList = $.createStyle({
                 classes: [ "rowList" ]
@@ -45,19 +45,19 @@ function Controller() {
                     defaultImage: "/images/download.png"
                 });
                 containerImage.applyProperties(imagePress);
-                managment_Data.LoadImage_AsynCache(element.image.split(" ").join("%20"), containerImage);
+                managment_Data.LoadImage_AsynCache(element.imagen1.split(" ").join("%20"), containerImage);
                 var containerViewDescription = Ti.UI.createView({
                     scope: element.id
                 });
                 containerViewDescription.applyProperties(viewDescription);
                 var containerLabelTitle = Ti.UI.createLabel({
                     scope: element.id,
-                    text: element.title
+                    text: element.nombre
                 });
                 containerLabelTitle.applyProperties(textTitle);
                 var containerLabelDate = Ti.UI.createLabel({
                     scope: element.id,
-                    text: element.date
+                    text: element.fecha_noticia
                 });
                 containerLabelDate.applyProperties(textDescription);
                 containerTableRow.add(containerImage);
@@ -67,12 +67,14 @@ function Controller() {
                 rows.push(containerTableRow);
             });
             $.tableList.setData(rows);
-        }
+        } else managment_View.OpenInfoWindow(L("text_27"));
         Ti.App.fireEvent("closeLoading");
     }
     function clickHandler(scope) {
         Ti.API.info("CLICK id: " + scope.source.scope);
-        managment_View.OpenSectionParam("pressDetail", [], "", Alloy.Globals.ActualContainer);
+        managment_View.OpenSectionParam("pressDetail", [ {
+            id: scope.source.scope
+        } ], "", Alloy.Globals.ActualContainer);
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "press";

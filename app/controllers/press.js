@@ -24,18 +24,17 @@ function show(){
 	Alloy.Globals.Header.children[0].children[1].text = L('text_6');
 
 	//Carga WebServie de Subcategorias
-	Ti.App.addEventListener('loadScheduler', loadScheduler);
-	//Alloy.Collections.model_scheduler.reset();
-	managment_Data.LoadWebService_Scheduler();
+	Ti.App.addEventListener('loadNews', loadNews);
+	managment_Data.LoadWebService_News();
 
 }
 
 
-function loadScheduler()
+function loadNews()
 {
-	Ti.App.removeEventListener('loadScheduler', loadScheduler);
+	Ti.App.removeEventListener('loadNews', loadNews);
 		
-	if (Alloy.Collections.model__Press.code == '1')
+	if (Alloy.Collections.model__Press.code == 'ok')
 	{
 		var rows = [];
 		
@@ -61,7 +60,7 @@ function loadScheduler()
 			});
 				
 			containerImage.applyProperties(imagePress);
-			managment_Data.LoadImage_AsynCache((element.image).split(' ').join('%20'), containerImage);
+			managment_Data.LoadImage_AsynCache((element.imagen1).split(' ').join('%20'), containerImage);
 			
 			var containerViewDescription = Ti.UI.createView({
 				scope: element.id
@@ -70,13 +69,13 @@ function loadScheduler()
 			
 			var containerLabelTitle = Ti.UI.createLabel({
 				scope: element.id,
-				text: element.title
+				text: element.nombre
 			});
 			containerLabelTitle.applyProperties(textTitle);
 			
 			var containerLabelDate = Ti.UI.createLabel({
 				scope: element.id,
-				text: element.date
+				text: element.fecha_noticia
 			});
 			containerLabelDate.applyProperties(textDescription);
 			
@@ -97,6 +96,7 @@ function loadScheduler()
 	else
 	{
 		//Error
+		managment_View.OpenInfoWindow( L('text_27'));
 	}		
 	
 	Ti.App.fireEvent('closeLoading');	
@@ -111,5 +111,5 @@ function loadScheduler()
 function clickHandler(scope)
 {
 	Ti.API.info('CLICK id: ' + scope.source.scope );
-	managment_View.OpenSectionParam('pressDetail',[],'', Alloy.Globals.ActualContainer);
+	managment_View.OpenSectionParam('pressDetail',[{id: scope.source.scope}],'', Alloy.Globals.ActualContainer);
 }

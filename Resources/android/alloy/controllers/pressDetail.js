@@ -12,6 +12,15 @@ function Controller() {
         Alloy.Globals.ActualContainer = $.viewPressDetail;
         Alloy.Globals.ActualSection = "press";
         Alloy.Globals.Header.children[0].children[1].text = L("text_6");
+        Ti.App.addEventListener("loadNew", loadNew);
+        managment_Data.LoadWebService_New(data[0][0].id);
+    }
+    function loadNew() {
+        Ti.App.removeEventListener("loadNew", loadNew);
+        if ("ok" == Alloy.Collections.model__New.code) {
+            $.viewWeb.html = Alloy.Collections.model__New.result.descripcion;
+            console.log(Alloy.Collections.model__New.result.descripcion);
+        } else managment_View.OpenInfoWindow(L("text_27"));
         Ti.App.fireEvent("closeLoading");
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
@@ -41,14 +50,17 @@ function Controller() {
         width: Ti.UI.FILL,
         top: 0,
         id: "viewWeb",
-        url: "/html/article.html",
         cacheMode: "true",
         enableZoomControls: "false"
     });
     $.__views.viewPressDetail.add($.__views.viewWeb);
     exports.destroy = function() {};
     _.extend($, $.__views);
-    require("managment_View");
+    var managment_View = require("managment_View");
+    var managment_Data = require("managment_Data");
+    var args = arguments[0] || {};
+    var data = [];
+    data = args;
     show();
     _.extend($, exports);
 }

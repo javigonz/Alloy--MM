@@ -20,6 +20,8 @@ Alloy.Globals.Header;
 
 Alloy.Globals.UserLocation;
 
+Alloy.Globals.UrlImages = "http://desarrollo.solbyte.com.es/metromalaga/res/uploads/";
+
 Alloy.Globals.Height_Header = 50;
 
 Alloy.CFG.WHITE = "#FFFFFF";
@@ -63,6 +65,8 @@ Alloy.CFG.MYRIAD_REGULAR = "Myriad Pro";
 Alloy.Collections.model_scheduler = Alloy.createCollection("model_scheduler");
 
 Alloy.Collections.model__Press = [];
+
+Alloy.Collections.model__New = [];
 
 Alloy.Collections.model__MetroStations = {
     code: "1",

@@ -11,7 +11,7 @@
 	 separatorColor: Alloy.CFG.GREY5,
 	}
 ".rowList[platform=android]": {
-	height: 115,
+	height: 125,
 	backgroundColor: Alloy.CFG.WHITE,
 	backgroundSelectedColor: Alloy.CFG.RED,
 	left: 0,
@@ -19,9 +19,9 @@
 	}
 	
 	".imagePress[platform=android]": {
-		height: 75,
-		width: 150,
-		top: 20,
+		height: 95,
+		width: 145,
+		top: 10,
 		left: 10,
 		bottom: 20
 	}
@@ -38,8 +38,8 @@
 			color: Alloy.CFG.RED,
 			font: {
 				fontFamily: Alloy.CFG.MYRIAD_REGULAR, 
-				fontSize: 	14,
-				fontWeight: 'bold'
+				fontSize: 	13,
+				fontWeight: 'normal'
 			},
 			left: 0,
 			top: 0
@@ -79,9 +79,9 @@
 	}
 	
 	".imagePress[platform=ios]": {
-		height: 75,
-		width: 150,
-		top: 20,
+		height: 95,
+		width: 145,
+		top: 10,
 		bottom: 20,
 		left: 10
 	}
