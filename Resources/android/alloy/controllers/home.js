@@ -18,8 +18,14 @@ function Controller() {
         $.MenuView3.width = widthButton;
         $.MenuView4.width = widthButton;
         Alloy.Globals.Header.children[0].children[1].text = L("text_1");
-        Ti.App.fireEvent("closeLoading");
+        Ti.App.addEventListener("loadAlert", loadAlert);
+        managment_Data.LoadWebService_Alert();
         require("managment_Push");
+    }
+    function loadAlert() {
+        Ti.App.removeEventListener("loadAlert", loadAlert);
+        $.textAlert.text = Alloy.Collections.model__Alert[3].value;
+        Ti.App.fireEvent("closeLoading");
     }
     function eventHandler_Press() {
         managment_View.OpenSectionParam("press", [], "", Alloy.Globals.ActualContainer);
@@ -296,7 +302,7 @@ function Controller() {
         id: "viewRounded3"
     });
     $.__views.viewRoundedContainer3.add($.__views.viewRounded3);
-    $.__views.__alloyId14 = Ti.UI.createLabel({
+    $.__views.textAlert = Ti.UI.createLabel({
         color: Alloy.CFG.BLACK,
         font: {
             fontFamily: Alloy.CFG.MYRIAD_REGULAR,
@@ -306,13 +312,13 @@ function Controller() {
         left: 10,
         right: 10,
         textAlign: "center",
-        text: "Vaya en metro a ver el Unicaja Baloncesto. Próximo jueves, 11 de diciembre, trenes cada 7  minutos y medio hasta el inicio del partido. ",
-        id: "__alloyId14"
+        id: "textAlert"
     });
-    $.__views.viewRounded3.add($.__views.__alloyId14);
+    $.__views.viewRounded3.add($.__views.textAlert);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var managment_View = require("managment_View");
+    var managment_Data = require("managment_Data");
     show();
     __defers["$.__views.MenuView1!click!eventHandler_Scheduler"] && $.__views.MenuView1.addEventListener("click", eventHandler_Scheduler);
     __defers["$.__views.MenuView2!click!eventHandler_Press"] && $.__views.MenuView2.addEventListener("click", eventHandler_Press);

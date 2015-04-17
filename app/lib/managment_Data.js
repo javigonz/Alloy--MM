@@ -6,50 +6,8 @@ var managment_View = require('managment_View');
 //SERVIDOR DE DESARROLLO
 var url_WebService_News = "http://desarrollo.solbyte.com.es/metromalaga/ws.php?c=Noticias&m=getAll";
 var url_WebService_New = "http://desarrollo.solbyte.com.es/metromalaga/ws.php?c=Noticias&m=getOneJSON&id=";
-
- var fileJson_press = {
-						    "code": "1",
-						    "result": [
-						        {
-						            "id": "1",
-						            "title": "El metro de Málaga tendrá cobertura de telefonía móvil antes del verano",
-						            "date": "24/02/2015",
-						            "image": "http://metromalaga.es/wp-content/themes/base/includes/timthumb/timthumb.php?src=http://metromalaga.es/wp-content/uploads/2015/02/Foto-Metro-M%C3%A1laga-Movistar.jpg&w=700&h=350&zc=1"
-						        },
-						        {
-						            "id": "2",
-						            "title": "El metro de Málaga tendrá cobertura de telefonía móvil antes del verano",
-						            "date": "22/02/2015",
-						            "image": "http://metromalaga.es/wp-content/themes/base/includes/timthumb/timthumb.php?src=http://metromalaga.es/wp-content/uploads/2015/02/IMG_7525.jpg&w=700&h=350&zc=1"
-						        },
-						        {
-						            "id": "3",
-						            "title": "El metro de Málaga tendrá cobertura de telefonía móvil antes del verano",
-						            "date": "22/02/2015",
-						            "image": "http://metromalaga.es/wp-content/themes/base/includes/timthumb/timthumb.php?src=http://metromalaga.es/wp-content/uploads/2015/02/IMG_7525.jpg&w=700&h=350&zc=1"
-						        },
-						        {
-						            "id": "4",
-						            "title": "El metro de Málaga tendrá cobertura de telefonía móvil antes del verano",
-						            "date": "22/02/2015",
-						            "image": "http://metromalaga.es/wp-content/themes/base/includes/timthumb/timthumb.php?src=http://metromalaga.es/wp-content/uploads/2015/02/IMG_7525.jpg&w=700&h=350&zc=1"
-						        },
-						        {
-						            "id": "5",
-						            "title": "El metro de Málaga tendrá cobertura de telefonía móvil antes del verano",
-						            "date": "22/02/2015",
-						            "image": "http://metromalaga.es/wp-content/themes/base/includes/timthumb/timthumb.php?src=http://metromalaga.es/wp-content/uploads/2015/02/IMG_7525.jpg&w=700&h=350&zc=1"
-						        },
-						        {
-						            "id": "6",
-						            "title": "El metro de Málaga tendrá cobertura de telefonía móvil antes del verano",
-						            "date": "22/02/2015",
-						            "image": "http://metromalaga.es/wp-content/themes/base/includes/timthumb/timthumb.php?src=http://metromalaga.es/wp-content/uploads/2015/02/IMG_7525.jpg&w=700&h=350&zc=1"
-						        }
-						        ]};
-						        
-
-				        
+var url_WebService_SeccionHome = "http://desarrollo.solbyte.com.es/metromalaga/ws.php?c=Secciones&m=getOneJSON&id=1";
+var url_WebService_SeccionScheduler = "http://desarrollo.solbyte.com.es/metromalaga/ws.php?c=Secciones&m=getOneJSON&id=2";
 
 
 
@@ -174,7 +132,46 @@ exports.LoadWebService_New = function(_id){
 
 
 //************************************************************************************************************************
-//Carga WEBSERVICE de Agenda
+//Carga WEBSERVICE de Alerta de la Home
+//************************************************************************************************************************
+exports.LoadWebService_Alert = function(){
+	
+	var client = Ti.Network.createHTTPClient({
+	     onload : function(e) {
+	     	
+	     		try{
+					 Alloy.Collections.model__Alert = JSON.parse(this.responseText);
+					 Ti.App.fireEvent('loadAlert');
+	     		}
+	     		catch (e){
+	     			 Ti.App.fireEvent('closeLoading');
+	     			 managment_View.OpenInfoWindow( L('text_27'));
+	     		}
+	        
+
+	     },
+	     onerror : function(e) {
+	         Ti.App.fireEvent('closeLoading');
+	         managment_View.OpenInfoWindow( L('text_27'));
+	     },
+	     timeout : 5000  // in milliseconds
+ 	});
+ 	
+    client.validatesSecureCertificate = false;  
+ 	client.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+    //client.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+ 	
+ 	client.open("GET", url_WebService_SeccionHome);
+	client.send();
+	
+	
+};
+
+
+
+
+//************************************************************************************************************************
+//Carga WEBSERVICE de Sección Horarios
 //************************************************************************************************************************
 exports.LoadWebService_Scheduler = function(){
 	
@@ -182,38 +179,28 @@ exports.LoadWebService_Scheduler = function(){
 	     onload : function(e) {
 	     	
 	     		try{
-			         var schedulers = Alloy.Collections.model_scheduler;
-					// schedulers.add((JSON.parse (this.responseText)).result);
-					// schedulers.add(fileJson_press.result);
-					 Alloy.Collections.model__Press = fileJson_press;
-					// schedulers.fecth();
-					 
-					
-			         Ti.App.fireEvent('loadScheduler');
+					 Alloy.Collections.model__Scheduler = JSON.parse(this.responseText);
+					 Ti.App.fireEvent('loadScheduler');
 	     		}
 	     		catch (e){
-	     			
 	     			 Ti.App.fireEvent('closeLoading');
-	     			 Ti.API.info('Datos NO1 cargados');
-	     			 //managment_View.OpenInfoWindow( L('text_6'));
+	     			 managment_View.OpenInfoWindow( L('text_27'));
 	     		}
 	        
 
 	     },
 	     onerror : function(e) {
 	         Ti.App.fireEvent('closeLoading');
-	         Ti.API.info('Datos NO2 cargados');
-	         //managment_View.OpenInfoWindow( L('text_6'));
+	         managment_View.OpenInfoWindow( L('text_27'));
 	     },
-	     timeout : 10000  // in milliseconds
+	     timeout : 5000  // in milliseconds
  	});
  	
-    client.validatesSecureCertificate = false;
-
- 	client.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+    client.validatesSecureCertificate = false;  
+ 	client.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+    //client.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
  	
- 	client.open("POST", url_WebService_Scheduler);
-
+ 	client.open("GET", url_WebService_SeccionScheduler);
 	client.send();
 	
 	

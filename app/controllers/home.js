@@ -1,4 +1,5 @@
 var managment_View = require('managment_View');
+var managment_Data = require('managment_Data');
 
 show();
 
@@ -38,13 +39,26 @@ function show(){
 	
 	Alloy.Globals.Header.children[0].children[1].text = L('text_1');
 
-	Ti.App.fireEvent('closeLoading');
+	//Carga WebServie de Alerta
+	Ti.App.addEventListener('loadAlert', loadAlert);
+	managment_Data.LoadWebService_Alert();
 	
 	//Inicio de las notificaciones Push
 	var managment_Push = require('managment_Push');
 	
 
 }
+
+function loadAlert()
+{
+	Ti.App.removeEventListener('loadAlert', loadAlert);
+		
+	$.textAlert.text = Alloy.Collections.model__Alert[3].value;		
+	
+	Ti.App.fireEvent('closeLoading');
+	
+}	
+
 
 
 /* ***********************************************************

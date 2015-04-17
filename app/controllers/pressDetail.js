@@ -40,7 +40,6 @@ function loadNew()
 	if (Alloy.Collections.model__New.code == 'ok')
 	{
 		$.viewWeb.html = Alloy.Collections.model__New.result.descripcion;
-		console.log(Alloy.Collections.model__New.result.descripcion);
 	}
 	else
 	{

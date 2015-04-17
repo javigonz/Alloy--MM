@@ -44,10 +44,9 @@ function Controller() {
     });
     $.__views.viewPressDetail && $.addTopLevelView($.__views.viewPressDetail);
     $.__views.viewWeb = Ti.UI.createWebView({
-        width: Ti.UI.FILL,
+        width: Titanium.UI.FILL,
         top: 0,
         id: "viewWeb",
-        cacheMode: "true",
         enableZoomControls: "false"
     });
     $.__views.viewPressDetail.add($.__views.viewWeb);

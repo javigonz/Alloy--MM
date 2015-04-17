@@ -52,6 +52,8 @@ Alloy.CFG.GREEN2 = "#2a7030";
 
 Alloy.CFG.WidthDeviceIphone = Ti.Platform.displayCaps.platformWidth;
 
+Alloy.CFG.WidthDeviceIphoneMargin = Alloy.CFG.WidthDeviceIphone - 20;
+
 Alloy.CFG.WidthDeviceAndroid = Ti.Platform.displayCaps.platformWidth / (Titanium.Platform.displayCaps.dpi / 160);
 
 Alloy.CFG.HeightDevice = Ti.Platform.displayCaps.platformHeight / (Titanium.Platform.displayCaps.dpi / 160);
@@ -71,6 +73,10 @@ Alloy.Collections.model_scheduler = Alloy.createCollection("model_scheduler");
 Alloy.Collections.model__Press = [];
 
 Alloy.Collections.model__New = [];
+
+Alloy.Collections.model__Alert = [];
+
+Alloy.Collections.model__Scheduler = [];
 
 Alloy.Collections.model__MetroStations = {
     code: "1",

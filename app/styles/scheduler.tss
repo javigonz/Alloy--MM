@@ -81,7 +81,9 @@
 }
 
 ".viewWeb[platform=ios]": {
-    width: Ti.UI.FILL,
+     width: Alloy.CFG.WidthDeviceIphoneMargin,
+    left: 10,
+    right: 10,
     top: 0
 }
 

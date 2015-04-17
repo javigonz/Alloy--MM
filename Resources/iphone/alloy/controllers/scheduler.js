@@ -17,6 +17,7 @@ function Controller() {
     }
     function loadScheduler() {
         Ti.App.removeEventListener("loadScheduler", loadScheduler);
+        $.viewWeb.html = Alloy.Collections.model__Scheduler[3].value;
         Ti.App.fireEvent("closeLoading");
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
@@ -43,11 +44,11 @@ function Controller() {
     });
     $.__views.viewScheduler && $.addTopLevelView($.__views.viewScheduler);
     $.__views.viewWeb = Ti.UI.createWebView({
-        width: Ti.UI.FILL,
+        width: Alloy.CFG.WidthDeviceIphoneMargin,
+        left: 10,
+        right: 10,
         top: 0,
         id: "viewWeb",
-        url: "/html/horarios.html",
-        cacheMode: "true",
         enableZoomControls: "false"
     });
     $.__views.viewScheduler.add($.__views.viewWeb);

@@ -17,6 +17,7 @@ function Controller() {
     }
     function loadScheduler() {
         Ti.App.removeEventListener("loadScheduler", loadScheduler);
+        $.viewWeb.html = Alloy.Collections.model__Scheduler[3].value;
         Ti.App.fireEvent("closeLoading");
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
@@ -46,8 +47,6 @@ function Controller() {
         width: Ti.UI.FILL,
         top: 0,
         id: "viewWeb",
-        url: "/html/horarios.html",
-        cacheMode: "true",
         enableZoomControls: "false"
     });
     $.__views.viewScheduler.add($.__views.viewWeb);

@@ -17,10 +17,7 @@ function Controller() {
     }
     function loadNew() {
         Ti.App.removeEventListener("loadNew", loadNew);
-        if ("ok" == Alloy.Collections.model__New.code) {
-            $.viewWeb.html = Alloy.Collections.model__New.result.descripcion;
-            console.log(Alloy.Collections.model__New.result.descripcion);
-        } else managment_View.OpenInfoWindow(L("text_27"));
+        "ok" == Alloy.Collections.model__New.code ? $.viewWeb.html = Alloy.Collections.model__New.result.descripcion : managment_View.OpenInfoWindow(L("text_27"));
         Ti.App.fireEvent("closeLoading");
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
@@ -50,7 +47,6 @@ function Controller() {
         width: Ti.UI.FILL,
         top: 0,
         id: "viewWeb",
-        cacheMode: "true",
         enableZoomControls: "false"
     });
     $.__views.viewPressDetail.add($.__views.viewWeb);

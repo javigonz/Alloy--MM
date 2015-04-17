@@ -23,32 +23,23 @@ function show(){
 	
 	Alloy.Globals.Header.children[0].children[1].text = L('text_2');
 
-	
-	//Carga WebServie de Subcategorias
+	//Carga WebServie de Alerta
 	Ti.App.addEventListener('loadScheduler', loadScheduler);
-	//Alloy.Collections.model_scheduler.reset();
 	managment_Data.LoadWebService_Scheduler();
-
 }
 
 function loadScheduler()
 {
 	Ti.App.removeEventListener('loadScheduler', loadScheduler);
 		
-		
+	$.viewWeb.html = Alloy.Collections.model__Scheduler[3].value;		
 	
-	Ti.App.fireEvent('closeLoading');	
+	Ti.App.fireEvent('closeLoading');
 	
-	//$.viewWeb.html = '<meta name="viewport" content=" initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>' + codigoHtml;
 }
+
 
 
 /* ***********************************************************
  * Handler functions
  * ***********************************************************/
-
-function clickHandler(scope)
-{
-	
-	Ti.API.info('CLICK id: ' + scope.source.scope );
-}

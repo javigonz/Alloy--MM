@@ -21,13 +21,13 @@
 	".imagePress[platform=android]": {
 		height: 95,
 		width: 145,
-		top: 10,
+		top: 15,
 		left: 10,
 		bottom: 20
 	}
 		
 	".viewDescription[platform=android]": {
-		top: 20,
+		top: 15,
 		width: Ti.UI.FILL,
 		left: 10,
 		right: 10,
@@ -41,8 +41,7 @@
 				fontSize: 	13,
 				fontWeight: 'normal'
 			},
-			left: 0,
-			top: 0
+			left: 0
 		}
 
 		".textDescription[platform=android]": {
@@ -74,8 +73,7 @@
 	height: 115,
 	backgroundColor: Alloy.CFG.WHITE,
 	backgroundSelectedColor: Alloy.CFG.RED,
-	left: 0,
-	layout: 'horizontal'
+	left: 0
 	}
 	
 	".imagePress[platform=ios]": {
@@ -87,9 +85,10 @@
 	}
 		
 	".viewDescription[platform=ios]": {
-		top: 20,
+		height: 95,
 		width: Ti.UI.FILL,
-		left: 10,
+		top: 10,
+		left: 165,
 		right: 10,
 		layout: 'vertical'
 		}

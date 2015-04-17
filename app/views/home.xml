@@ -45,7 +45,7 @@
 			<View class="viewRoundedShadow" id="viewRoundedShadow3"></View>
 			<View class="viewRounded" id="viewRounded3">
 				
-				<Label class="textAlert" text="Vaya en metro a ver el Unicaja Baloncesto. Próximo jueves, 11 de diciembre, trenes cada 7  minutos y medio hasta el inicio del partido. "></Label>
+				<Label class="textAlert" id="textAlert"></Label>
 				
 			</View>
 		</View>

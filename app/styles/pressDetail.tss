@@ -24,6 +24,6 @@
 }
 
 ".viewWeb[platform=ios]": {
-    width: Ti.UI.FILL,
+    width: Titanium.UI.FILL,
     top: 0
 }
