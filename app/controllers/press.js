@@ -75,7 +75,7 @@ function loadNews()
 			
 			var containerLabelDate = Ti.UI.createLabel({
 				scope: element.id,
-				text: element.fecha_noticia
+				text: element.fecha_noticia.split('-').reverse().join('-')
 			});
 			containerLabelDate.applyProperties(textDescription);
 			
@@ -111,5 +111,5 @@ function loadNews()
 function clickHandler(scope)
 {
 	Ti.API.info('CLICK id: ' + scope.source.scope );
-	managment_View.OpenSectionParam('pressDetail',[{id: scope.source.scope}],'', Alloy.Globals.ActualContainer);
+	managment_View.OpenSectionParam('pressDetail',[scope.source.scope],'', Alloy.Globals.ActualContainer);
 }

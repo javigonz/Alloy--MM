@@ -8,6 +8,10 @@ var url_WebService_SeccionHome = "http://desarrollo.solbyte.com.es/metromalaga/w
 
 var url_WebService_SeccionScheduler = "http://desarrollo.solbyte.com.es/metromalaga/ws.php?c=Secciones&m=getOneJSON&id=2";
 
+var url_WebService_SeccionCustomerService = "http://desarrollo.solbyte.com.es/metromalaga/ws.php?c=Secciones&m=getOneJSON&id=3";
+
+var url_WebService_Regulation = "http://desarrollo.solbyte.com.es/metromalaga/ws.php?c=Secciones&m=getOneJSON&id=4";
+
 exports.LoadImage_AsynCache = function(url, imageRemote) {
     var cacheFilename = url.replace(/[^a-zA-Z0-9\.]/gi, "_");
     var cacheFile = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, cacheFilename);
@@ -120,5 +124,51 @@ exports.LoadWebService_Scheduler = function() {
     client.validatesSecureCertificate = false;
     client.setRequestHeader("Content-Type", "application/json; charset=utf-8");
     client.open("GET", url_WebService_SeccionScheduler);
+    client.send();
+};
+
+exports.LoadWebService_CustomerService = function() {
+    var client = Ti.Network.createHTTPClient({
+        onload: function() {
+            try {
+                Alloy.Collections.model__CustomerService = JSON.parse(this.responseText);
+                Ti.App.fireEvent("loadSCustomoerService");
+            } catch (e) {
+                Ti.App.fireEvent("closeLoading");
+                managment_View.OpenInfoWindow(L("text_27"));
+            }
+        },
+        onerror: function() {
+            Ti.App.fireEvent("closeLoading");
+            managment_View.OpenInfoWindow(L("text_27"));
+        },
+        timeout: 5e3
+    });
+    client.validatesSecureCertificate = false;
+    client.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+    client.open("GET", url_WebService_SeccionCustomerService);
+    client.send();
+};
+
+exports.LoadWebService_Regulation = function() {
+    var client = Ti.Network.createHTTPClient({
+        onload: function() {
+            try {
+                Alloy.Collections.model__Regulation = JSON.parse(this.responseText);
+                Ti.App.fireEvent("loadRegulation");
+            } catch (e) {
+                Ti.App.fireEvent("closeLoading");
+                managment_View.OpenInfoWindow(L("text_27"));
+            }
+        },
+        onerror: function() {
+            Ti.App.fireEvent("closeLoading");
+            managment_View.OpenInfoWindow(L("text_27"));
+        },
+        timeout: 5e3
+    });
+    client.validatesSecureCertificate = false;
+    client.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+    client.open("GET", url_WebService_Regulation);
     client.send();
 };

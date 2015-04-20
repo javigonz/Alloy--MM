@@ -72,9 +72,7 @@ function Controller() {
     }
     function clickHandler(scope) {
         Ti.API.info("CLICK id: " + scope.source.scope);
-        managment_View.OpenSectionParam("pressDetail", [ {
-            id: scope.source.scope
-        } ], "", Alloy.Globals.ActualContainer);
+        managment_View.OpenSectionParam("pressDetail", [ scope.source.scope ], "", Alloy.Globals.ActualContainer);
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "press";

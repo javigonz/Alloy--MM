@@ -12,10 +12,13 @@ function Controller() {
         Alloy.Globals.ActualContainer = $.viewRegulation;
         Alloy.Globals.ActualSection = "regulation";
         Alloy.Globals.Header.children[0].children[1].text = L("text_18");
-        var miniTimer = setTimeout(function() {
-            clearInterval(miniTimer);
-            Ti.App.fireEvent("closeLoading");
-        }, 2e3);
+        Ti.App.addEventListener("loadRegulation", loadRegulation);
+        managment_Data.LoadWebService_Regulation();
+    }
+    function loadRegulation() {
+        Ti.App.removeEventListener("loadRegulation", loadRegulation);
+        $.viewWeb.html = Alloy.Collections.model__Regulation[3].value;
+        Ti.App.fireEvent("closeLoading");
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "regulation";
@@ -44,14 +47,13 @@ function Controller() {
         width: Ti.UI.FILL,
         top: 0,
         id: "viewWeb",
-        url: "/html/reglamento.html",
-        cacheMode: "true",
         enableZoomControls: "false"
     });
     $.__views.viewRegulation.add($.__views.viewWeb);
     exports.destroy = function() {};
     _.extend($, $.__views);
     require("managment_View");
+    var managment_Data = require("managment_Data");
     show();
     _.extend($, exports);
 }

@@ -57,7 +57,7 @@ function Controller() {
                 containerLabelTitle.applyProperties(textTitle);
                 var containerLabelDate = Ti.UI.createLabel({
                     scope: element.id,
-                    text: element.fecha_noticia
+                    text: element.fecha_noticia.split("-").reverse().join("-")
                 });
                 containerLabelDate.applyProperties(textDescription);
                 containerTableRow.add(containerImage);
@@ -72,9 +72,7 @@ function Controller() {
     }
     function clickHandler(scope) {
         Ti.API.info("CLICK id: " + scope.source.scope);
-        managment_View.OpenSectionParam("pressDetail", [ {
-            id: scope.source.scope
-        } ], "", Alloy.Globals.ActualContainer);
+        managment_View.OpenSectionParam("pressDetail", [ scope.source.scope ], "", Alloy.Globals.ActualContainer);
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "press";

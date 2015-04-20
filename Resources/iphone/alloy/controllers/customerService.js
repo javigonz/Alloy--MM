@@ -12,10 +12,13 @@ function Controller() {
         Alloy.Globals.ActualContainer = $.viewCustomer;
         Alloy.Globals.ActualSection = "customerService";
         Alloy.Globals.Header.children[0].children[1].text = L("text_17");
-        var miniTimer = setTimeout(function() {
-            clearInterval(miniTimer);
-            Ti.App.fireEvent("closeLoading");
-        }, 2e3);
+        Ti.App.addEventListener("loadSCustomoerService", loadSCustomoerService);
+        managment_Data.LoadWebService_CustomerService();
+    }
+    function loadSCustomoerService() {
+        Ti.App.removeEventListener("loadSCustomoerService", loadSCustomoerService);
+        $.viewWeb.html = Alloy.Collections.model__CustomerService[3].value;
+        Ti.App.fireEvent("closeLoading");
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "customerService";
@@ -44,14 +47,13 @@ function Controller() {
         width: Ti.UI.FILL,
         top: 0,
         id: "viewWeb",
-        url: "/html/atencion.html",
-        cacheMode: "true",
         enableZoomControls: "false"
     });
     $.__views.viewCustomer.add($.__views.viewWeb);
     exports.destroy = function() {};
     _.extend($, $.__views);
     require("managment_View");
+    var managment_Data = require("managment_Data");
     show();
     _.extend($, exports);
 }

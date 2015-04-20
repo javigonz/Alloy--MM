@@ -29,7 +29,7 @@ function show(){
 
 	//Carga WebServie de Subcategorias
 	Ti.App.addEventListener('loadNew', loadNew);
-	managment_Data.LoadWebService_New(data[0][0].id);
+	managment_Data.LoadWebService_New(data[0][0]);
 
 }
 

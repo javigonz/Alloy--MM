@@ -61,6 +61,7 @@ Alloy.Collections.model__Press = [];
 Alloy.Collections.model__New = [];
 Alloy.Collections.model__Alert = [];
 Alloy.Collections.model__Scheduler = [];
+Alloy.Collections.model__Regulation = [];
 
 Alloy.Collections.model__MetroStations = {
 										    "code": "1",

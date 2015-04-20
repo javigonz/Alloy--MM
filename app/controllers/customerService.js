@@ -1,4 +1,5 @@
 var managment_View = require('managment_View');
+var managment_Data = require('managment_Data');
 
 show();
 
@@ -23,11 +24,20 @@ function show(){
 	Alloy.Globals.Header.children[0].children[1].text = L('text_17');
 	
 
-	var miniTimer = setTimeout(function () {
-					clearInterval( miniTimer );
-			        Ti.App.fireEvent('closeLoading');
-	}, 2000);
+	//Carga WebServie de Alerta
+	Ti.App.addEventListener('loadSCustomoerService', loadSCustomoerService);
+	managment_Data.LoadWebService_CustomerService();
 
+}
+
+function loadSCustomoerService()
+{
+	Ti.App.removeEventListener('loadSCustomoerService', loadSCustomoerService);
+		
+	$.viewWeb.html = Alloy.Collections.model__CustomerService[3].value;		
+	
+	Ti.App.fireEvent('closeLoading');
+	
 }
 
 

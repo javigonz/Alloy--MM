@@ -8,6 +8,8 @@ var url_WebService_News = "http://desarrollo.solbyte.com.es/metromalaga/ws.php?c
 var url_WebService_New = "http://desarrollo.solbyte.com.es/metromalaga/ws.php?c=Noticias&m=getOneJSON&id=";
 var url_WebService_SeccionHome = "http://desarrollo.solbyte.com.es/metromalaga/ws.php?c=Secciones&m=getOneJSON&id=1";
 var url_WebService_SeccionScheduler = "http://desarrollo.solbyte.com.es/metromalaga/ws.php?c=Secciones&m=getOneJSON&id=2";
+var url_WebService_SeccionCustomerService = "http://desarrollo.solbyte.com.es/metromalaga/ws.php?c=Secciones&m=getOneJSON&id=3";
+var url_WebService_Regulation = "http://desarrollo.solbyte.com.es/metromalaga/ws.php?c=Secciones&m=getOneJSON&id=4";
 
 
 
@@ -201,6 +203,80 @@ exports.LoadWebService_Scheduler = function(){
     //client.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
  	
  	client.open("GET", url_WebService_SeccionScheduler);
+	client.send();
+	
+	
+};
+
+
+
+//************************************************************************************************************************
+//Carga WEBSERVICE de Sección Atención al Cliente
+//************************************************************************************************************************
+exports.LoadWebService_CustomerService = function(){
+	
+	var client = Ti.Network.createHTTPClient({
+	     onload : function(e) {
+	     	
+	     		try{
+					 Alloy.Collections.model__CustomerService = JSON.parse(this.responseText);
+					 Ti.App.fireEvent('loadSCustomoerService');
+	     		}
+	     		catch (e){
+	     			 Ti.App.fireEvent('closeLoading');
+	     			 managment_View.OpenInfoWindow( L('text_27'));
+	     		}
+	        
+
+	     },
+	     onerror : function(e) {
+	         Ti.App.fireEvent('closeLoading');
+	         managment_View.OpenInfoWindow( L('text_27'));
+	     },
+	     timeout : 5000  // in milliseconds
+ 	});
+ 	
+    client.validatesSecureCertificate = false;  
+ 	client.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+    //client.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+ 	
+ 	client.open("GET", url_WebService_SeccionCustomerService);
+	client.send();
+	
+	
+};
+
+//************************************************************************************************************************
+//Carga WEBSERVICE de Sección Reglamento del viajero
+//************************************************************************************************************************
+exports.LoadWebService_Regulation = function(){
+	
+	var client = Ti.Network.createHTTPClient({
+	     onload : function(e) {
+	     	
+	     		try{
+					 Alloy.Collections.model__Regulation = JSON.parse(this.responseText);
+					 Ti.App.fireEvent('loadRegulation');
+	     		}
+	     		catch (e){
+	     			 Ti.App.fireEvent('closeLoading');
+	     			 managment_View.OpenInfoWindow( L('text_27'));
+	     		}
+	        
+
+	     },
+	     onerror : function(e) {
+	         Ti.App.fireEvent('closeLoading');
+	         managment_View.OpenInfoWindow( L('text_27'));
+	     },
+	     timeout : 5000  // in milliseconds
+ 	});
+ 	
+    client.validatesSecureCertificate = false;  
+ 	client.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+    //client.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+ 	
+ 	client.open("GET", url_WebService_Regulation);
 	client.send();
 	
 	

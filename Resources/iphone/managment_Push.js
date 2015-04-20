@@ -16,19 +16,15 @@ var blackberryOptions = {
 };
 
 var onReceive = function(evt) {
-    Ti.API.info("A push notification onReceive!");
-    if ("iphone" === Ti.Platform.osname) {
-        Ti.API.info("evt " + evt.title);
-        managment_View.OpenSectionParam("press", [], "", Alloy.Globals.ActualContainer);
-    } else {
-        var pushPayload = JSON.parse(evt.payload);
-        Ti.API.info("evt.source parse " + pushPayload.android.title);
-        managment_View.OpenSectionParam("press", [], "", Alloy.Globals.ActualContainer);
-    }
+    var payload = JSON.parse(evt.payload);
+    "" == payload._id ? managment_View.OpenSectionParam("press", [], "", Alloy.Globals.ActualContainer) : managment_View.OpenSectionParam("pressDetail", [ payload._id ], "", Alloy.Globals.ActualContainer);
+    console.log("A push notification was received!" + JSON.stringify(evt));
 };
 
-var onLaunched = function() {
-    Ti.API.info("A push notification onLaounched!");
+var onLaunched = function(evt) {
+    var payload = JSON.parse(evt.payload);
+    "" == payload._id ? managment_View.OpenSectionParam("press", [], "", Alloy.Globals.ActualContainer) : managment_View.OpenSectionParam("pressDetail", [ payload._id ], "", Alloy.Globals.ActualContainer);
+    console.log("A push notification was received!" + JSON.stringify(evt));
 };
 
 var onFocused = function() {

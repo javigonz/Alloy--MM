@@ -2,7 +2,7 @@
 	
 	<View class="viewScheduler" id="viewScheduler" >
 
-		<WebView id="viewWeb"  class="viewWeb"   enableZoomControls="false"  ></WebView>
+		<WebView id="viewWeb"  class="viewWeb"  enableZoomControls="false"  ></WebView>
 		
 	</View>
 	

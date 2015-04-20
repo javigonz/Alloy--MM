@@ -13,7 +13,7 @@ function Controller() {
         Alloy.Globals.ActualSection = "press";
         Alloy.Globals.Header.children[0].children[1].text = L("text_6");
         Ti.App.addEventListener("loadNew", loadNew);
-        managment_Data.LoadWebService_New(data[0][0].id);
+        managment_Data.LoadWebService_New(data[0][0]);
     }
     function loadNew() {
         Ti.App.removeEventListener("loadNew", loadNew);

@@ -17,31 +17,42 @@ var managment_View = require('managment_View');
 	    launchApplicationOnPush : true
 	};
 	
-	// set cross-platform event
 	var onReceive=function(evt){
-	    Ti.API.info('A push notification onReceive!');
+	    //alert('A push notification was received!');
 	    
-	    if (Ti.Platform.osname === "iphone")
-		{
-			Ti.API.info('evt ' + evt.title);
-			managment_View.OpenSectionParam('press',[],'', Alloy.Globals.ActualContainer);
-		}
-		else
-		{
-	  	 	var pushPayload = JSON.parse(evt.payload);
-	   	  	Ti.API.info('evt.source parse ' + pushPayload.android.title);
-	   	  	managment_View.OpenSectionParam('press',[],'', Alloy.Globals.ActualContainer);
+	    var payload = JSON.parse(evt.payload);
+	    //managment_View.OpenInfoWindow(payload._id);
+	    if (payload._id == '')
+	    {
+	    	 managment_View.OpenSectionParam('press',[],'', Alloy.Globals.ActualContainer);
+	    }
+	    else
+	    {
+	    	 managment_View.OpenSectionParam('pressDetail',[payload._id],'', Alloy.Globals.ActualContainer);
 	    }
 	   
+	   
+	   console.log('A push notification was received!' + JSON.stringify(evt));
 	};
 	
-	// set android-only event
+	
 	var onLaunched=function(evt){
-	    Ti.API.info('A push notification onLaounched!');
+	    //alert('A push notification was received - onLaunched');
+	   
+	    var payload = JSON.parse(evt.payload);
+	    //managment_View.OpenInfoWindow(payload._id);
+	    if (payload._id == '')
+	    {
+	    	 managment_View.OpenSectionParam('press',[],'', Alloy.Globals.ActualContainer);
+	    }
+	    else
+	    {
+	    	 managment_View.OpenSectionParam('pressDetail',[payload._id],'', Alloy.Globals.ActualContainer);
+	    }
 	    
-	    
-
+	    console.log('A push notification was received!' + JSON.stringify(evt));
 	};
+	
 	
 	// set android-only event
 	var onFocused=function(evt){
