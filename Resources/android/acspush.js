@@ -15,9 +15,7 @@ function loginToACS(acsuid, acspwd, token, channel_name) {
         password: acspwd
     }, function(e) {
         if (e.success) {
-            {
-                e.users[0];
-            }
+            e.users[0];
             console.log("loginToACS -> Status: Successful");
             subscribeForPushNotifications(token, channel_name);
         } else {
@@ -41,7 +39,7 @@ function subscribeForPushNotifications(token, channel_name, subscribeAsGuest) {
 
 var Cloud = require("ti.cloud");
 
-ACSPush.prototype.registerDevice = function(channel_name, onReceive, onLaunched, onFocused, androidOptions, blackberryOptions) {
+ACSPush.prototype.registerDevice = function(channel_name, onReceive, onLaunched, onFocused, androidOptions) {
     function deviceTokenSuccess(e) {
         console.log("Device Token: " + e.deviceToken);
         token = e.deviceToken;

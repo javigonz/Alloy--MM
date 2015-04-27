@@ -57,7 +57,7 @@ function Controller() {
                 containerLabelTitle.applyProperties(textTitle);
                 var containerLabelDate = Ti.UI.createLabel({
                     scope: element.id,
-                    text: element.fecha_noticia
+                    text: element.fecha_noticia.split("-").reverse().join("-")
                 });
                 containerLabelDate.applyProperties(textDescription);
                 containerTableRow.add(containerImage);
