@@ -20,17 +20,18 @@
 						<View class="verticalLine"></View>
 					</View>
 					
+					<View class="MenuView3" id="MenuView3" onClick="eventHandler_Tarifas">
+						<Label text="L('text_30').toUpperCase()" class="MenuText"></Label>
+						<ImageView image="/images/homeIcon5.png" class="MenuImage3"></ImageView>
+						<View class="verticalLine"></View>
+					</View>
+					
 					<View class="MenuView2" id="MenuView2" onClick="eventHandler_Press">
 						<Label text="L('text_11').toUpperCase()" class="MenuText"></Label>
 						<ImageView image="/images/homeIcon2.png" class="MenuImage2"></ImageView>
 						<View class="verticalLine"></View>
 					</View>
-					
-					<View class="MenuView3" id="MenuView3" onClick="eventHandler_Lines">
-						<Label text="L('text_12').toUpperCase()" class="MenuText"></Label>
-						<ImageView image="/images/homeIcon3.png" class="MenuImage3"></ImageView>
-						<View class="verticalLine"></View>
-					</View>
+
 					
 					<View class="MenuView4" id="MenuView4" onClick="eventHandler_Map">
 						<Label text="L('text_13').toUpperCase()" class="MenuText"></Label>

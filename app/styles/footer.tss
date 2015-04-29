@@ -84,8 +84,8 @@
 
 ".MenuImage4[platform=android]": { //Lineas
     top: 10,
-    width: 25,
-    height: 25
+    width: 30,
+    height: 30
 }
 
 ".MenuImage5[platform=android]": { //Planos

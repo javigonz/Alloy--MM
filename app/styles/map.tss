@@ -10,22 +10,51 @@
 
 ".viewHowArrived[platform=android]": { 
 	width: Alloy.CFG.WidthDeviceAndroid,
-	height: 130,
-	bottom: '-75',
+	height: 270,
+	bottom: '-215',
 	left: 0,
 	layout: 'vertical'
 }
 
 	".viewHowArrivedContainer[platform=android]": { 
 		width: Alloy.CFG.WidthDeviceAndroid,
-		height: 100,
+		height: 70,
 		//opacity: 0.9,
 		backgroundColor: Alloy.CFG.WHITE,
 		left: 0
 	}
 	
+	".viewContainerTime[platform=android]": { 
+		height: 65,
+		width: 100,
+		right: 10,
+		top: '-110'
+		
+		}
+		".textMinutes[platform=android]": {
+		    color: Alloy.CFG.GREY6,
+		    font: {
+				fontFamily: Alloy.CFG.MYRIAD_REGULAR, 
+				fontSize: 	30,
+				fontWeight: 'normal'
+			},
+			bottom: 0,
+			right: 0
+			
+		}
+		
+		".textPeque[platform=android]": {
+		    color: Alloy.CFG.GREY6,
+		    font: {
+				fontFamily: Alloy.CFG.MYRIAD_REGULAR, 
+				fontSize: 	25,
+				fontWeight: 'normal'
+			},
+			bottom: 0
+		}
+	
 	".viewHowArrivedTitle[platform=android]": { 
-		width: 160,
+		width: 190,
 		height: 40,
 		backgroundColor: Alloy.CFG.GREEN,
 		left: 0,
@@ -71,9 +100,10 @@
 
 ".combo[platform=android]": {
     height: 40,
-    width: '90%',
+    width: '65%',
     borderColor: Alloy.CFG.GREEN,
     top: 20,
+    left: 10,
     paddingLeft: 10,
     color: Alloy.CFG.BLACK,
     borderWidth : '2px',
@@ -88,6 +118,7 @@
 
 
 
+
 // IPHONE *********************************************************
 
 ".viewMap[platform=ios]": { 
@@ -97,24 +128,53 @@
 	left: 0
 }
 
+
 ".viewHowArrived[platform=ios]": { 
 	width: Alloy.CFG.WidthDeviceIphone,
-	height: 130,
-	bottom: '-80',
+	height: 260,
+	bottom: '-210',
 	left: 0,
 	layout: 'vertical'
 }
 
 	".viewHowArrivedContainer[platform=ios]": { 
 		width: Alloy.CFG.WidthDeviceIphone,
-		height: 100,
+		height: 70,
 		//opacity: 0.9,
 		backgroundColor: Alloy.CFG.WHITE,
 		left: 0
 	}
+	".viewContainerTime[platform=ios]": { 
+		height: 60,
+		width: 90,
+		right: 10,
+		top: '-110'
+		
+		}
+		".textMinutes[platform=ios]": {
+		    color: Alloy.CFG.GREY6,
+		    font: {
+				fontFamily: Alloy.CFG.MYRIAD_REGULAR, 
+				fontSize: 	30,
+				fontWeight: 'normal'
+			},
+			bottom: 0,
+			right: 0
+			
+		}
+		
+		".textPeque[platform=ios]": {
+		    color: Alloy.CFG.GREY6,
+		    font: {
+				fontFamily: Alloy.CFG.MYRIAD_REGULAR, 
+				fontSize: 	10,
+				fontWeight: 'normal'
+			},
+			bottom: 0
+		}
 	
 	".viewHowArrivedTitle[platform=ios]": { 
-		width: 160,
+		width: 190,
 		height: 40,
 		backgroundColor: Alloy.CFG.GREEN,
 		left: 0,
@@ -138,16 +198,10 @@
 			left: 10
 		}
 
-
-".viewGoogleMap[platform=ios]": { 
-	width: Alloy.CFG.WidthDeviceIphone,
-	top: 0,
-	left: 0
-}
-
 ".combo[platform=ios]": {
     height: 40,
-    width: '90%',
+    width: '65%',
+    left: 10,
     backgroundColor: Alloy.CFG.WHITE,
     borderColor: Alloy.CFG.GREEN,
     top: 20,
@@ -159,6 +213,14 @@
 		fontWeight: 'normal'
 	}
 
+}
+
+
+
+".viewGoogleMap[platform=ios]": { 
+	width: Alloy.CFG.WidthDeviceIphone,
+	top: 0,
+	left: 0
 }
 
 

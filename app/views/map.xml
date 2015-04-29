@@ -4,7 +4,7 @@
 		
 		<View class="viewGoogleMap" id="viewGoogleMap"></View>
 		
-		<View class="viewHowArrived" id="viewHowArrived" visible="false">
+		<!--<View class="viewHowArrived" id="viewHowArrived" visible="false">
 			<View class="viewHowArrivedTitle" id="viewHowArrivedTitle">
 				<ImageView class="iconTitle" image="/images/menuIcon10.png"></ImageView>
 				<Label class="textTitle" text="L('text_19')"></Label>
@@ -13,6 +13,29 @@
 			<View class="viewHowArrivedContainer" id="viewHowArrivedContainer" >
 				<TextField class="combo" platform="ios" id="comboHowArrived" touchEnabled="true"  hintText="L('text_22')" ></TextField>
 				<View class="combo" platform="android"  id="comboHowArrived"  ></View>
+			</View>
+			
+	</View>-->
+	
+		<View class="viewHowArrived" id="viewHowArrived">
+			<View class="viewHowArrivedTitle" id="viewHowArrivedTitle">
+				<ImageView class="iconTitle" image="/images/menuIcon11.png"></ImageView>
+				<Label class="textTitle" text="L('text_25')"></Label>
+			</View>
+			
+			<View class="viewHowArrivedContainer" id="viewHowArrivedContainerOrigen">
+				<TextField class="combo" platform="ios" id="comboHowArrivedOrigen" touchEnabled="true"  hintText="L('text_23')" ></TextField>
+				<View class="combo" platform="android"  id="comboHowArrivedOrigen"  ></View>
+			</View>
+			
+			<View class="viewHowArrivedContainer" id="viewHowArrivedContainerDestino">
+				<TextField class="combo" platform="ios" id="comboHowArrivedDestino" touchEnabled="true"  hintText="L('text_24')" ></TextField>
+				<View class="combo" platform="android"  id="comboHowArrivedDestino"  ></View>
+			</View>
+			
+			<View id="viewContainerTime" class="viewContainerTime">
+				<Label text="" class="textMinutes" id="textMinutes"></Label>
+				<!--<Label text="" class="textPeque" id="textPeque"></Label>-->
 			</View>
 			
 		</View>

@@ -1,1 +1,1 @@
-module.exports = [{"isClass":true,"priority":10101.0159,"key":"viewRegulation","style":{width:Alloy.CFG.WidthDeviceIphone,backgroundColor:Alloy.CFG.WHITE,top:0,left:0,}},{"isClass":true,"priority":10101.016,"key":"viewWeb","style":{width:Ti.UI.FILL,top:0,}}];
+module.exports = [{"isClass":true,"priority":10101.0165,"key":"viewRegulation","style":{width:Alloy.CFG.WidthDeviceIphone,backgroundColor:Alloy.CFG.WHITE,top:0,left:0,}},{"isClass":true,"priority":10101.0166,"key":"viewWeb","style":{width:Ti.UI.FILL,top:0,}}];

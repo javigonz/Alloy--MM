@@ -12,6 +12,8 @@ var url_WebService_SeccionCustomerService = "http://desarrollo.solbyte.com.es/me
 
 var url_WebService_Regulation = "http://desarrollo.solbyte.com.es/metromalaga/ws.php?c=Secciones&m=getOneJSON&id=4";
 
+var url_WebService_SeccionTarifas = "http://desarrollo.solbyte.com.es/metromalaga/ws.php?c=Secciones&m=getOneJSON&id=5";
+
 exports.LoadImage_AsynCache = function(url, imageRemote) {
     var cacheFilename = url.replace(/[^a-zA-Z0-9\.]/gi, "_");
     var cacheFile = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, cacheFilename);
@@ -170,5 +172,28 @@ exports.LoadWebService_Regulation = function() {
     client.validatesSecureCertificate = false;
     client.setRequestHeader("Content-Type", "application/json; charset=utf-8");
     client.open("GET", url_WebService_Regulation);
+    client.send();
+};
+
+exports.LoadWebService_Tarifas = function() {
+    var client = Ti.Network.createHTTPClient({
+        onload: function() {
+            try {
+                Alloy.Collections.model__Tarifas = JSON.parse(this.responseText);
+                Ti.App.fireEvent("loadTarifas");
+            } catch (e) {
+                Ti.App.fireEvent("closeLoading");
+                managment_View.OpenInfoWindow(L("text_27"));
+            }
+        },
+        onerror: function() {
+            Ti.App.fireEvent("closeLoading");
+            managment_View.OpenInfoWindow(L("text_27"));
+        },
+        timeout: 5e3
+    });
+    client.validatesSecureCertificate = false;
+    client.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+    client.open("GET", url_WebService_SeccionTarifas);
     client.send();
 };

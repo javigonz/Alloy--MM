@@ -56,7 +56,9 @@ exports.closeActualSection = function() {
         Ti.UI.Android.hideSoftKeyboard();
         if (1 == Alloy.Globals.ViewActive.length) ; else {
             Ti.App.fireEvent("openLoading");
-            Alloy.Globals.ActualContainer;
+            {
+                Alloy.Globals.ActualContainer;
+            }
             var i = Alloy.Globals.ViewActive.length - 2;
             Alloy.Globals.ActualSection = Alloy.Globals.ViewActive[i][0].section;
             if ("login" == Alloy.Globals.ActualSection) {

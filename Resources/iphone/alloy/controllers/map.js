@@ -12,7 +12,26 @@ function Controller() {
         Alloy.Globals.ActualContainer = $.viewMap;
         Alloy.Globals.ActualSection = "map";
         Alloy.Globals.Header.children[0].children[1].text = L("text_7");
-        $.viewHowArrivedTitle.addEventListener("click", handlerArrivedView);
+        if ("android" == Ti.Platform.osname) {
+            picker_dataOrigen.push(Titanium.UI.createPickerRow({
+                title: L("text_23"),
+                id: 0
+            }));
+            picker_dataDestino.push(Titanium.UI.createPickerRow({
+                title: L("text_24"),
+                id: 0
+            }));
+        }
+        Alloy.Collections.model__MetroStations.result.forEach(function(element) {
+            picker_dataOrigen.push(Titanium.UI.createPickerRow({
+                title: element.title,
+                id: element.id
+            }));
+            picker_dataDestino.push(Titanium.UI.createPickerRow({
+                title: element.title,
+                id: element.id
+            }));
+        });
         if ("iphone" === Ti.Platform.osname) {
             Ti.API.info("UserLocation: " + userLocation);
             Ti.API.info("UserLocation Global: " + Alloy.Globals.UserLocation);
@@ -167,6 +186,10 @@ function Controller() {
         }
         "android" === Ti.Platform.osname ? Titanium.Geolocation.addEventListener("location", locationCallback) : currentLocationIphone();
         map.addEventListener("complete", function() {
+            createDrawLine();
+            $.viewHowArrivedTitle.addEventListener("click", handlerArrivedView);
+            loadComboOrigen();
+            loadComboDestino();
             Ti.App.fireEvent("closeLoading");
         });
         map.addEventListener("click", function(evt) {
@@ -204,6 +227,185 @@ function Controller() {
                 }
             });
         } else managment_View.OpenInfoWindow(L("text_28"));
+    }
+    function loadComboOrigen() {
+        if ("android" === Ti.Platform.osname) {
+            var pickerStyle = $.createStyle({
+                classes: [ "pickerStyle" ]
+            });
+            var picker = Titanium.UI.createPicker({});
+            picker.selectionIndicator = true;
+            picker.applyProperties(pickerStyle);
+            picker.add(picker_dataOrigen);
+            picker.addEventListener("change", function() {
+                if (0 !== picker.getSelectedRow(0).id) {
+                    station_origen = Alloy.Collections.model__MetroStations.result[picker.getSelectedRow(0).id - 1];
+                    $.textMinutes.text = managment_Timer.timeFromTo(station_origen, station_destino);
+                }
+            });
+            var imagen1 = Ti.UI.createImageView({
+                image: "/images/downArrow.png",
+                right: 10
+            });
+            $.comboHowArrivedOrigen.add(imagen1);
+            $.comboHowArrivedOrigen.add(picker);
+        } else {
+            var picker_view = Titanium.UI.createView({
+                height: 251,
+                bottom: -351
+            });
+            var cancel = Titanium.UI.createButton({
+                title: L("text_20"),
+                style: Titanium.UI.iPhone.SystemButtonStyle.BORDERED
+            });
+            var done = Titanium.UI.createButton({
+                title: L("text_21"),
+                style: Titanium.UI.iPhone.SystemButtonStyle.DONE
+            });
+            var spacer = Titanium.UI.createButton({
+                systemButton: Titanium.UI.iPhone.SystemButton.FLEXIBLE_SPACE
+            });
+            var toolbar = Titanium.UI.iOS.createToolbar({
+                top: 0,
+                items: [ cancel, spacer, done ]
+            });
+            var picker = Titanium.UI.createPicker({
+                top: 43
+            });
+            picker.selectionIndicator = true;
+            picker.add(picker_dataOrigen);
+            picker_view.add(toolbar);
+            picker_view.add(picker);
+            var slide_in = Titanium.UI.createAnimation({
+                bottom: 0
+            });
+            var slide_out = Titanium.UI.createAnimation({
+                bottom: -351
+            });
+            $.comboHowArrivedOrigen.addEventListener("focus", function() {
+                picker_view.animate(slide_in);
+                $.comboHowArrivedOrigen.blur();
+            });
+            cancel.addEventListener("click", function() {
+                picker_view.animate(slide_out);
+            });
+            done.addEventListener("click", function() {
+                $.comboHowArrivedOrigen.value = picker.getSelectedRow(0).title;
+                picker_view.animate(slide_out);
+                station_origen = Alloy.Collections.model__MetroStations.result[picker.getSelectedRow(0).id - 1];
+                $.textMinutes.text = managment_Timer.timeFromTo(station_origen, station_destino);
+            });
+            var imagen1 = Ti.UI.createImageView({
+                image: "/images/downArrow.png",
+                right: 10
+            });
+            $.comboHowArrivedOrigen.add(imagen1);
+            $.viewMap.add(picker_view);
+        }
+    }
+    function loadComboDestino() {
+        if ("android" === Ti.Platform.osname) {
+            var pickerStyle = $.createStyle({
+                classes: [ "pickerStyle" ]
+            });
+            var picker = Titanium.UI.createPicker({});
+            picker.selectionIndicator = true;
+            picker.applyProperties(pickerStyle);
+            picker.add(picker_dataDestino);
+            picker.addEventListener("change", function() {
+                if (0 !== picker.getSelectedRow(0).id) {
+                    station_destino = Alloy.Collections.model__MetroStations.result[picker.getSelectedRow(0).id - 1];
+                    $.textMinutes.text = managment_Timer.timeFromTo(station_origen, station_destino);
+                }
+            });
+            var imagen1 = Ti.UI.createImageView({
+                image: "/images/downArrow.png",
+                right: 10
+            });
+            $.comboHowArrivedDestino.add(imagen1);
+            $.comboHowArrivedDestino.add(picker);
+        } else {
+            var picker_view = Titanium.UI.createView({
+                height: 251,
+                bottom: -351
+            });
+            var cancel = Titanium.UI.createButton({
+                title: L("text_20"),
+                style: Titanium.UI.iPhone.SystemButtonStyle.BORDERED
+            });
+            var done = Titanium.UI.createButton({
+                title: L("text_21"),
+                style: Titanium.UI.iPhone.SystemButtonStyle.DONE
+            });
+            var spacer = Titanium.UI.createButton({
+                systemButton: Titanium.UI.iPhone.SystemButton.FLEXIBLE_SPACE
+            });
+            var toolbar = Titanium.UI.iOS.createToolbar({
+                top: 0,
+                items: [ cancel, spacer, done ]
+            });
+            var picker = Titanium.UI.createPicker({
+                top: 43
+            });
+            picker.selectionIndicator = true;
+            picker.add(picker_dataDestino);
+            picker_view.add(toolbar);
+            picker_view.add(picker);
+            var slide_in = Titanium.UI.createAnimation({
+                bottom: 0
+            });
+            var slide_out = Titanium.UI.createAnimation({
+                bottom: -351
+            });
+            $.comboHowArrivedDestino.addEventListener("focus", function() {
+                picker_view.animate(slide_in);
+                $.comboHowArrivedDestino.blur();
+            });
+            cancel.addEventListener("click", function() {
+                picker_view.animate(slide_out);
+            });
+            done.addEventListener("click", function() {
+                $.comboHowArrivedDestino.value = picker.getSelectedRow(0).title;
+                picker_view.animate(slide_out);
+                station_destino = Alloy.Collections.model__MetroStations.result[picker.getSelectedRow(0).id - 1];
+                $.textMinutes.text = managment_Timer.timeFromTo(station_origen, station_destino);
+            });
+            var imagen1 = Ti.UI.createImageView({
+                image: "/images/downArrow.png",
+                right: 10
+            });
+            $.comboHowArrivedDestino.add(imagen1);
+            $.viewMap.add(picker_view);
+        }
+    }
+    function createDrawLine() {
+        var drawLines1 = [];
+        var drawLines2 = [];
+        Alloy.Collections.model__MetroStations.result.forEach(function(element) {
+            "1" == element.line ? drawLines1.push({
+                latitude: element.latitude,
+                longitude: element.longitude
+            }) : drawLines2.push({
+                latitude: element.latitude,
+                longitude: element.longitude
+            });
+        });
+        var route1 = MapModule.createRoute({
+            name: "",
+            points: drawLines1,
+            color: "#FF0000",
+            width: 10,
+            region: "es"
+        });
+        map.addRoute(route1);
+        var route2 = MapModule.createRoute({
+            name: "",
+            points: drawLines2,
+            color: "#003bc0",
+            width: 10,
+            region: "es"
+        });
+        map.addRoute(route2);
     }
     function handlerArrivedView() {
         if ("true" == openArrivedView) {
@@ -246,16 +448,15 @@ function Controller() {
     $.__views.viewMap.add($.__views.viewGoogleMap);
     $.__views.viewHowArrived = Ti.UI.createView({
         width: Alloy.CFG.WidthDeviceIphone,
-        height: 130,
-        bottom: "-80",
+        height: 260,
+        bottom: "-210",
         left: 0,
         layout: "vertical",
-        id: "viewHowArrived",
-        visible: "false"
+        id: "viewHowArrived"
     });
     $.__views.viewMap.add($.__views.viewHowArrived);
     $.__views.viewHowArrivedTitle = Ti.UI.createView({
-        width: 160,
+        width: 190,
         height: 40,
         backgroundColor: Alloy.CFG.GREEN,
         left: 0,
@@ -268,7 +469,7 @@ function Controller() {
         width: 24,
         height: 20,
         left: 10,
-        image: "/images/menuIcon10.png",
+        image: "/images/menuIcon11.png",
         id: "__alloyId16"
     });
     $.__views.viewHowArrivedTitle.add($.__views.__alloyId16);
@@ -282,21 +483,22 @@ function Controller() {
         left: 10,
         top: 10,
         height: 20,
-        text: L("text_19"),
+        text: L("text_25"),
         id: "__alloyId17"
     });
     $.__views.viewHowArrivedTitle.add($.__views.__alloyId17);
-    $.__views.viewHowArrivedContainer = Ti.UI.createView({
+    $.__views.viewHowArrivedContainerOrigen = Ti.UI.createView({
         width: Alloy.CFG.WidthDeviceIphone,
-        height: 100,
+        height: 70,
         backgroundColor: Alloy.CFG.WHITE,
         left: 0,
-        id: "viewHowArrivedContainer"
+        id: "viewHowArrivedContainerOrigen"
     });
-    $.__views.viewHowArrived.add($.__views.viewHowArrivedContainer);
-    $.__views.comboHowArrived = Ti.UI.createTextField({
+    $.__views.viewHowArrived.add($.__views.viewHowArrivedContainerOrigen);
+    $.__views.comboHowArrivedOrigen = Ti.UI.createTextField({
         height: 40,
-        width: "90%",
+        width: "65%",
+        left: 10,
         backgroundColor: Alloy.CFG.WHITE,
         borderColor: Alloy.CFG.GREEN,
         top: 20,
@@ -308,32 +510,87 @@ function Controller() {
             fontWeight: "normal"
         },
         touchEnabled: true,
-        id: "comboHowArrived",
-        hintText: L("text_22")
+        id: "comboHowArrivedOrigen",
+        hintText: L("text_23")
     });
-    $.__views.viewHowArrivedContainer.add($.__views.comboHowArrived);
+    $.__views.viewHowArrivedContainerOrigen.add($.__views.comboHowArrivedOrigen);
+    $.__views.viewHowArrivedContainerDestino = Ti.UI.createView({
+        width: Alloy.CFG.WidthDeviceIphone,
+        height: 70,
+        backgroundColor: Alloy.CFG.WHITE,
+        left: 0,
+        id: "viewHowArrivedContainerDestino"
+    });
+    $.__views.viewHowArrived.add($.__views.viewHowArrivedContainerDestino);
+    $.__views.comboHowArrivedDestino = Ti.UI.createTextField({
+        height: 40,
+        width: "65%",
+        left: 10,
+        backgroundColor: Alloy.CFG.WHITE,
+        borderColor: Alloy.CFG.GREEN,
+        top: 20,
+        paddingLeft: 10,
+        color: Alloy.CFG.BLACK,
+        font: {
+            fontFamily: Alloy.CFG.MYRIAD_REGULAR,
+            fontSize: 15,
+            fontWeight: "normal"
+        },
+        touchEnabled: true,
+        id: "comboHowArrivedDestino",
+        hintText: L("text_24")
+    });
+    $.__views.viewHowArrivedContainerDestino.add($.__views.comboHowArrivedDestino);
+    $.__views.viewContainerTime = Ti.UI.createView({
+        height: 60,
+        width: 90,
+        right: 10,
+        top: "-110",
+        id: "viewContainerTime"
+    });
+    $.__views.viewHowArrived.add($.__views.viewContainerTime);
+    $.__views.textMinutes = Ti.UI.createLabel({
+        color: Alloy.CFG.GREY6,
+        font: {
+            fontFamily: Alloy.CFG.MYRIAD_REGULAR,
+            fontSize: 30,
+            fontWeight: "normal"
+        },
+        bottom: 0,
+        right: 0,
+        text: "",
+        id: "textMinutes"
+    });
+    $.__views.viewContainerTime.add($.__views.textMinutes);
     exports.destroy = function() {};
     _.extend($, $.__views);
     var managment_View = require("managment_View");
     var MapModule = require("ti.map");
+    var managment_Timer = require("managment_Timer");
     var picker_data = [];
     var userLocation = "";
     var openArrivedView = "false";
     var map = "";
+    Titanium.Platform.displayCaps.dpi / 160;
+    var openArrivedView = "false";
+    var picker_dataOrigen = [];
+    var picker_dataDestino = [];
+    var station_origen = "";
+    var station_destino = "";
     var MoveUp_Opacity = Titanium.UI.createAnimation({
         curve: Ti.UI.ANIMATION_CURVE_EASE_OUT,
         duration: 300,
-        bottom: 0
+        bottom: "-75"
     });
     var MoveDown_OpacityAndroid = Titanium.UI.createAnimation({
         curve: Ti.UI.ANIMATION_CURVE_EASE_OUT,
         duration: 200,
-        bottom: "-75"
+        bottom: "-215"
     });
     var MoveDown_OpacityiPhone = Titanium.UI.createAnimation({
         curve: Ti.UI.ANIMATION_CURVE_EASE_OUT,
         duration: 200,
-        bottom: "-80"
+        bottom: "-210"
     });
     show();
     _.extend($, exports);

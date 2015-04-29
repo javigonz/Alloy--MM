@@ -62,7 +62,6 @@ function Controller() {
         image1.applyProperties(MenuImage1);
         view1.add(image1);
         view1.add(label1);
-        $.viewFooter2.add(view1);
         var view2 = Ti.UI.createView({});
         view2.applyProperties(MenuView2);
         view2.width = widthButton;
@@ -77,7 +76,6 @@ function Controller() {
         image2.applyProperties(MenuImage2);
         view2.add(image2);
         view2.add(label2);
-        $.viewFooter2.add(view2);
         var view3 = Ti.UI.createView({});
         view3.applyProperties(MenuView3);
         view3.width = widthButton;
@@ -92,22 +90,20 @@ function Controller() {
         image3.applyProperties(MenuImage3);
         view3.add(image3);
         view3.add(label3);
-        $.viewFooter2.add(view3);
         var view4 = Ti.UI.createView({});
         view4.applyProperties(MenuView4);
         view4.width = widthButton;
-        view4.addEventListener("click", eventHandler_Lines);
+        view4.addEventListener("click", eventHandler_Tarifas);
         var label4 = Ti.UI.createLabel({});
         label4.applyProperties(MenuText);
         label4.width = widthButton - 10;
-        label4.text = L("text_12");
+        label4.text = L("text_30");
         var image4 = Titanium.UI.createImageView({
-            image: "/images/menuIcon4.png"
+            image: "/images/menuIcon12.png"
         });
         image4.applyProperties(MenuImage4);
         view4.add(image4);
         view4.add(label4);
-        $.viewFooter2.add(view4);
         var view5 = Ti.UI.createView({});
         view5.applyProperties(MenuView5);
         view5.width = widthButton;
@@ -122,6 +118,10 @@ function Controller() {
         image5.applyProperties(MenuImage5);
         view5.add(image5);
         view5.add(label5);
+        $.viewFooter2.add(view1);
+        $.viewFooter2.add(view4);
+        $.viewFooter2.add(view3);
+        $.viewFooter2.add(view2);
         $.viewFooter2.add(view5);
         $.viewOver.width = widthButton;
     }
@@ -138,19 +138,23 @@ function Controller() {
             break;
 
           case "press":
-            $.viewOver.left = widthButton;
+            $.viewOver.left = 3 * widthButton;
             break;
 
           case "lines":
-            $.viewOver.left = 3 * widthButton;
+            $.viewOver.left = widthButton;
             break;
 
           case "map":
             $.viewOver.left = 4 * widthButton;
             break;
 
+          case "tarifas":
+            $.viewOver.left = widthButton;
+            break;
+
           default:
-            $.viewOver.left = -200;
+            $.viewOver.left = -600;
         }
     }
     function eventHandler_Home() {
@@ -162,8 +166,8 @@ function Controller() {
     function eventHandler_Scheduler() {
         managment_View.OpenSectionParam("scheduler", [], "", Alloy.Globals.ActualContainer);
     }
-    function eventHandler_Lines() {
-        managment_View.OpenSectionParam("lines", [], "", Alloy.Globals.ActualContainer);
+    function eventHandler_Tarifas() {
+        managment_View.OpenSectionParam("tarifas", [], "", Alloy.Globals.ActualContainer);
     }
     function eventHandler_Map() {
         managment_View.OpenSectionParam("map", [], "", Alloy.Globals.ActualContainer);

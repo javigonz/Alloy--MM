@@ -3,7 +3,7 @@
 
 	<!-- Titulos -->
 	<string name="text_1">Bienvenido</string>
-	<string name="text_2">Horarios y tarifas</string>
+	<string name="text_2">Horarios y frecuencias</string>
 	<string name="text_3">Billetes y tarifas</string>
 	<string name="text_4">Líneas y plano</string>
 	<string name="text_5">Mapa de estaciones</string>
@@ -19,6 +19,7 @@
 	<string name="text_11">Noticias</string>
 	<string name="text_12">Plano</string>
 	<string name="text_13">Mapa</string>
+	<string name="text_30">Tarifas</string>
 
 	<!-- SubMenu -->
 	<string name="text_15">Atención al cliente</string>

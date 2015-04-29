@@ -76,9 +76,9 @@ function eventHandler_Scheduler(e)
 	managment_View.OpenSectionParam('scheduler',[],'', Alloy.Globals.ActualContainer);
 }
 
-function eventHandler_Lines(e)
+function eventHandler_Tarifas(e)
 {
-	managment_View.OpenSectionParam('lines',[],'', Alloy.Globals.ActualContainer);
+	managment_View.OpenSectionParam('tarifas',[],'', Alloy.Globals.ActualContainer);
 }
 
 function eventHandler_Map(e)

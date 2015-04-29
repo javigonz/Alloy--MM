@@ -62,6 +62,7 @@ Alloy.Collections.model__New = [];
 Alloy.Collections.model__Alert = [];
 Alloy.Collections.model__Scheduler = [];
 Alloy.Collections.model__Regulation = [];
+Alloy.Collections.model__Tarifas = [];
 
 Alloy.Collections.model__MetroStations = {
 										    "code": "1",
@@ -173,6 +174,16 @@ Alloy.Collections.model__MetroStations = {
 										            "latitude": 	"36.712666",
 										            "longitude": 	"-4.431597",
 										            "line": 		"1",
+										            "timeForward": 	"137",
+										            "timeBack": 	"136"
+										        },
+										         {
+										            "id": 			"18",
+										            "title": 		"El Perchel",
+										            "subtitle": 	"Estación María Zambrano",
+										            "latitude": 	"36.712666",
+										            "longitude": 	"-4.431597",
+										            "line": 		"2",
 										            "timeForward": 	"137",
 										            "timeBack": 	"136"
 										        },

@@ -65,7 +65,6 @@ function show(){
 	
 	view1.add(image1);	
 	view1.add(label1);
-	$.viewFooter2.add(view1);
 	
 	
 	//Menú Noticias
@@ -86,7 +85,6 @@ function show(){
 	
 	view2.add(image2);	
 	view2.add(label2);
-	$.viewFooter2.add(view2);
 	
 	
 	//Menú Home
@@ -107,28 +105,27 @@ function show(){
 	
 	view3.add(image3);	
 	view3.add(label3);
-	$.viewFooter2.add(view3);
 	
 	
-	//Menú Plano
+	//Menú Tarifas
 	var view4 = Ti.UI.createView({});
 	view4.applyProperties(MenuView4);
 	view4.width = widthButton;
-	view4.addEventListener('click', eventHandler_Lines);
+	view4.addEventListener('click', eventHandler_Tarifas);
 	
 	var label4 = Ti.UI.createLabel({});
 	label4.applyProperties(MenuText);
 	label4.width = widthButton-10;
-	label4.text = L('text_12');
+	label4.text = L('text_30');
 	
 	var image4 = Titanium.UI.createImageView({
-				image: '/images/menuIcon4.png'
+				image: '/images/menuIcon12.png'
 	});
 	image4.applyProperties(MenuImage4);
 	
 	view4.add(image4);	
 	view4.add(label4);
-	$.viewFooter2.add(view4);
+	
 	
 	
 	//Menú Mapa
@@ -149,6 +146,13 @@ function show(){
 	
 	view5.add(image5);	
 	view5.add(label5);
+	
+	
+	//Orden para insertar los menus
+	$.viewFooter2.add(view1);
+	$.viewFooter2.add(view4);
+	$.viewFooter2.add(view3);
+	$.viewFooter2.add(view2);
 	$.viewFooter2.add(view5);
 	
 	//View Over
@@ -180,13 +184,15 @@ function changeSection(e)
 										break;
 		case 'scheduler':	   			$.viewOver.left = 0;
 										break;
-		case 'press':					$.viewOver.left = widthButton;
+		case 'press':					$.viewOver.left = widthButton * 3;
 										break;
-		case 'lines':   				$.viewOver.left = widthButton * 3;
+		case 'lines':   				$.viewOver.left = widthButton;
 										break;	
 		case 'map':   					$.viewOver.left = widthButton * 4;
-										break;								
-		default:						$.viewOver.left = -'200';
+										break;	
+		case 'tarifas':   				$.viewOver.left = widthButton;
+										break;																
+		default:						$.viewOver.left = -'600';
 										break;																		
 	}
 	
@@ -214,6 +220,11 @@ function eventHandler_Scheduler(e)
 function eventHandler_Lines(e)
 {
 	managment_View.OpenSectionParam('lines',[],'', Alloy.Globals.ActualContainer);
+}
+
+function eventHandler_Tarifas(e)
+{
+	managment_View.OpenSectionParam('tarifas',[],'', Alloy.Globals.ActualContainer);
 }
 
 function eventHandler_Map(e)

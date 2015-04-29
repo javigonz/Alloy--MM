@@ -32,8 +32,8 @@ function Controller() {
     function eventHandler_Scheduler() {
         managment_View.OpenSectionParam("scheduler", [], "", Alloy.Globals.ActualContainer);
     }
-    function eventHandler_Lines() {
-        managment_View.OpenSectionParam("lines", [], "", Alloy.Globals.ActualContainer);
+    function eventHandler_Tarifas() {
+        managment_View.OpenSectionParam("tarifas", [], "", Alloy.Globals.ActualContainer);
     }
     function eventHandler_Map() {
         managment_View.OpenSectionParam("map", [], "", Alloy.Globals.ActualContainer);
@@ -171,12 +171,12 @@ function Controller() {
         id: "__alloyId5"
     });
     $.__views.MenuView1.add($.__views.__alloyId5);
-    $.__views.MenuView2 = Ti.UI.createView({
+    $.__views.MenuView3 = Ti.UI.createView({
         height: 90,
-        id: "MenuView2"
+        id: "MenuView3"
     });
-    $.__views.viewFooter.add($.__views.MenuView2);
-    eventHandler_Press ? $.__views.MenuView2.addEventListener("click", eventHandler_Press) : __defers["$.__views.MenuView2!click!eventHandler_Press"] = true;
+    $.__views.viewFooter.add($.__views.MenuView3);
+    eventHandler_Tarifas ? $.__views.MenuView3.addEventListener("click", eventHandler_Tarifas) : __defers["$.__views.MenuView3!click!eventHandler_Tarifas"] = true;
     $.__views.__alloyId6 = Ti.UI.createLabel({
         color: Alloy.CFG.GREY5,
         font: {
@@ -186,18 +186,18 @@ function Controller() {
         },
         bottom: 5,
         textAlign: "center",
-        text: L("text_11").toUpperCase(),
+        text: L("text_30").toUpperCase(),
         id: "__alloyId6"
     });
-    $.__views.MenuView2.add($.__views.__alloyId6);
+    $.__views.MenuView3.add($.__views.__alloyId6);
     $.__views.__alloyId7 = Ti.UI.createImageView({
         top: 10,
-        width: 42,
-        height: 42,
-        image: "/images/homeIcon2.png",
+        width: 45,
+        height: 38,
+        image: "/images/homeIcon5.png",
         id: "__alloyId7"
     });
-    $.__views.MenuView2.add($.__views.__alloyId7);
+    $.__views.MenuView3.add($.__views.__alloyId7);
     $.__views.__alloyId8 = Ti.UI.createView({
         top: 0,
         right: 0,
@@ -206,13 +206,13 @@ function Controller() {
         height: 115,
         id: "__alloyId8"
     });
-    $.__views.MenuView2.add($.__views.__alloyId8);
-    $.__views.MenuView3 = Ti.UI.createView({
+    $.__views.MenuView3.add($.__views.__alloyId8);
+    $.__views.MenuView2 = Ti.UI.createView({
         height: 90,
-        id: "MenuView3"
+        id: "MenuView2"
     });
-    $.__views.viewFooter.add($.__views.MenuView3);
-    eventHandler_Lines ? $.__views.MenuView3.addEventListener("click", eventHandler_Lines) : __defers["$.__views.MenuView3!click!eventHandler_Lines"] = true;
+    $.__views.viewFooter.add($.__views.MenuView2);
+    eventHandler_Press ? $.__views.MenuView2.addEventListener("click", eventHandler_Press) : __defers["$.__views.MenuView2!click!eventHandler_Press"] = true;
     $.__views.__alloyId9 = Ti.UI.createLabel({
         color: Alloy.CFG.GREY5,
         font: {
@@ -222,18 +222,18 @@ function Controller() {
         },
         bottom: 5,
         textAlign: "center",
-        text: L("text_12").toUpperCase(),
+        text: L("text_11").toUpperCase(),
         id: "__alloyId9"
     });
-    $.__views.MenuView3.add($.__views.__alloyId9);
+    $.__views.MenuView2.add($.__views.__alloyId9);
     $.__views.__alloyId10 = Ti.UI.createImageView({
         top: 10,
-        width: 45,
-        height: 38,
-        image: "/images/homeIcon3.png",
+        width: 42,
+        height: 42,
+        image: "/images/homeIcon2.png",
         id: "__alloyId10"
     });
-    $.__views.MenuView3.add($.__views.__alloyId10);
+    $.__views.MenuView2.add($.__views.__alloyId10);
     $.__views.__alloyId11 = Ti.UI.createView({
         top: 0,
         right: 0,
@@ -242,7 +242,7 @@ function Controller() {
         height: 115,
         id: "__alloyId11"
     });
-    $.__views.MenuView3.add($.__views.__alloyId11);
+    $.__views.MenuView2.add($.__views.__alloyId11);
     $.__views.MenuView4 = Ti.UI.createView({
         height: 90,
         id: "MenuView4"
@@ -319,8 +319,8 @@ function Controller() {
     var managment_Data = require("managment_Data");
     show();
     __defers["$.__views.MenuView1!click!eventHandler_Scheduler"] && $.__views.MenuView1.addEventListener("click", eventHandler_Scheduler);
+    __defers["$.__views.MenuView3!click!eventHandler_Tarifas"] && $.__views.MenuView3.addEventListener("click", eventHandler_Tarifas);
     __defers["$.__views.MenuView2!click!eventHandler_Press"] && $.__views.MenuView2.addEventListener("click", eventHandler_Press);
-    __defers["$.__views.MenuView3!click!eventHandler_Lines"] && $.__views.MenuView3.addEventListener("click", eventHandler_Lines);
     __defers["$.__views.MenuView4!click!eventHandler_Map"] && $.__views.MenuView4.addEventListener("click", eventHandler_Map);
     _.extend($, exports);
 }

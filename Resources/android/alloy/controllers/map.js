@@ -12,7 +12,24 @@ function Controller() {
         Alloy.Globals.ActualContainer = $.viewMap;
         Alloy.Globals.ActualSection = "map";
         Alloy.Globals.Header.children[0].children[1].text = L("text_7");
-        $.viewHowArrivedTitle.addEventListener("click", handlerArrivedView);
+        picker_dataOrigen.push(Titanium.UI.createPickerRow({
+            title: L("text_23"),
+            id: 0
+        }));
+        picker_dataDestino.push(Titanium.UI.createPickerRow({
+            title: L("text_24"),
+            id: 0
+        }));
+        Alloy.Collections.model__MetroStations.result.forEach(function(element) {
+            picker_dataOrigen.push(Titanium.UI.createPickerRow({
+                title: element.title,
+                id: element.id
+            }));
+            picker_dataDestino.push(Titanium.UI.createPickerRow({
+                title: element.title,
+                id: element.id
+            }));
+        });
         var rc = MapModule.isGooglePlayServicesAvailable();
         switch (rc) {
           case MapModule.SUCCESS:
@@ -155,6 +172,10 @@ function Controller() {
         });
         Titanium.Geolocation.addEventListener("location", locationCallback);
         map.addEventListener("complete", function() {
+            createDrawLine();
+            $.viewHowArrivedTitle.addEventListener("click", handlerArrivedView);
+            loadComboOrigen();
+            loadComboDestino();
             Ti.App.fireEvent("closeLoading");
         });
         map.addEventListener("click", function(evt) {
@@ -165,6 +186,81 @@ function Controller() {
             }
         });
         $.viewGoogleMap.add(map);
+    }
+    function loadComboOrigen() {
+        var picker;
+        var imagen1;
+        var pickerStyle = $.createStyle({
+            classes: [ "pickerStyle" ]
+        });
+        var picker = Titanium.UI.createPicker({});
+        picker.selectionIndicator = true;
+        picker.applyProperties(pickerStyle);
+        picker.add(picker_dataOrigen);
+        picker.addEventListener("change", function() {
+            if (0 !== picker.getSelectedRow(0).id) {
+                station_origen = Alloy.Collections.model__MetroStations.result[picker.getSelectedRow(0).id - 1];
+                $.textMinutes.text = managment_Timer.timeFromTo(station_origen, station_destino);
+            }
+        });
+        var imagen1 = Ti.UI.createImageView({
+            image: "/images/downArrow.png",
+            right: 10
+        });
+        $.comboHowArrivedOrigen.add(imagen1);
+        $.comboHowArrivedOrigen.add(picker);
+    }
+    function loadComboDestino() {
+        var picker;
+        var imagen1;
+        var pickerStyle = $.createStyle({
+            classes: [ "pickerStyle" ]
+        });
+        var picker = Titanium.UI.createPicker({});
+        picker.selectionIndicator = true;
+        picker.applyProperties(pickerStyle);
+        picker.add(picker_dataDestino);
+        picker.addEventListener("change", function() {
+            if (0 !== picker.getSelectedRow(0).id) {
+                station_destino = Alloy.Collections.model__MetroStations.result[picker.getSelectedRow(0).id - 1];
+                $.textMinutes.text = managment_Timer.timeFromTo(station_origen, station_destino);
+            }
+        });
+        var imagen1 = Ti.UI.createImageView({
+            image: "/images/downArrow.png",
+            right: 10
+        });
+        $.comboHowArrivedDestino.add(imagen1);
+        $.comboHowArrivedDestino.add(picker);
+    }
+    function createDrawLine() {
+        var drawLines1 = [];
+        var drawLines2 = [];
+        Alloy.Collections.model__MetroStations.result.forEach(function(element) {
+            "1" == element.line ? drawLines1.push({
+                latitude: element.latitude,
+                longitude: element.longitude
+            }) : drawLines2.push({
+                latitude: element.latitude,
+                longitude: element.longitude
+            });
+        });
+        var route1 = MapModule.createRoute({
+            name: "",
+            points: drawLines1,
+            color: "#FF0000",
+            width: 10,
+            region: "es"
+        });
+        map.addRoute(route1);
+        var route2 = MapModule.createRoute({
+            name: "",
+            points: drawLines2,
+            color: "#003bc0",
+            width: 10,
+            region: "es"
+        });
+        map.addRoute(route2);
     }
     function handlerArrivedView() {
         if ("true" == openArrivedView) {
@@ -207,16 +303,15 @@ function Controller() {
     $.__views.viewMap.add($.__views.viewGoogleMap);
     $.__views.viewHowArrived = Ti.UI.createView({
         width: Alloy.CFG.WidthDeviceAndroid,
-        height: 130,
-        bottom: "-75",
+        height: 270,
+        bottom: "-215",
         left: 0,
         layout: "vertical",
-        id: "viewHowArrived",
-        visible: "false"
+        id: "viewHowArrived"
     });
     $.__views.viewMap.add($.__views.viewHowArrived);
     $.__views.viewHowArrivedTitle = Ti.UI.createView({
-        width: 160,
+        width: 190,
         height: 40,
         backgroundColor: Alloy.CFG.GREEN,
         left: 0,
@@ -229,7 +324,7 @@ function Controller() {
         width: 24,
         height: 20,
         left: 10,
-        image: "/images/menuIcon10.png",
+        image: "/images/menuIcon11.png",
         id: "__alloyId16"
     });
     $.__views.viewHowArrivedTitle.add($.__views.__alloyId16);
@@ -243,23 +338,24 @@ function Controller() {
         left: 10,
         top: 10,
         height: 20,
-        text: L("text_19"),
+        text: L("text_25"),
         id: "__alloyId17"
     });
     $.__views.viewHowArrivedTitle.add($.__views.__alloyId17);
-    $.__views.viewHowArrivedContainer = Ti.UI.createView({
+    $.__views.viewHowArrivedContainerOrigen = Ti.UI.createView({
         width: Alloy.CFG.WidthDeviceAndroid,
-        height: 100,
+        height: 70,
         backgroundColor: Alloy.CFG.WHITE,
         left: 0,
-        id: "viewHowArrivedContainer"
+        id: "viewHowArrivedContainerOrigen"
     });
-    $.__views.viewHowArrived.add($.__views.viewHowArrivedContainer);
-    $.__views.comboHowArrived = Ti.UI.createView({
+    $.__views.viewHowArrived.add($.__views.viewHowArrivedContainerOrigen);
+    $.__views.comboHowArrivedOrigen = Ti.UI.createView({
         height: 40,
-        width: "90%",
+        width: "65%",
         borderColor: Alloy.CFG.GREEN,
         top: 20,
+        left: 10,
         paddingLeft: 10,
         color: Alloy.CFG.BLACK,
         borderWidth: "2px",
@@ -269,31 +365,85 @@ function Controller() {
             fontSize: 14,
             fontWeight: "normal"
         },
-        id: "comboHowArrived"
+        id: "comboHowArrivedOrigen"
     });
-    $.__views.viewHowArrivedContainer.add($.__views.comboHowArrived);
+    $.__views.viewHowArrivedContainerOrigen.add($.__views.comboHowArrivedOrigen);
+    $.__views.viewHowArrivedContainerDestino = Ti.UI.createView({
+        width: Alloy.CFG.WidthDeviceAndroid,
+        height: 70,
+        backgroundColor: Alloy.CFG.WHITE,
+        left: 0,
+        id: "viewHowArrivedContainerDestino"
+    });
+    $.__views.viewHowArrived.add($.__views.viewHowArrivedContainerDestino);
+    $.__views.comboHowArrivedDestino = Ti.UI.createView({
+        height: 40,
+        width: "65%",
+        borderColor: Alloy.CFG.GREEN,
+        top: 20,
+        left: 10,
+        paddingLeft: 10,
+        color: Alloy.CFG.BLACK,
+        borderWidth: "2px",
+        backgroundColor: "transparent",
+        font: {
+            fontFamily: Alloy.CFG.MYRIAD_REGULAR,
+            fontSize: 14,
+            fontWeight: "normal"
+        },
+        id: "comboHowArrivedDestino"
+    });
+    $.__views.viewHowArrivedContainerDestino.add($.__views.comboHowArrivedDestino);
+    $.__views.viewContainerTime = Ti.UI.createView({
+        height: 65,
+        width: 100,
+        right: 10,
+        top: "-110",
+        id: "viewContainerTime"
+    });
+    $.__views.viewHowArrived.add($.__views.viewContainerTime);
+    $.__views.textMinutes = Ti.UI.createLabel({
+        color: Alloy.CFG.GREY6,
+        font: {
+            fontFamily: Alloy.CFG.MYRIAD_REGULAR,
+            fontSize: 30,
+            fontWeight: "normal"
+        },
+        bottom: 0,
+        right: 0,
+        text: "",
+        id: "textMinutes"
+    });
+    $.__views.viewContainerTime.add($.__views.textMinutes);
     exports.destroy = function() {};
     _.extend($, $.__views);
     require("managment_View");
     var MapModule = require("ti.map");
+    var managment_Timer = require("managment_Timer");
     var picker_data = [];
     var userLocation = "";
     var openArrivedView = "false";
     var map = "";
+    Titanium.Platform.displayCaps.dpi / 160;
+    var openArrivedView = "false";
+    var picker_dataOrigen = [];
+    var picker_dataDestino = [];
+    var station_origen = "";
+    var station_destino = "";
     var MoveUp_Opacity = Titanium.UI.createAnimation({
         curve: Ti.UI.ANIMATION_CURVE_EASE_OUT,
         duration: 300,
-        bottom: 0
+        bottom: "-75"
     });
     var MoveDown_OpacityAndroid = Titanium.UI.createAnimation({
         curve: Ti.UI.ANIMATION_CURVE_EASE_OUT,
         duration: 200,
-        bottom: "-75"
+        bottom: "-215"
     });
     Titanium.UI.createAnimation({
         curve: Ti.UI.ANIMATION_CURVE_EASE_OUT,
         duration: 200,
-        bottom: "-80"
+        bottom: "-210"
     });
     show();
     _.extend($, exports);
