@@ -86,7 +86,7 @@ Alloy.Collections.model__MetroStations = {
         subtitle: "Ampliación universidad",
         latitude: "36.718760",
         longitude: "-4.494513",
-        line: "1",
+        line: [ "1" ],
         timeForward: "106",
         timeBack: "0"
     }, {
@@ -95,7 +95,7 @@ Alloy.Collections.model__MetroStations = {
         subtitle: "",
         latitude: "36.717981",
         longitude: "-4.488859",
-        line: "1",
+        line: [ "1" ],
         timeForward: "72",
         timeBack: "73"
     }, {
@@ -104,7 +104,7 @@ Alloy.Collections.model__MetroStations = {
         subtitle: "",
         latitude: "36.717309",
         longitude: "-4.484002",
-        line: "1",
+        line: [ "1" ],
         timeForward: "88",
         timeBack: "67"
     }, {
@@ -113,7 +113,7 @@ Alloy.Collections.model__MetroStations = {
         subtitle: "Hospital universitario",
         latitude: "36.716564",
         longitude: "-4.478618",
-        line: "1",
+        line: [ "1" ],
         timeForward: "145",
         timeBack: "71"
     }, {
@@ -122,7 +122,7 @@ Alloy.Collections.model__MetroStations = {
         subtitle: "Campus universitario",
         latitude: "36.717021",
         longitude: "-4.472310",
-        line: "1",
+        line: [ "1" ],
         timeForward: "111",
         timeBack: "81"
     }, {
@@ -131,7 +131,7 @@ Alloy.Collections.model__MetroStations = {
         subtitle: "",
         latitude: "36.718158",
         longitude: "-4.463566",
-        line: "1",
+        line: [ "1" ],
         timeForward: "97",
         timeBack: "94"
     }, {
@@ -140,7 +140,7 @@ Alloy.Collections.model__MetroStations = {
         subtitle: "",
         latitude: "36.719250",
         longitude: "-4.452564",
-        line: "1",
+        line: [ "1" ],
         timeForward: "69",
         timeBack: "97"
     }, {
@@ -149,7 +149,7 @@ Alloy.Collections.model__MetroStations = {
         subtitle: "",
         latitude: "36.718633",
         longitude: "-4.449192",
-        line: "1",
+        line: [ "1" ],
         timeForward: "86",
         timeBack: "68"
     }, {
@@ -158,7 +158,7 @@ Alloy.Collections.model__MetroStations = {
         subtitle: "Centro de salud",
         latitude: "36.711650",
         longitude: "-4.445853",
-        line: "1",
+        line: [ "1" ],
         timeForward: "118",
         timeBack: "86"
     }, {
@@ -167,7 +167,7 @@ Alloy.Collections.model__MetroStations = {
         subtitle: "",
         latitude: "36.710909",
         longitude: "-4.439654",
-        line: "1",
+        line: [ "1" ],
         timeForward: "162",
         timeBack: "113"
     }, {
@@ -176,16 +176,7 @@ Alloy.Collections.model__MetroStations = {
         subtitle: "Estación María Zambrano",
         latitude: "36.712666",
         longitude: "-4.431597",
-        line: "1",
-        timeForward: "137",
-        timeBack: "136"
-    }, {
-        id: "18",
-        title: "El Perchel",
-        subtitle: "Estación María Zambrano",
-        latitude: "36.712666",
-        longitude: "-4.431597",
-        line: "2",
+        line: [ "1", "2" ],
         timeForward: "137",
         timeBack: "136"
     }, {
@@ -194,7 +185,7 @@ Alloy.Collections.model__MetroStations = {
         subtitle: "",
         latitude: "36.708038",
         longitude: "-4.435637",
-        line: "2",
+        line: [ "2" ],
         timeForward: "75",
         timeBack: "170"
     }, {
@@ -203,7 +194,7 @@ Alloy.Collections.model__MetroStations = {
         subtitle: "",
         latitude: "36.704326",
         longitude: "-4.440142",
-        line: "2",
+        line: [ "2" ],
         timeForward: "86",
         timeBack: "75"
     }, {
@@ -212,7 +203,7 @@ Alloy.Collections.model__MetroStations = {
         subtitle: "",
         latitude: "36.699723",
         longitude: "-4.446092",
-        line: "2",
+        line: [ "2" ],
         timeForward: "77",
         timeBack: "86"
     }, {
@@ -221,7 +212,7 @@ Alloy.Collections.model__MetroStations = {
         subtitle: "",
         latitude: "36.697711",
         longitude: "-4.448564",
-        line: "2",
+        line: [ "2" ],
         timeForward: "78",
         timeBack: "76"
     }, {
@@ -230,7 +221,7 @@ Alloy.Collections.model__MetroStations = {
         subtitle: "",
         latitude: "36.695445",
         longitude: "-4.451466",
-        line: "2",
+        line: [ "2" ],
         timeForward: "219",
         timeBack: "77"
     }, {
@@ -239,7 +230,7 @@ Alloy.Collections.model__MetroStations = {
         subtitle: "Martín Carpena",
         latitude: "36.684651",
         longitude: "-4.458145",
-        line: "2",
+        line: [ "2" ],
         timeForward: "0",
         timeBack: "98"
     } ]

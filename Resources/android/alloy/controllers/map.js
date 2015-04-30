@@ -201,6 +201,22 @@ function Controller() {
             if (0 !== picker.getSelectedRow(0).id) {
                 station_origen = Alloy.Collections.model__MetroStations.result[picker.getSelectedRow(0).id - 1];
                 $.textMinutes.text = managment_Timer.timeFromTo(station_origen, station_destino);
+                var routes = managment_route.createRoute(station_origen, station_destino);
+                console.log(station_origen.title);
+                console.log(station_destino.title);
+                console.log(routes);
+                if (0 !== routes.length) {
+                    "" !== lastRoute && map.removeRoute(lastRoute);
+                    var route = MapModule.createRoute({
+                        name: "",
+                        points: routes,
+                        color: "#009000",
+                        width: 10,
+                        region: "es"
+                    });
+                    lastRoute = route;
+                    map.addRoute(route);
+                }
             }
         });
         var imagen1 = Ti.UI.createImageView({
@@ -224,6 +240,22 @@ function Controller() {
             if (0 !== picker.getSelectedRow(0).id) {
                 station_destino = Alloy.Collections.model__MetroStations.result[picker.getSelectedRow(0).id - 1];
                 $.textMinutes.text = managment_Timer.timeFromTo(station_origen, station_destino);
+                var routes = managment_route.createRoute(station_origen, station_destino);
+                console.log(station_origen.title);
+                console.log(station_destino.title);
+                console.log(routes);
+                if (0 !== routes.length) {
+                    "" !== lastRoute && map.removeRoute(lastRoute);
+                    var route = MapModule.createRoute({
+                        name: "",
+                        points: routes,
+                        color: "#009000",
+                        width: 10,
+                        region: "es"
+                    });
+                    lastRoute = route;
+                    map.addRoute(route);
+                }
             }
         });
         var imagen1 = Ti.UI.createImageView({
@@ -237,7 +269,16 @@ function Controller() {
         var drawLines1 = [];
         var drawLines2 = [];
         Alloy.Collections.model__MetroStations.result.forEach(function(element) {
-            "1" == element.line ? drawLines1.push({
+            if (element.line.length > 1) {
+                drawLines1.push({
+                    latitude: element.latitude,
+                    longitude: element.longitude
+                });
+                drawLines2.push({
+                    latitude: element.latitude,
+                    longitude: element.longitude
+                });
+            } else "1" == element.line[0] ? drawLines1.push({
                 latitude: element.latitude,
                 longitude: element.longitude
             }) : drawLines2.push({
@@ -248,7 +289,7 @@ function Controller() {
         var route1 = MapModule.createRoute({
             name: "",
             points: drawLines1,
-            color: "#FF0000",
+            color: "#50FF0000",
             width: 10,
             region: "es"
         });
@@ -256,7 +297,7 @@ function Controller() {
         var route2 = MapModule.createRoute({
             name: "",
             points: drawLines2,
-            color: "#003bc0",
+            color: "#50003bc0",
             width: 10,
             region: "es"
         });
@@ -420,6 +461,7 @@ function Controller() {
     require("managment_View");
     var MapModule = require("ti.map");
     var managment_Timer = require("managment_Timer");
+    var managment_route = require("managment_route");
     var picker_data = [];
     var userLocation = "";
     var openArrivedView = "false";
@@ -430,6 +472,7 @@ function Controller() {
     var picker_dataDestino = [];
     var station_origen = "";
     var station_destino = "";
+    var lastRoute = "";
     var MoveUp_Opacity = Titanium.UI.createAnimation({
         curve: Ti.UI.ANIMATION_CURVE_EASE_OUT,
         duration: 300,

@@ -1,6 +1,7 @@
 var managment_View = require('managment_View');
 var MapModule = require('ti.map');
 var managment_Timer = require('managment_Timer');
+var managment_route = require('managment_route');
 
 var picker_data 	= [];
 var userLocation 	= '';
@@ -14,6 +15,7 @@ var picker_dataOrigen 	= [];
 var picker_dataDestino 	= [];
 var station_origen = "";
 var station_destino = "";
+var lastRoute = '';
 
 var MoveUp_Opacity = Titanium.UI.createAnimation({
     curve: Ti.UI.ANIMATION_CURVE_EASE_OUT,
@@ -625,6 +627,28 @@ function loadComboOrigen(){
 						{
 							station_origen = Alloy.Collections.model__MetroStations.result[ picker.getSelectedRow(0).id - 1];
 							$.textMinutes.text = managment_Timer.timeFromTo(station_origen, station_destino);
+							
+							var routes = managment_route.createRoute(station_origen, station_destino);
+							console.log(station_origen.title);
+							console.log(station_destino.title);	
+							console.log(routes);
+							if (routes.length !== 0)
+							{
+							   if (lastRoute !== '')
+							   {
+							   	map.removeRoute(lastRoute);
+							   }
+							   var route = MapModule.createRoute({
+							        name : '',
+							        points : routes,
+							        color : "#009000",
+							        width : 10,
+							        region: "es"
+							        
+							   });
+							   lastRoute = route;
+							   map.addRoute(route);
+							}					
 						}
 						
 															
@@ -697,7 +721,28 @@ function loadComboOrigen(){
 					$.comboHowArrivedOrigen.value =  picker.getSelectedRow(0).title;
 					picker_view.animate(slide_out);	
 					station_origen = Alloy.Collections.model__MetroStations.result[ picker.getSelectedRow(0).id - 1];
-					$.textMinutes.text = managment_Timer.timeFromTo(station_origen, station_destino);							
+					$.textMinutes.text = managment_Timer.timeFromTo(station_origen, station_destino);	
+					var routes = managment_route.createRoute(station_origen, station_destino);	
+					console.log(station_origen.title);
+					console.log(station_destino.title);	
+					console.log(routes);
+					if (routes.length !== 0)
+					{
+					   if (lastRoute !== '')
+					   {
+					   	map.removeRoute(lastRoute);
+					   }
+					   var route = MapModule.createRoute({
+					        name : '',
+					        points : routes,
+					        color : "#009000",
+					        width : 10,
+					        region: "es"
+					        
+					   });
+					   lastRoute = route;
+					   map.addRoute(route);
+					}						
 			});
 			
 			//Imagen de flecha abajo
@@ -734,7 +779,29 @@ function loadComboDestino(){
 						if (picker.getSelectedRow(0).id !== 0)  //Me aseguro que no elija en el picker el primer campo que es el de 'Seleccione estacion de Destino'
 						{				
 							station_destino = Alloy.Collections.model__MetroStations.result[ picker.getSelectedRow(0).id - 1];	
-							$.textMinutes.text = managment_Timer.timeFromTo(station_origen, station_destino);	
+							$.textMinutes.text = managment_Timer.timeFromTo(station_origen, station_destino);
+							
+							var routes = managment_route.createRoute(station_origen, station_destino);
+							console.log(station_origen.title);
+							console.log(station_destino.title);	
+							console.log(routes);
+							if (routes.length !== 0)
+							{
+							   if (lastRoute !== '')
+							   {
+							   	map.removeRoute(lastRoute);
+							   }
+							   var route = MapModule.createRoute({
+							        name : '',
+							        points : routes,
+							        color : "#009000",
+							        width : 10,
+							        region: "es"
+							        
+							   });
+							   lastRoute = route;
+							   map.addRoute(route);
+							}						
 						}										
 			});
 			
@@ -805,7 +872,28 @@ function loadComboDestino(){
 					$.comboHowArrivedDestino.value =  picker.getSelectedRow(0).title;
 					picker_view.animate(slide_out);	
 					station_destino = Alloy.Collections.model__MetroStations.result[ picker.getSelectedRow(0).id - 1];	
-					$.textMinutes.text = managment_Timer.timeFromTo(station_origen, station_destino);						
+					$.textMinutes.text = managment_Timer.timeFromTo(station_origen, station_destino);	
+					var routes = managment_route.createRoute(station_origen, station_destino);
+					console.log(station_origen.title);
+					console.log(station_destino.title);	
+					console.log(routes);
+					if (routes.length !== 0)
+					{
+					   if (lastRoute !== '')
+					   {
+					   	map.removeRoute(lastRoute);
+					   }
+					   var route = MapModule.createRoute({
+					        name : '',
+					        points : routes,
+					        color : "#009000",
+					        width : 10,
+					        region: "es"
+					        
+					   });
+					   lastRoute = route;
+					   map.addRoute(route);
+					}					
 			});
 			
 			//Imagen de flecha abajo
@@ -824,35 +912,45 @@ function loadComboDestino(){
 }
 
 
+//Crea las lineas dibujadas en el mapa de cada linea de metro
 function createDrawLine(){
-	
-	/*	var flightPlanCoordinates = [
-	    new google.maps.LatLng(37.772323, -122.214897),
-	    new google.maps.LatLng(21.291982, -157.821856),
-	    new google.maps.LatLng(-18.142599, 178.431),
-	    new google.maps.LatLng(-27.46758, 153.027892)
-	  ];*/
-	  
+
 	  var drawLines1 = [];
 	  var drawLines2 = [];
 	  
 	  Alloy.Collections.model__MetroStations.result.forEach(function (element, index, array) {
 		
-		if (element.line == '1')
+		if (element.line.length > 1)
 		{
 			 drawLines1.push({
-                        latitude: element.latitude,
-                        longitude: element.longitude
-             });
-
+	                        latitude: element.latitude,
+	                        longitude: element.longitude
+	             });
+	             
+	         drawLines2.push({
+	                        latitude: element.latitude,
+	                        longitude: element.longitude
+	             });    
 		}
 		else
 		{
-			 drawLines2.push({
-                        latitude: element.latitude,
-                        longitude: element.longitude
-             });
+			if (element.line[0] == '1')
+			{
+				 drawLines1.push({
+	                        latitude: element.latitude,
+	                        longitude: element.longitude
+	             });
+	
+			}
+			else
+			{
+				 drawLines2.push({
+	                        latitude: element.latitude,
+	                        longitude: element.longitude
+	             });
+			}
 		}
+		
 		
 		
 	  });
@@ -860,7 +958,7 @@ function createDrawLine(){
 	   var route1 = MapModule.createRoute({
 	        name : '',
 	        points : drawLines1,
-	        color : "#FF0000",
+	        color : "#50FF0000",
 	        width : 10,
 	        region: "es"
 	        
@@ -871,7 +969,7 @@ function createDrawLine(){
 	   var route2 = MapModule.createRoute({
 	        name : '',
 	        points : drawLines2,
-	        color : "#003bc0",
+	        color : "#50003bc0",
 	        width : 10,
 	        region: "es"
 	        
