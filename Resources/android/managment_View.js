@@ -98,7 +98,7 @@ exports.OpenInfoWindow = function(message) {
     var alertDialog = Titanium.UI.createAlertDialog({
         title: "Info",
         message: message,
-        buttonNames: [ L("text_8") ]
+        buttonNames: [ L("text_31") ]
     });
     alertDialog.show();
 };

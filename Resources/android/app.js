@@ -50,6 +50,8 @@ Alloy.CFG.GREEN = "#377b3d";
 
 Alloy.CFG.GREEN2 = "#2a7030";
 
+Alloy.CFG.ORANGE = "#ffc80a";
+
 Alloy.CFG.WidthDeviceIphone = Ti.Platform.displayCaps.platformWidth;
 
 Alloy.CFG.WidthDeviceIphoneMargin = Alloy.CFG.WidthDeviceIphone - 20;
@@ -59,6 +61,8 @@ Alloy.CFG.WidthDeviceAndroid = Ti.Platform.displayCaps.platformWidth / (Titanium
 Alloy.CFG.HeightDevice = Ti.Platform.displayCaps.platformHeight / (Titanium.Platform.displayCaps.dpi / 160);
 
 Alloy.CFG.HeightDeviceIphone = Ti.Platform.displayCaps.platformHeight;
+
+Alloy.CFG.leftTraffic = (Alloy.CFG.WidthDeviceAndroid - 245) / 2;
 
 Alloy.CFG.ARIAL_NORMAL = "Arial";
 

@@ -1,6 +1,11 @@
 var managment_View = require('managment_View');
 var managment_Data = require('managment_Data');
 
+//styles
+var textAlertOrange = $.createStyle({classes: ['textAlertOrange']});
+var textAlertRed = $.createStyle({classes: ['textAlertRed']});
+var textAlertGreen = $.createStyle({classes: ['textAlertGreen']});
+
 show();
 
 
@@ -22,7 +27,7 @@ function show(){
 	Alloy.Globals.ActualContainer = $.viewHome;
 	Alloy.Globals.ActualSection = "home";
 	
-	if (Ti.Platform.osname == "iphone")
+	/*if (Ti.Platform.osname == "iphone")
 	{
 		var widthButton = ((Alloy.CFG.WidthDeviceIphone * 90) / 100) / 4;
 	}
@@ -34,7 +39,7 @@ function show(){
 	$.MenuView1.width = widthButton;
 	$.MenuView2.width = widthButton;
 	$.MenuView3.width = widthButton;
-	$.MenuView4.width = widthButton;
+	$.MenuView4.width = widthButton;*/
 	
 	
 	Alloy.Globals.Header.children[0].children[1].text = L('text_1');
@@ -53,7 +58,11 @@ function loadAlert()
 {
 	Ti.App.removeEventListener('loadAlert', loadAlert);
 		
-	$.textAlert.text = Alloy.Collections.model__Alert[3].value;		
+	$.textAlert.text = Alloy.Collections.model__Alert[3].value;	
+	
+	$.textAlert.applyProperties(textAlertGreen);
+	$.trafficGreen.image = '/images/trafficGreen_on.png';
+	//$.viewRoundedContainerTraffic.visible = 'false';	
 	
 	Ti.App.fireEvent('closeLoading');
 	

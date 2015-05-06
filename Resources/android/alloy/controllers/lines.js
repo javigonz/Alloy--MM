@@ -143,16 +143,16 @@ function Controller() {
         id: "viewHowArrivedTitle"
     });
     $.__views.viewHowArrived.add($.__views.viewHowArrivedTitle);
-    $.__views.__alloyId14 = Ti.UI.createImageView({
+    $.__views.__alloyId3 = Ti.UI.createImageView({
         top: 10,
         width: 24,
         height: 20,
         left: 10,
         image: "/images/menuIcon11.png",
-        id: "__alloyId14"
+        id: "__alloyId3"
     });
-    $.__views.viewHowArrivedTitle.add($.__views.__alloyId14);
-    $.__views.__alloyId15 = Ti.UI.createLabel({
+    $.__views.viewHowArrivedTitle.add($.__views.__alloyId3);
+    $.__views.__alloyId4 = Ti.UI.createLabel({
         color: Alloy.CFG.WHITE,
         font: {
             fontFamily: Alloy.CFG.MYRIAD_REGULAR,
@@ -163,9 +163,9 @@ function Controller() {
         top: 10,
         height: 20,
         text: L("text_25"),
-        id: "__alloyId15"
+        id: "__alloyId4"
     });
-    $.__views.viewHowArrivedTitle.add($.__views.__alloyId15);
+    $.__views.viewHowArrivedTitle.add($.__views.__alloyId4);
     $.__views.viewHowArrivedContainerOrigen = Ti.UI.createView({
         width: Alloy.CFG.WidthDeviceAndroid,
         height: 70,

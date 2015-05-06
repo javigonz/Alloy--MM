@@ -2,7 +2,7 @@
 	
 	<View class="viewHome" id="viewHome">
 		
-		<View class="viewRoundedContainer" id="viewRoundedContainer1">
+		<!--<View class="viewRoundedContainer" id="viewRoundedContainer1">
 			<View class="viewRoundedShadow" id="viewRoundedShadow1"></View>
 			<View class="viewRounded" id="viewRounded1">
 				<ImageView image="/images/logoHome.png" class="stylelImageLogo"></ImageView>
@@ -40,15 +40,18 @@
 				</View>
 					
 			</View>
+		</View>-->
+		<View class="viewRoundedContainerLogo" id="viewRoundedContainerLogo">
+			<ImageView image="/images/bigLogo.png" class="imageBigLogo"></ImageView>
 		</View>
 		
-		<View class="viewRoundedContainer" id="viewRoundedContainer3">
-			<View class="viewRoundedShadow" id="viewRoundedShadow3"></View>
-			<View class="viewRounded" id="viewRounded3">
-				
-				<Label class="textAlert" id="textAlert"></Label>
-				
+		<View class="viewRoundedContainerTraffic" id="viewRoundedContainerTraffic">	
+			<View class="viewTraffic" id="viewTraffic">
+				<ImageView image="/images/trafficGreen.png" class="iconTraffic" id="trafficGreen"></ImageView>
+				<ImageView image="/images/trafficOrange.png" class="iconTraffic" id="trafficOrange"></ImageView>
+				<ImageView image="/images/trafficRed.png" class="iconTraffic" id="trafficRed"></ImageView>
 			</View>
+			<Label class="textAlert" id="textAlert"></Label> 		
 		</View>
 		
 	</View>

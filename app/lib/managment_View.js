@@ -196,7 +196,7 @@ exports.OpenInfoWindow = function(message){
 		var opts = {
 		  title: message
 		};
-		opts.buttonNames = [L('text_8')];
+		opts.buttonNames = [L('text_31')];
 		
 		var dialog = Ti.UI.createOptionDialog(opts).show();
 	}
@@ -205,7 +205,7 @@ exports.OpenInfoWindow = function(message){
 		var alertDialog = Titanium.UI.createAlertDialog({
 		    title: 'Info',
 		    message: message,
-		    buttonNames: [L('text_8')]
+		    buttonNames: [L('text_31')]
 		});
 
 		alertDialog.show();

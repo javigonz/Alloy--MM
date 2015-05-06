@@ -241,6 +241,22 @@ function Controller() {
                 if (0 !== picker.getSelectedRow(0).id) {
                     station_origen = Alloy.Collections.model__MetroStations.result[picker.getSelectedRow(0).id - 1];
                     $.textMinutes.text = managment_Timer.timeFromTo(station_origen, station_destino);
+                    var routes = managment_route.createRoute(station_origen, station_destino);
+                    console.log(station_origen.title);
+                    console.log(station_destino.title);
+                    console.log(routes);
+                    if (0 !== routes.length) {
+                        "" !== lastRoute && map.removeRoute(lastRoute);
+                        var route = MapModule.createRoute({
+                            name: "",
+                            points: routes,
+                            color: "#009000",
+                            width: 10,
+                            region: "es"
+                        });
+                        lastRoute = route;
+                        map.addRoute(route);
+                    }
                 }
             });
             var imagen1 = Ti.UI.createImageView({
@@ -332,6 +348,22 @@ function Controller() {
                 if (0 !== picker.getSelectedRow(0).id) {
                     station_destino = Alloy.Collections.model__MetroStations.result[picker.getSelectedRow(0).id - 1];
                     $.textMinutes.text = managment_Timer.timeFromTo(station_origen, station_destino);
+                    var routes = managment_route.createRoute(station_origen, station_destino);
+                    console.log(station_origen.title);
+                    console.log(station_destino.title);
+                    console.log(routes);
+                    if (0 !== routes.length) {
+                        "" !== lastRoute && map.removeRoute(lastRoute);
+                        var route = MapModule.createRoute({
+                            name: "",
+                            points: routes,
+                            color: "#009000",
+                            width: 10,
+                            region: "es"
+                        });
+                        lastRoute = route;
+                        map.addRoute(route);
+                    }
                 }
             });
             var imagen1 = Ti.UI.createImageView({
