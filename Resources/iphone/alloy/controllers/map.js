@@ -85,7 +85,7 @@ function Controller() {
                 longitude: element.longitude,
                 image: "/images/pinStation.png",
                 title: element.title,
-                subtitle: L("text_26") + " " + element.line,
+                subtitle: element.subtitle,
                 myid: element.id,
                 rightButton: "/images/iconRoute.png"
             });
@@ -537,16 +537,16 @@ function Controller() {
         id: "viewHowArrivedTitle"
     });
     $.__views.viewHowArrived.add($.__views.viewHowArrivedTitle);
-    $.__views.__alloyId16 = Ti.UI.createImageView({
+    $.__views.__alloyId5 = Ti.UI.createImageView({
         top: 10,
         width: 24,
         height: 20,
         left: 10,
         image: "/images/menuIcon11.png",
-        id: "__alloyId16"
+        id: "__alloyId5"
     });
-    $.__views.viewHowArrivedTitle.add($.__views.__alloyId16);
-    $.__views.__alloyId17 = Ti.UI.createLabel({
+    $.__views.viewHowArrivedTitle.add($.__views.__alloyId5);
+    $.__views.__alloyId6 = Ti.UI.createLabel({
         color: Alloy.CFG.WHITE,
         font: {
             fontFamily: Alloy.CFG.MYRIAD_REGULAR,
@@ -557,9 +557,9 @@ function Controller() {
         top: 10,
         height: 20,
         text: L("text_25"),
-        id: "__alloyId17"
+        id: "__alloyId6"
     });
-    $.__views.viewHowArrivedTitle.add($.__views.__alloyId17);
+    $.__views.viewHowArrivedTitle.add($.__views.__alloyId6);
     $.__views.viewHowArrivedContainerOrigen = Ti.UI.createView({
         width: Alloy.CFG.WidthDeviceIphone,
         height: 70,

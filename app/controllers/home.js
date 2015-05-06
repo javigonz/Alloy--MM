@@ -5,6 +5,7 @@ var managment_Data = require('managment_Data');
 var textAlertOrange = $.createStyle({classes: ['textAlertOrange']});
 var textAlertRed = $.createStyle({classes: ['textAlertRed']});
 var textAlertGreen = $.createStyle({classes: ['textAlertGreen']});
+var textAlert = $.createStyle({classes: ['textAlert']});
 
 show();
 
@@ -57,12 +58,35 @@ function show(){
 function loadAlert()
 {
 	Ti.App.removeEventListener('loadAlert', loadAlert);
-		
-	$.textAlert.text = Alloy.Collections.model__Alert[3].value;	
 	
-	$.textAlert.applyProperties(textAlertGreen);
-	$.trafficGreen.image = '/images/trafficGreen_on.png';
-	//$.viewRoundedContainerTraffic.visible = 'false';	
+	if (Alloy.Collections.model__Alert[4].value == '0')
+	{
+		$.viewRoundedContainerTraffic.visible = 'false';
+	}
+	else
+	{
+		$.viewRoundedContainerTraffic.visible = 'true';
+		$.textAlert.text = Alloy.Collections.model__Alert[3].value;
+		
+		switch (Alloy.Collections.model__Alert[5].value)
+		{
+			case 'Verde': 		$.textAlert.applyProperties(textAlertGreen);
+								$.trafficGreen.image = '/images/trafficGreen_on.png';
+								break;
+			case 'ambar': 		$.textAlert.applyProperties(textAlertOrange);
+								$.trafficOrange.image = '/images/trafficOrange_on.png';
+								break;	
+			case 'Rojo': 		$.textAlert.applyProperties(textAlertRed);
+								$.trafficRed.image = '/images/trafficRed_on.png';
+								break;	
+			case 'Ninguno': 	$.textAlert.applyProperties(textAlert);
+								$.trafficRed.image = '/images/trafficRed.png';
+								$.trafficOrange.image = '/images/trafficOrange.png';
+								$.trafficGreen.image = '/images/trafficGreen.png';
+								break;										
+		}
+	}
+
 	
 	Ti.App.fireEvent('closeLoading');
 	

@@ -11,11 +11,6 @@ function Controller() {
     function show() {
         Alloy.Globals.ActualContainer = $.viewHome;
         Alloy.Globals.ActualSection = "home";
-        if ("iphone" == Ti.Platform.osname) var widthButton = 90 * Alloy.CFG.WidthDeviceIphone / 100 / 4; else var widthButton = 90 * Alloy.CFG.WidthDeviceAndroid / 100 / 4;
-        $.MenuView1.width = widthButton;
-        $.MenuView2.width = widthButton;
-        $.MenuView3.width = widthButton;
-        $.MenuView4.width = widthButton;
         Alloy.Globals.Header.children[0].children[1].text = L("text_1");
         Ti.App.addEventListener("loadAlert", loadAlert);
         managment_Data.LoadWebService_Alert();
@@ -23,20 +18,33 @@ function Controller() {
     }
     function loadAlert() {
         Ti.App.removeEventListener("loadAlert", loadAlert);
-        $.textAlert.text = Alloy.Collections.model__Alert[3].value;
+        if ("0" == Alloy.Collections.model__Alert[4].value) $.viewRoundedContainerTraffic.visible = "false"; else {
+            $.viewRoundedContainerTraffic.visible = "true";
+            $.textAlert.text = Alloy.Collections.model__Alert[3].value;
+            switch (Alloy.Collections.model__Alert[5].value) {
+              case "Verde":
+                $.textAlert.applyProperties(textAlertGreen);
+                $.trafficGreen.image = "/images/trafficGreen_on.png";
+                break;
+
+              case "ambar":
+                $.textAlert.applyProperties(textAlertOrange);
+                $.trafficOrange.image = "/images/trafficOrange_on.png";
+                break;
+
+              case "Rojo":
+                $.textAlert.applyProperties(textAlertRed);
+                $.trafficRed.image = "/images/trafficRed_on.png";
+                break;
+
+              case "Ninguno":
+                $.textAlert.applyProperties(textAlert);
+                $.trafficRed.image = "/images/trafficRed.png";
+                $.trafficOrange.image = "/images/trafficOrange.png";
+                $.trafficGreen.image = "/images/trafficGreen.png";
+            }
+        }
         Ti.App.fireEvent("closeLoading");
-    }
-    function eventHandler_Press() {
-        managment_View.OpenSectionParam("press", [], "", Alloy.Globals.ActualContainer);
-    }
-    function eventHandler_Scheduler() {
-        managment_View.OpenSectionParam("scheduler", [], "", Alloy.Globals.ActualContainer);
-    }
-    function eventHandler_Tarifas() {
-        managment_View.OpenSectionParam("tarifas", [], "", Alloy.Globals.ActualContainer);
-    }
-    function eventHandler_Map() {
-        managment_View.OpenSectionParam("map", [], "", Alloy.Globals.ActualContainer);
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "home";
@@ -53,253 +61,50 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
-    var __defers = {};
     $.__views.viewHome = Ti.UI.createView({
         width: Alloy.CFG.WidthDeviceIphone,
-        backgroundColor: Alloy.CFG.GREEN2,
+        backgroundColor: Alloy.CFG.WHITE,
+        backgroundImage: "/images/backgroundHome.png",
+        backgroundRepeat: "false",
         top: 0,
         left: 0,
         layout: "vertical",
         id: "viewHome"
     });
     $.__views.viewHome && $.addTopLevelView($.__views.viewHome);
-    $.__views.viewRoundedContainer1 = Ti.UI.createView({
-        top: 20,
-        width: "100%",
-        height: 115,
-        id: "viewRoundedContainer1"
+    $.__views.viewRoundedContainerLogo = Ti.UI.createView({
+        id: "viewRoundedContainerLogo"
     });
-    $.__views.viewHome.add($.__views.viewRoundedContainer1);
-    $.__views.viewRoundedShadow1 = Ti.UI.createView({
-        borderRadius: 5,
-        borderWidth: 5,
-        borderColor: Alloy.CFG.BLACK,
-        backgroundColor: Alloy.CFG.BLACK,
-        width: "90%",
-        opacity: .2,
-        height: 115,
-        top: 0,
-        id: "viewRoundedShadow1"
-    });
-    $.__views.viewRoundedContainer1.add($.__views.viewRoundedShadow1);
-    $.__views.viewRounded1 = Ti.UI.createView({
-        borderRadius: 5,
-        borderWidth: 5,
-        borderColor: Alloy.CFG.WHITE,
-        backgroundColor: Alloy.CFG.WHITE,
-        width: "90%",
-        height: 110,
-        top: 0,
-        id: "viewRounded1"
-    });
-    $.__views.viewRoundedContainer1.add($.__views.viewRounded1);
+    $.__views.viewHome.add($.__views.viewRoundedContainerLogo);
     $.__views.__alloyId2 = Ti.UI.createImageView({
-        height: 50,
-        image: "/images/logoHome.png",
+        image: "/images/bigLogo.png",
         id: "__alloyId2"
     });
-    $.__views.viewRounded1.add($.__views.__alloyId2);
-    $.__views.viewRoundedContainer2 = Ti.UI.createView({
-        top: 20,
-        width: "100%",
-        height: 115,
-        id: "viewRoundedContainer2"
+    $.__views.viewRoundedContainerLogo.add($.__views.__alloyId2);
+    $.__views.viewRoundedContainerTraffic = Ti.UI.createView({
+        id: "viewRoundedContainerTraffic",
+        visible: "false"
     });
-    $.__views.viewHome.add($.__views.viewRoundedContainer2);
-    $.__views.viewRoundedShadow2 = Ti.UI.createView({
-        borderRadius: 5,
-        borderWidth: 5,
-        borderColor: Alloy.CFG.BLACK,
-        backgroundColor: Alloy.CFG.BLACK,
-        width: "90%",
-        opacity: .2,
-        height: 115,
-        top: 0,
-        id: "viewRoundedShadow2"
+    $.__views.viewHome.add($.__views.viewRoundedContainerTraffic);
+    $.__views.viewTraffic = Ti.UI.createView({
+        id: "viewTraffic"
     });
-    $.__views.viewRoundedContainer2.add($.__views.viewRoundedShadow2);
-    $.__views.viewRounded2 = Ti.UI.createView({
-        borderRadius: 5,
-        borderWidth: 5,
-        borderColor: Alloy.CFG.WHITE,
-        backgroundColor: Alloy.CFG.WHITE,
-        width: "90%",
-        height: 110,
-        top: 0,
-        id: "viewRounded2"
+    $.__views.viewRoundedContainerTraffic.add($.__views.viewTraffic);
+    $.__views.trafficGreen = Ti.UI.createImageView({
+        image: "/images/trafficGreen.png",
+        id: "trafficGreen"
     });
-    $.__views.viewRoundedContainer2.add($.__views.viewRounded2);
-    $.__views.viewFooter = Ti.UI.createView({
-        height: 90,
-        layout: "horizontal",
-        id: "viewFooter"
+    $.__views.viewTraffic.add($.__views.trafficGreen);
+    $.__views.trafficOrange = Ti.UI.createImageView({
+        image: "/images/trafficOrange.png",
+        id: "trafficOrange"
     });
-    $.__views.viewRounded2.add($.__views.viewFooter);
-    $.__views.MenuView1 = Ti.UI.createView({
-        height: 90,
-        id: "MenuView1"
+    $.__views.viewTraffic.add($.__views.trafficOrange);
+    $.__views.trafficRed = Ti.UI.createImageView({
+        image: "/images/trafficRed.png",
+        id: "trafficRed"
     });
-    $.__views.viewFooter.add($.__views.MenuView1);
-    eventHandler_Scheduler ? $.__views.MenuView1.addEventListener("click", eventHandler_Scheduler) : __defers["$.__views.MenuView1!click!eventHandler_Scheduler"] = true;
-    $.__views.__alloyId3 = Ti.UI.createLabel({
-        color: Alloy.CFG.GREY5,
-        font: {
-            fontFamily: Alloy.CFG.MYRIAD_REGULAR,
-            fontSize: 13,
-            fontWeight: "normal"
-        },
-        bottom: 5,
-        textAlign: "center",
-        text: L("text_10").toUpperCase(),
-        id: "__alloyId3"
-    });
-    $.__views.MenuView1.add($.__views.__alloyId3);
-    $.__views.__alloyId4 = Ti.UI.createImageView({
-        top: 10,
-        width: 45,
-        height: 45,
-        image: "/images/homeIcon1.png",
-        id: "__alloyId4"
-    });
-    $.__views.MenuView1.add($.__views.__alloyId4);
-    $.__views.__alloyId5 = Ti.UI.createView({
-        top: 0,
-        right: 0,
-        backgroundColor: Alloy.CFG.GREY5,
-        width: 1,
-        height: 115,
-        id: "__alloyId5"
-    });
-    $.__views.MenuView1.add($.__views.__alloyId5);
-    $.__views.MenuView3 = Ti.UI.createView({
-        height: 90,
-        id: "MenuView3"
-    });
-    $.__views.viewFooter.add($.__views.MenuView3);
-    eventHandler_Tarifas ? $.__views.MenuView3.addEventListener("click", eventHandler_Tarifas) : __defers["$.__views.MenuView3!click!eventHandler_Tarifas"] = true;
-    $.__views.__alloyId6 = Ti.UI.createLabel({
-        color: Alloy.CFG.GREY5,
-        font: {
-            fontFamily: Alloy.CFG.MYRIAD_REGULAR,
-            fontSize: 13,
-            fontWeight: "normal"
-        },
-        bottom: 5,
-        textAlign: "center",
-        text: L("text_30").toUpperCase(),
-        id: "__alloyId6"
-    });
-    $.__views.MenuView3.add($.__views.__alloyId6);
-    $.__views.__alloyId7 = Ti.UI.createImageView({
-        top: 10,
-        width: 45,
-        height: 38,
-        image: "/images/homeIcon5.png",
-        id: "__alloyId7"
-    });
-    $.__views.MenuView3.add($.__views.__alloyId7);
-    $.__views.__alloyId8 = Ti.UI.createView({
-        top: 0,
-        right: 0,
-        backgroundColor: Alloy.CFG.GREY5,
-        width: 1,
-        height: 115,
-        id: "__alloyId8"
-    });
-    $.__views.MenuView3.add($.__views.__alloyId8);
-    $.__views.MenuView2 = Ti.UI.createView({
-        height: 90,
-        id: "MenuView2"
-    });
-    $.__views.viewFooter.add($.__views.MenuView2);
-    eventHandler_Press ? $.__views.MenuView2.addEventListener("click", eventHandler_Press) : __defers["$.__views.MenuView2!click!eventHandler_Press"] = true;
-    $.__views.__alloyId9 = Ti.UI.createLabel({
-        color: Alloy.CFG.GREY5,
-        font: {
-            fontFamily: Alloy.CFG.MYRIAD_REGULAR,
-            fontSize: 13,
-            fontWeight: "normal"
-        },
-        bottom: 5,
-        textAlign: "center",
-        text: L("text_11").toUpperCase(),
-        id: "__alloyId9"
-    });
-    $.__views.MenuView2.add($.__views.__alloyId9);
-    $.__views.__alloyId10 = Ti.UI.createImageView({
-        top: 10,
-        width: 42,
-        height: 42,
-        image: "/images/homeIcon2.png",
-        id: "__alloyId10"
-    });
-    $.__views.MenuView2.add($.__views.__alloyId10);
-    $.__views.__alloyId11 = Ti.UI.createView({
-        top: 0,
-        right: 0,
-        backgroundColor: Alloy.CFG.GREY5,
-        width: 1,
-        height: 115,
-        id: "__alloyId11"
-    });
-    $.__views.MenuView2.add($.__views.__alloyId11);
-    $.__views.MenuView4 = Ti.UI.createView({
-        height: 90,
-        id: "MenuView4"
-    });
-    $.__views.viewFooter.add($.__views.MenuView4);
-    eventHandler_Map ? $.__views.MenuView4.addEventListener("click", eventHandler_Map) : __defers["$.__views.MenuView4!click!eventHandler_Map"] = true;
-    $.__views.__alloyId12 = Ti.UI.createLabel({
-        color: Alloy.CFG.GREY5,
-        font: {
-            fontFamily: Alloy.CFG.MYRIAD_REGULAR,
-            fontSize: 13,
-            fontWeight: "normal"
-        },
-        bottom: 5,
-        textAlign: "center",
-        text: L("text_13").toUpperCase(),
-        id: "__alloyId12"
-    });
-    $.__views.MenuView4.add($.__views.__alloyId12);
-    $.__views.__alloyId13 = Ti.UI.createImageView({
-        top: 10,
-        width: 45,
-        height: 45,
-        image: "/images/homeIcon4.png",
-        id: "__alloyId13"
-    });
-    $.__views.MenuView4.add($.__views.__alloyId13);
-    $.__views.viewRoundedContainer3 = Ti.UI.createView({
-        top: 20,
-        width: "100%",
-        height: 115,
-        id: "viewRoundedContainer3"
-    });
-    $.__views.viewHome.add($.__views.viewRoundedContainer3);
-    $.__views.viewRoundedShadow3 = Ti.UI.createView({
-        borderRadius: 5,
-        borderWidth: 5,
-        borderColor: Alloy.CFG.BLACK,
-        backgroundColor: Alloy.CFG.BLACK,
-        width: "90%",
-        opacity: .2,
-        height: 115,
-        top: 0,
-        id: "viewRoundedShadow3"
-    });
-    $.__views.viewRoundedContainer3.add($.__views.viewRoundedShadow3);
-    $.__views.viewRounded3 = Ti.UI.createView({
-        borderRadius: 5,
-        borderWidth: 5,
-        borderColor: Alloy.CFG.WHITE,
-        backgroundColor: Alloy.CFG.WHITE,
-        width: "90%",
-        height: 110,
-        top: 0,
-        id: "viewRounded3"
-    });
-    $.__views.viewRoundedContainer3.add($.__views.viewRounded3);
+    $.__views.viewTraffic.add($.__views.trafficRed);
     $.__views.textAlert = Ti.UI.createLabel({
         color: Alloy.CFG.BLACK,
         font: {
@@ -312,16 +117,24 @@ function Controller() {
         textAlign: "center",
         id: "textAlert"
     });
-    $.__views.viewRounded3.add($.__views.textAlert);
+    $.__views.viewRoundedContainerTraffic.add($.__views.textAlert);
     exports.destroy = function() {};
     _.extend($, $.__views);
-    var managment_View = require("managment_View");
+    require("managment_View");
     var managment_Data = require("managment_Data");
+    var textAlertOrange = $.createStyle({
+        classes: [ "textAlertOrange" ]
+    });
+    var textAlertRed = $.createStyle({
+        classes: [ "textAlertRed" ]
+    });
+    var textAlertGreen = $.createStyle({
+        classes: [ "textAlertGreen" ]
+    });
+    var textAlert = $.createStyle({
+        classes: [ "textAlert" ]
+    });
     show();
-    __defers["$.__views.MenuView1!click!eventHandler_Scheduler"] && $.__views.MenuView1.addEventListener("click", eventHandler_Scheduler);
-    __defers["$.__views.MenuView3!click!eventHandler_Tarifas"] && $.__views.MenuView3.addEventListener("click", eventHandler_Tarifas);
-    __defers["$.__views.MenuView2!click!eventHandler_Press"] && $.__views.MenuView2.addEventListener("click", eventHandler_Press);
-    __defers["$.__views.MenuView4!click!eventHandler_Map"] && $.__views.MenuView4.addEventListener("click", eventHandler_Map);
     _.extend($, exports);
 }
 
