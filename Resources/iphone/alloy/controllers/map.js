@@ -80,14 +80,32 @@ function Controller() {
             longitude: "-4.431597"
         }));
         Alloy.Collections.model__MetroStations.result.forEach(function(element) {
-            var station = MapModule.createAnnotation({
+            if ("iphone" === Ti.Platform.osname) var station = MapModule.createAnnotation({
                 latitude: element.latitude,
                 longitude: element.longitude,
                 image: "/images/pinStation.png",
                 title: element.title,
-                subtitle: element.subtitle,
+                subtitle: L("text_26") + " " + element.line,
                 myid: element.id,
-                rightButton: "/images/iconRoute.png"
+                rightButton: Ti.UI.iPhone.SystemButton.DISCLOSURE,
+                leftButton: element.image,
+                animate: "true"
+            }); else var station = MapModule.createAnnotation({
+                latitude: element.latitude,
+                longitude: element.longitude,
+                image: "/images/pinStation.png",
+                title: element.title,
+                subtitle: L("text_26") + " " + element.line,
+                myid: element.id,
+                rightView: Ti.UI.createLabel({
+                    text: L("text_19"),
+                    color: Alloy.CFG.GREEN,
+                    font: {
+                        size: 8
+                    }
+                }),
+                leftButton: element.image,
+                animate: "true"
             });
             metroStations.push(station);
             picker_data.push(Titanium.UI.createPickerRow({
@@ -177,11 +195,6 @@ function Controller() {
             });
             Ti.Android.currentActivity.addEventListener("resume", function() {
                 Ti.API.info("resume event received");
-                if (!locationAdded && locationCallback) {
-                    Ti.API.info("adding location callback on resume");
-                    Titanium.Geolocation.addEventListener("location", locationCallback);
-                    locationAdded = true;
-                }
             });
         }
         "android" === Ti.Platform.osname ? Titanium.Geolocation.addEventListener("location", locationCallback) : currentLocationIphone();
@@ -193,8 +206,8 @@ function Controller() {
             Ti.App.fireEvent("closeLoading");
         });
         map.addEventListener("click", function(evt) {
-            Ti.API.info("Annotation " + evt.title + " clicked, id: " + evt.annotation.myid);
-            if ("rightButton" == evt.clicksource || "rightPane" == evt.clicksource) {
+            Ti.API.info("Annotation " + evt.title + " clicked, id: " + evt.annotation.myid + " clickSource: " + evt.clicksource);
+            if ("rightButton" == evt.clicksource || "rightPane" == evt.clicksource || "infoWindow" == evt.clicksource) {
                 var URL = "https://www.google.es/maps/dir/Mi+ubicación/" + evt.annotation.latitude + "," + evt.annotation.longitude + "/@" + userLocation;
                 Titanium.Platform.openURL(URL);
             }
@@ -209,10 +222,7 @@ function Controller() {
         if (Ti.Geolocation.locationServicesEnabled) {
             Titanium.Geolocation.purpose = "Get Current Location";
             Titanium.Geolocation.getCurrentPosition(function(e) {
-                if (e.error) {
-                    Ti.API.error("Error: " + e.error);
-                    managment_View.OpenInfoWindow(L("text_29"));
-                } else {
+                if (e.error) ; else {
                     var regionUser = {
                         latitude: e.coords.latitude,
                         longitude: e.coords.longitude,

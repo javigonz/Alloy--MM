@@ -12,6 +12,7 @@ function Controller() {
         Alloy.Globals.ActualContainer = $.viewHome;
         Alloy.Globals.ActualSection = "home";
         Alloy.Globals.Header.children[0].children[1].text = L("text_1");
+        Alloy.CFG.HeightDeviceIphone <= 480 && false && ($.viewRoundedContainerLogo.height = 200);
         Ti.App.addEventListener("loadAlert", loadAlert);
         managment_Data.LoadWebService_Alert();
         require("managment_Push");
@@ -97,7 +98,7 @@ function Controller() {
         top: 10,
         height: 85,
         layout: "horizontal",
-        left: Alloy.CFG.leftTraffic,
+        left: Alloy.CFG.leftTrafficAndroid,
         id: "viewTraffic"
     });
     $.__views.viewRoundedContainerTraffic.add($.__views.viewTraffic);

@@ -42,7 +42,8 @@ Alloy.CFG.WidthDeviceAndroid     	 = Ti.Platform.displayCaps.platformWidth / (Ti
 Alloy.CFG.HeightDevice           	 = Ti.Platform.displayCaps.platformHeight / (Titanium.Platform.displayCaps.dpi / 160);
 Alloy.CFG.HeightDeviceIphone     	 = Ti.Platform.displayCaps.platformHeight;
 
-Alloy.CFG.leftTraffic				 = (Alloy.CFG.WidthDeviceAndroid - 245) / 2;
+Alloy.CFG.leftTrafficAndroid		 = (Alloy.CFG.WidthDeviceAndroid - 245) / 2;
+Alloy.CFG.leftTrafficIphone		     = (Alloy.CFG.WidthDeviceIphone - 245) / 2;
 
 
 //Fonts
@@ -78,37 +79,41 @@ Alloy.Collections.model__MetroStations = {
 										            "longitude": 	"-4.494513",
 										            "line": 		["1"],
 										            "timeForward": 	"106",
-										            "timeBack": 	"0"
+										            "timeBack": 	"0",
+										            "image":        "/images/parada_andaluciaTech.png"
 										        },
 										        {
 										            "id": 			"2",
 										            "title": 		"Paraninfo",
-										            "subtitle": 	"prolongación del bulevar Louis Pasteur, junto a la calle Dolores Rodríguez de Aragón.",
+										            "subtitle": 	"prolongación del bulevar Louis Pasteur,\n junto a la calle Dolores Rodríguez de Aragón.",
 										            "latitude": 	"36.717981",
 										            "longitude": 	"-4.488859",
 										            "line": 		["1"],
 										            "timeForward": 	"72",
-										            "timeBack": 	"73"
+										            "timeBack": 	"73",
+										            "image":        "/images/parada_paraninfo.png"
 										        },
 										        {
 										            "id": 			"3",
 										            "title": 		"El Cónsul",
-										            "subtitle": 	"prolongación del bulevar Louis Pasteur, junto a la glorieta de la avenida de Jenofontes.",
+										            "subtitle": 	"prolongación del bulevar Louis Pasteur,\n junto a la glorieta de la avenida de Jenofontes.",
 										            "latitude": 	"36.717309",
 										            "longitude": 	"-4.484002",
 										            "line": 		["1"],
 										            "timeForward": 	"88",
-										            "timeBack": 	"67"
+										            "timeBack": 	"67",
+										            "image":        "/images/parada_elconsul.png"
 										        },
 										        {
 										            "id": 			"4",
 										            "title": 		"Clínico",
-										            "subtitle": 	"boulevard Louis Pasteur, a la altura del aparcamiento del Hospital Universitario Virgen de la Victoria.",
+										            "subtitle": 	"boulevard Louis Pasteur, a la altura del aparcamiento\n del Hospital Universitario Virgen de la Victoria.",
 										            "latitude": 	"36.716564",
 										            "longitude": 	"-4.478618",
 										            "line": 		["1"],
 										            "timeForward": 	"145",
-										            "timeBack": 	"71"
+										            "timeBack": 	"71",
+										            "image":        "/images/parada_clinico.png"
 										        },
 										        {
 										            "id": 			"5",
@@ -118,7 +123,8 @@ Alloy.Collections.model__MetroStations = {
 										            "longitude": 	"-4.472310",
 										            "line": 		["1"],
 										            "timeForward": 	"111",
-										            "timeBack": 	"81"
+										            "timeBack": 	"81",
+										            "image":        "/images/parada_universidad.png"
 										        },
 										        {
 										            "id": 			"6",
@@ -128,7 +134,8 @@ Alloy.Collections.model__MetroStations = {
 										            "longitude": 	"-4.463566",
 										            "line": 		["1"],
 										            "timeForward": 	"97",
-										            "timeBack": 	"94"
+										            "timeBack": 	"94",
+										            "image":        "/images/parada_ciudadJusticia.png"
 										        },
 										        {
 										            "id": 			"7",
@@ -138,7 +145,8 @@ Alloy.Collections.model__MetroStations = {
 										            "longitude": 	"-4.452564",
 										            "line": 		["1"],
 										            "timeForward": 	"69",
-										            "timeBack": 	"97"
+										            "timeBack": 	"97",
+										            "image":        "/images/parada_portadaAlta.png"
 										        },
 										        {
 										            "id": 			"8",
@@ -148,7 +156,8 @@ Alloy.Collections.model__MetroStations = {
 										            "longitude": 	"-4.449192",
 										            "line": 		["1"],
 										            "timeForward": 	"86",
-										            "timeBack": 	"68"
+										            "timeBack": 	"68",
+										            "image":        "/images/parada_carranque.png"
 										        },
 										        {
 										            "id": 			"9",
@@ -158,7 +167,8 @@ Alloy.Collections.model__MetroStations = {
 										            "longitude": 	"-4.445853",
 										            "line": 		["1"],
 										            "timeForward": 	"118",
-										            "timeBack": 	"86"
+										            "timeBack": 	"86",
+										            "image":        "/images/parada_barbarela.png"
 										        },
 										        {
 										            "id": 			"10",
@@ -168,7 +178,8 @@ Alloy.Collections.model__MetroStations = {
 										            "longitude": 	"-4.439654",
 										            "line": 		["1"],
 										            "timeForward": 	"162",
-										            "timeBack": 	"113"
+										            "timeBack": 	"113",
+										            "image":        "/images/parada_laUnion.png"
 										        },
 										        {
 										            "id": 			"11",
@@ -178,7 +189,8 @@ Alloy.Collections.model__MetroStations = {
 										            "longitude": 	"-4.431597",
 										            "line": 		["1","2"],
 										            "timeForward": 	"137",
-										            "timeBack": 	"136"
+										            "timeBack": 	"136",
+										            "image":        "/images/parada_elPerchel.png"
 										        },
 										        {
 										            "id": 			"12",
@@ -188,7 +200,8 @@ Alloy.Collections.model__MetroStations = {
 										            "longitude": 	"-4.435637",
 										            "line": 		["2"],
 										            "timeForward": 	"75",
-										            "timeBack": 	"170"
+										            "timeBack": 	"170",
+										            "image":        "/images/parada_laisla.png"
 										        },
 										        {
 										            "id": 			"13",
@@ -198,7 +211,8 @@ Alloy.Collections.model__MetroStations = {
 										            "longitude": 	"-4.440142",
 										            "line": 		["2"],
 										            "timeForward": 	"86",
-										            "timeBack": 	"75"
+										            "timeBack": 	"75",
+										            "image":        "/images/parada_princesa.png"
 										        },
 										        {
 										            "id": 			"14",
@@ -208,7 +222,8 @@ Alloy.Collections.model__MetroStations = {
 										            "longitude": 	"-4.446092",
 										            "line": 		["2"],
 										            "timeForward": 	"77",
-										            "timeBack": 	"86"
+										            "timeBack": 	"86",
+										            "image":        "/images/parada_eltorcal.png"
 										        },
 										        {
 										            "id": 			"15",
@@ -218,7 +233,8 @@ Alloy.Collections.model__MetroStations = {
 										            "longitude": 	"-4.448564",
 										            "line": 		["2"],
 										            "timeForward": 	"78",
-										            "timeBack": 	"76"
+										            "timeBack": 	"76",
+										            "image":        "/images/parada_laluz.png"
 										        },
 										        {
 										            "id": 			"16",
@@ -228,7 +244,8 @@ Alloy.Collections.model__MetroStations = {
 										            "longitude": 	"-4.451466",
 										            "line": 		["2"],
 										            "timeForward": 	"219",
-										            "timeBack": 	"77"
+										            "timeBack": 	"77",
+										            "image":        "/images/parada_puertaBlanca.png"
 										        },
 										        {
 										            "id": 			"17",
@@ -238,7 +255,8 @@ Alloy.Collections.model__MetroStations = {
 										            "longitude": 	"-4.458145",
 										            "line": 		["2"],
 										            "timeForward": 	"0",
-										            "timeBack": 	"98"
+										            "timeBack": 	"98",
+										            "image":        "/images/parada_palacio.png"
 										        },
 									        
 										  ]};		

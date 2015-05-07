@@ -72,14 +72,23 @@ function Controller() {
             longitude: "-4.431597"
         }));
         Alloy.Collections.model__MetroStations.result.forEach(function(element) {
+            var station;
             var station = MapModule.createAnnotation({
                 latitude: element.latitude,
                 longitude: element.longitude,
                 image: "/images/pinStation.png",
                 title: element.title,
-                subtitle: element.subtitle,
+                subtitle: L("text_26") + " " + element.line,
                 myid: element.id,
-                rightButton: "/images/iconRoute.png"
+                rightView: Ti.UI.createLabel({
+                    text: L("text_19"),
+                    color: Alloy.CFG.GREEN,
+                    font: {
+                        size: 8
+                    }
+                }),
+                leftButton: element.image,
+                animate: "true"
             });
             metroStations.push(station);
             picker_data.push(Titanium.UI.createPickerRow({
@@ -164,11 +173,6 @@ function Controller() {
         });
         Ti.Android.currentActivity.addEventListener("resume", function() {
             Ti.API.info("resume event received");
-            if (!locationAdded && locationCallback) {
-                Ti.API.info("adding location callback on resume");
-                Titanium.Geolocation.addEventListener("location", locationCallback);
-                locationAdded = true;
-            }
         });
         Titanium.Geolocation.addEventListener("location", locationCallback);
         map.addEventListener("complete", function() {
@@ -179,8 +183,8 @@ function Controller() {
             Ti.App.fireEvent("closeLoading");
         });
         map.addEventListener("click", function(evt) {
-            Ti.API.info("Annotation " + evt.title + " clicked, id: " + evt.annotation.myid);
-            if ("rightButton" == evt.clicksource || "rightPane" == evt.clicksource) {
+            Ti.API.info("Annotation " + evt.title + " clicked, id: " + evt.annotation.myid + " clickSource: " + evt.clicksource);
+            if ("rightButton" == evt.clicksource || "rightPane" == evt.clicksource || "infoWindow" == evt.clicksource) {
                 var URL = "https://www.google.es/maps/dir/Mi+ubicación/" + evt.annotation.latitude + "," + evt.annotation.longitude + "/@" + userLocation;
                 Titanium.Platform.openURL(URL);
             }

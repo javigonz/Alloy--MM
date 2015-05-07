@@ -12,6 +12,7 @@ function Controller() {
         Alloy.Globals.ActualContainer = $.viewHome;
         Alloy.Globals.ActualSection = "home";
         Alloy.Globals.Header.children[0].children[1].text = L("text_1");
+        Alloy.CFG.HeightDeviceIphone <= 480 && "iphone" == Ti.Platform.osname && ($.viewRoundedContainerLogo.height = 200);
         Ti.App.addEventListener("loadAlert", loadAlert);
         managment_Data.LoadWebService_Alert();
         require("managment_Push");
@@ -73,6 +74,9 @@ function Controller() {
     });
     $.__views.viewHome && $.addTopLevelView($.__views.viewHome);
     $.__views.viewRoundedContainerLogo = Ti.UI.createView({
+        top: 0,
+        width: "100%",
+        height: 265,
         id: "viewRoundedContainerLogo"
     });
     $.__views.viewHome.add($.__views.viewRoundedContainerLogo);
@@ -82,25 +86,42 @@ function Controller() {
     });
     $.__views.viewRoundedContainerLogo.add($.__views.__alloyId2);
     $.__views.viewRoundedContainerTraffic = Ti.UI.createView({
+        top: 10,
+        height: 300,
+        layout: "vertical",
         id: "viewRoundedContainerTraffic",
         visible: "false"
     });
     $.__views.viewHome.add($.__views.viewRoundedContainerTraffic);
     $.__views.viewTraffic = Ti.UI.createView({
+        width: Alloy.CFG.WidthDeviceIphone,
+        top: 10,
+        height: 85,
+        layout: "horizontal",
+        left: Alloy.CFG.leftTrafficIphone,
         id: "viewTraffic"
     });
     $.__views.viewRoundedContainerTraffic.add($.__views.viewTraffic);
     $.__views.trafficGreen = Ti.UI.createImageView({
+        height: 77,
+        width: 75,
+        right: 10,
         image: "/images/trafficGreen.png",
         id: "trafficGreen"
     });
     $.__views.viewTraffic.add($.__views.trafficGreen);
     $.__views.trafficOrange = Ti.UI.createImageView({
+        height: 77,
+        width: 75,
+        right: 10,
         image: "/images/trafficOrange.png",
         id: "trafficOrange"
     });
     $.__views.viewTraffic.add($.__views.trafficOrange);
     $.__views.trafficRed = Ti.UI.createImageView({
+        height: 77,
+        width: 75,
+        right: 10,
         image: "/images/trafficRed.png",
         id: "trafficRed"
     });
@@ -109,7 +130,7 @@ function Controller() {
         color: Alloy.CFG.BLACK,
         font: {
             fontFamily: Alloy.CFG.MYRIAD_REGULAR,
-            fontSize: 14,
+            fontSize: 15,
             fontWeight: "normal"
         },
         left: 10,

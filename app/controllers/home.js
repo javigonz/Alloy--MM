@@ -44,6 +44,11 @@ function show(){
 	
 	
 	Alloy.Globals.Header.children[0].children[1].text = L('text_1');
+	
+	if (Alloy.CFG.HeightDeviceIphone <= 480 && Ti.Platform.osname == "iphone")  //Para el caso particular de iphone 4 o menor
+	{
+		$.viewRoundedContainerLogo.height = 200;
+	}
 
 	//Carga WebServie de Alerta
 	Ti.App.addEventListener('loadAlert', loadAlert);
