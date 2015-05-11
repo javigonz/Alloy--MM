@@ -78,7 +78,7 @@ function Controller() {
                 longitude: element.longitude,
                 image: "/images/pinStation.png",
                 title: element.title,
-                subtitle: L("text_26") + " " + element.line,
+                subtitle: element.subtitle,
                 myid: element.id,
                 rightView: Ti.UI.createLabel({
                     text: L("text_19"),

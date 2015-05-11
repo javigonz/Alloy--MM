@@ -138,6 +138,7 @@ function createMapModule()
 			    image:			'/images/pinStation.png',   
 			    title: 			element.title,
 			    subtitle: 		L('text_26') + ' ' + element.line,
+			    //subtitle: 		element.subtitle,
 			    myid: 			element.id,
 				rightButton:	Ti.UI.iPhone.SystemButton.DISCLOSURE,				
 			    leftButton:     element.image,
@@ -152,6 +153,7 @@ function createMapModule()
 			    image:			'/images/pinStation.png',   
 			    title: 			element.title,
 			    subtitle: 		L('text_26') + ' ' + element.line,
+			    //subtitle: 		element.subtitle,
 			    myid: 			element.id,
 			    rightView: 		Ti.UI.createLabel({
 									text: L('text_19'),
