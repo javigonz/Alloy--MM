@@ -74,7 +74,8 @@ Alloy.Collections.model__MetroStations = {
 										       {
 										            "id": 			"1",
 										            "title": 		"Andalucía Tech",
-										            "subtitle": 	"prolongación del bulevar Louis Pasteur.",
+										            //"subtitle": 	"prolongación del bulevar Louis Pasteur.",
+										            "subtitle": 	"Bulevar Louis Pasteur",
 										            "latitude": 	"36.718760",
 										            "longitude": 	"-4.494513",
 										            "line": 		["1"],
@@ -85,7 +86,8 @@ Alloy.Collections.model__MetroStations = {
 										        {
 										            "id": 			"2",
 										            "title": 		"Paraninfo",
-										            "subtitle": 	"prolongación del bulevar Louis Pasteur,\n junto a la calle Dolores Rodríguez de Aragón.",
+										            //"subtitle": 	"prolongación del bulevar Louis Pasteur,\n junto a la calle Dolores Rodríguez de Aragón.",
+										            "subtitle": 	"Bulevar Louis Pasteur",
 										            "latitude": 	"36.717981",
 										            "longitude": 	"-4.488859",
 										            "line": 		["1"],
@@ -96,7 +98,8 @@ Alloy.Collections.model__MetroStations = {
 										        {
 										            "id": 			"3",
 										            "title": 		"El Cónsul",
-										            "subtitle": 	"prolongación del bulevar Louis Pasteur,\n junto a la glorieta de la avenida de Jenofontes.",
+										            //"subtitle": 	"prolongación del bulevar Louis Pasteur,\n junto a la glorieta de la avenida de Jenofontes.",
+										            "subtitle": 	"Bulevar Louis Pasteur",
 										            "latitude": 	"36.717309",
 										            "longitude": 	"-4.484002",
 										            "line": 		["1"],
@@ -107,7 +110,8 @@ Alloy.Collections.model__MetroStations = {
 										        {
 										            "id": 			"4",
 										            "title": 		"Clínico",
-										            "subtitle": 	"boulevard Louis Pasteur, a la altura del aparcamiento\n del Hospital Universitario Virgen de la Victoria.",
+										            //"subtitle": 	"boulevard Louis Pasteur, a la altura del aparcamiento\n del Hospital Universitario Virgen de la Victoria.",
+										            "subtitle": 	"Boulevard Louis Pasteur",
 										            "latitude": 	"36.716564",
 										            "longitude": 	"-4.478618",
 										            "line": 		["1"],
@@ -118,7 +122,8 @@ Alloy.Collections.model__MetroStations = {
 										        {
 										            "id": 			"5",
 										            "title": 		"Universidad",
-										            "subtitle": 	"bulevar Louis Pasteur, a la altura de la Facultad de Medicina.",
+										            //"subtitle": 	"bulevar Louis Pasteur, a la altura de la Facultad de Medicina.",
+										            "subtitle": 	"Bulevar Louis Pasteur",
 										            "latitude": 	"36.717021",
 										            "longitude": 	"-4.472310",
 										            "line": 		["1"],
@@ -129,7 +134,8 @@ Alloy.Collections.model__MetroStations = {
 										        {
 										            "id": 			"6",
 										            "title": 		"Ciudad de la justicia",
-										            "subtitle": 	"bulevar Louis Pasteur a la altura de la intersección con Gregorio Prieto.",
+										            //"subtitle": 	"bulevar Louis Pasteur a la altura de la intersección con Gregorio Prieto.",
+										            "subtitle": 	"Bulevar Louis Pasteur",
 										            "latitude": 	"36.718158",
 										            "longitude": 	"-4.463566",
 										            "line": 		["1"],
@@ -140,7 +146,8 @@ Alloy.Collections.model__MetroStations = {
 										        {
 										            "id": 			"7",
 										            "title": 		"Portada Alta",
-										            "subtitle": 	"calle Cómpeta, número 26, frente al I.E.S. Portada Alta.",
+										            //"subtitle": 	"calle Cómpeta, número 26, frente al I.E.S. Portada Alta.",
+										            "subtitle": 	"C/ Cómpeta 26",
 										            "latitude": 	"36.719250",
 										            "longitude": 	"-4.452564",
 										            "line": 		["1"],
@@ -151,7 +158,8 @@ Alloy.Collections.model__MetroStations = {
 										        {
 										            "id": 			"8",
 										            "title": 		"Carranque",
-										            "subtitle": 	"calle Virgen de la Cabeza, número 3, frente al C.P.E.E.E. Santa Rosa de Lima.",
+										            //"subtitle": 	"calle Virgen de la Cabeza, número 3, frente al C.P.E.E.E. Santa Rosa de Lima.",
+										            "subtitle": 	"C/ Virgen de la Cabeza 3",
 										            "latitude": 	"36.718633",
 										            "longitude": 	"-4.449192",
 										            "line": 		["1"],
@@ -162,7 +170,8 @@ Alloy.Collections.model__MetroStations = {
 										        {
 										            "id": 			"9",
 										            "title": 		"Barbarela",
-										            "subtitle": 	"avenida de Juan XXIII, junto al C.P.E. San José Obrero.",
+										            //"subtitle": 	"avenida de Juan XXIII, junto al C.P.E. San José Obrero.",
+										            "subtitle": 	"Avda. Juan XXIII",
 										            "latitude": 	"36.711650",
 										            "longitude": 	"-4.445853",
 										            "line": 		["1"],
@@ -173,7 +182,7 @@ Alloy.Collections.model__MetroStations = {
 										        {
 										            "id": 			"10",
 										            "title": 		"La Unión",
-										            "subtitle": 	"calle Santa Marta, número 3.",
+										            "subtitle": 	"C/ Santa Marta 3",
 										            "latitude": 	"36.710909",
 										            "longitude": 	"-4.439654",
 										            "line": 		["1"],
@@ -184,7 +193,8 @@ Alloy.Collections.model__MetroStations = {
 										        {
 										            "id": 			"11",
 										            "title": 		"El Perchel",
-										            "subtitle": 	"Calle Explanada de la Estación, frente a la estación de ferrocarril María Zambrano, y calle Roger de Flor.",
+										            //"subtitle": 	"Calle Explanada de la Estación, frente a la estación de ferrocarril María Zambrano, y calle Roger de Flor.",
+										            "subtitle": 	"C/ Explanada de Estación",
 										            "latitude": 	"36.712666",
 										            "longitude": 	"-4.431597",
 										            "line": 		["1","2"],
@@ -195,7 +205,8 @@ Alloy.Collections.model__MetroStations = {
 										        {
 										            "id": 			"12",
 										            "title": 		"La Isla",
-										            "subtitle": 	"calle Velasco, en la intersección con la calle Héroe de Sostoa.",
+										            //"subtitle": 	"calle Velasco, en la intersección con la calle Héroe de Sostoa.",
+										            "subtitle": 	"C/ Velasco",
 										            "latitude": 	"36.708038",
 										            "longitude": 	"-4.435637",
 										            "line": 		["2"],
@@ -206,7 +217,8 @@ Alloy.Collections.model__MetroStations = {
 										        {
 										            "id": 			"13",
 										            "title": 		"Princesa",
-										            "subtitle": 	"calle Héroe de Sostoa, número 142",
+										            //"subtitle": 	"calle Héroe de Sostoa, número 142",
+										            "subtitle": 	"C/ Héroe de Sostoa",
 										            "latitude": 	"36.704326",
 										            "longitude": 	"-4.440142",
 										            "line": 		["2"],
@@ -217,7 +229,7 @@ Alloy.Collections.model__MetroStations = {
 										        {
 										            "id": 			"14",
 										            "title": 		"El Torcal",
-										            "subtitle": 	"avenida de Velázquez, número 8.",
+										            "subtitle": 	"Avda. Velázquez 8",
 										            "latitude": 	"36.699723",
 										            "longitude": 	"-4.446092",
 										            "line": 		["2"],
@@ -228,7 +240,8 @@ Alloy.Collections.model__MetroStations = {
 										        {
 										            "id": 			"15",
 										            "title": 		"La Luz - La Paz",
-										            "subtitle": 	"avenida de Velázquez, a la altura de los números 64 y 65.",
+										            //"subtitle": 	"avenida de Velázquez, a la altura de los números 64 y 65.",
+										            "subtitle": 	"Avda. Velázquez",
 										            "latitude": 	"36.697711",
 										            "longitude": 	"-4.448564",
 										            "line": 		["2"],
@@ -239,7 +252,8 @@ Alloy.Collections.model__MetroStations = {
 										        {
 										            "id": 			"16",
 										            "title": 		"Puerta Blanca",
-										            "subtitle": 	"avenida de Velázquez, a la altura de los números 100 y 103.",
+										            //"subtitle": 	"avenida de Velázquez, a la altura de los números 100 y 103.",
+										            "subtitle": 	"Avda. Velázquez",
 										            "latitude": 	"36.695445",
 										            "longitude": 	"-4.451466",
 										            "line": 		["2"],
@@ -250,7 +264,8 @@ Alloy.Collections.model__MetroStations = {
 										        {
 										            "id": 			"17",
 										            "title": 		"Palacio de Deportes",
-										            "subtitle": 	"calle Miguel Mérida Nicolich, en las inmediaciones del Palacio de los Deportes José María Martín Carpena.",
+										            //"subtitle": 	"calle Miguel Mérida Nicolich, en las inmediaciones del Palacio de los Deportes José María Martín Carpena.",
+										            "subtitle": 	"C/ Miguel Mérida Nicolich",
 										            "latitude": 	"36.684651",
 										            "longitude": 	"-4.458145",
 										            "line": 		["2"],
