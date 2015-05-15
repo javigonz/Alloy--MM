@@ -13,9 +13,12 @@ var capabilities = Titanium.Platform.displayCaps.dpi / 160;
 var openArrivedView = 'false';
 var picker_dataOrigen 	= [];
 var picker_dataDestino 	= [];
+var picker1;
+var picker2;
 var station_origen = "";
 var station_destino = "";
 var lastRoute = '';
+var onlyOneTime = 'false';
 
 var MoveUp_Opacity = Titanium.UI.createAnimation({
     curve: Ti.UI.ANIMATION_CURVE_EASE_OUT,
@@ -300,12 +303,17 @@ function createMapModule()
 	//
 	map.addEventListener('complete', function(e){
 		
-		createDrawLine();
-		$.viewHowArrivedTitle.addEventListener('click', handlerArrivedView);
-		loadComboOrigen();
-   		loadComboDestino();
-    
-	    Ti.App.fireEvent('closeLoading');
+		if (onlyOneTime === 'false' || Ti.Platform.osname === "android")
+		{
+			onlyOneTime = 'true';
+			createDrawLine();
+			$.viewHowArrivedTitle.addEventListener('click', handlerArrivedView);
+			loadComboOrigen();
+	   		loadComboDestino();
+	    
+		    Ti.App.fireEvent('closeLoading');
+		}
+		
 	});
 	
 	map.addEventListener('click', function(evt) {
@@ -638,17 +646,17 @@ function loadComboOrigen(){
 			//estilo
 			var pickerStyle = $.createStyle({classes: ['pickerStyle']});
 									
-			var picker = Titanium.UI.createPicker({});
-			picker.selectionIndicator=true;
-			picker.applyProperties(pickerStyle);
+			picker1 = Titanium.UI.createPicker({});
+			picker1.selectionIndicator=true;
+			picker1.applyProperties(pickerStyle);
 											
-			picker.add(picker_dataOrigen);
+			picker1.add(picker_dataOrigen);
 											
-			picker.addEventListener('change', function(){					
+			picker1.addEventListener('change', function(){					
 						
-						if (picker.getSelectedRow(0).id !== 0)  //Me aseguro que no elija en el picker el primer campo que es el de 'Seleccione estacion de Origen'
+						if (picker1.getSelectedRow(0).id !== 0)  //Me aseguro que no elija en el picker el primer campo que es el de 'Seleccione estacion de Origen'
 						{
-							station_origen = Alloy.Collections.model__MetroStations.result[ picker.getSelectedRow(0).id - 1];
+							station_origen = Alloy.Collections.model__MetroStations.result[ picker1.getSelectedRow(0).id - 1];
 							$.textMinutes.text = managment_Timer.timeFromTo(station_origen, station_destino);
 							
 							var routes = managment_route.createRoute(station_origen, station_destino);
@@ -685,7 +693,7 @@ function loadComboOrigen(){
 												
 			
 			$.comboHowArrivedOrigen.add(imagen1);		
-			$.comboHowArrivedOrigen.add(picker);
+			$.comboHowArrivedOrigen.add(picker1);
 
 		}
 		else  //Iphone
@@ -746,9 +754,9 @@ function loadComboOrigen(){
 					station_origen = Alloy.Collections.model__MetroStations.result[ picker.getSelectedRow(0).id - 1];
 					$.textMinutes.text = managment_Timer.timeFromTo(station_origen, station_destino);	
 					var routes = managment_route.createRoute(station_origen, station_destino);	
-					console.log(station_origen.title);
-					console.log(station_destino.title);	
-					console.log(routes);
+					//console.log(station_origen.title);
+					//console.log(station_destino.title);	
+					//console.log(routes);
 					if (routes.length !== 0)
 					{
 					   if (lastRoute !== '')
@@ -792,16 +800,16 @@ function loadComboDestino(){
 			//estilo
 			var pickerStyle = $.createStyle({classes: ['pickerStyle']});
 									
-			var picker = Titanium.UI.createPicker({});
-			picker.selectionIndicator=true;
-			picker.applyProperties(pickerStyle);
+			picker2 = Titanium.UI.createPicker({});
+			picker2.selectionIndicator=true;
+			picker2.applyProperties(pickerStyle);
 											
-			picker.add(picker_dataDestino);
+			picker2.add(picker_dataDestino);
 											
-			picker.addEventListener('change', function(){
-						if (picker.getSelectedRow(0).id !== 0)  //Me aseguro que no elija en el picker el primer campo que es el de 'Seleccione estacion de Destino'
+			picker2.addEventListener('change', function(){
+						if (picker2.getSelectedRow(0).id !== 0)  //Me aseguro que no elija en el picker el primer campo que es el de 'Seleccione estacion de Destino'
 						{				
-							station_destino = Alloy.Collections.model__MetroStations.result[ picker.getSelectedRow(0).id - 1];	
+							station_destino = Alloy.Collections.model__MetroStations.result[ picker2.getSelectedRow(0).id - 1];	
 							$.textMinutes.text = managment_Timer.timeFromTo(station_origen, station_destino);
 							
 							var routes = managment_route.createRoute(station_origen, station_destino);
@@ -836,13 +844,13 @@ function loadComboDestino(){
 												
 			
 			$.comboHowArrivedDestino.add(imagen1);		
-			$.comboHowArrivedDestino.add(picker);
+			$.comboHowArrivedDestino.add(picker2);
 
 		}
 		else  //Iphone
 		{
 			
-			var picker_view = Titanium.UI.createView({
+			var picker_view2 = Titanium.UI.createView({
 				height:251,
 				bottom:-351
 			});
@@ -867,39 +875,39 @@ function loadComboDestino(){
 					items:[cancel,spacer,done]
 			});
 				
-			var picker = Titanium.UI.createPicker({
+			var picker2 = Titanium.UI.createPicker({
 						top:43
 			});
 				
-			picker.selectionIndicator=true;
+			picker2.selectionIndicator=true;
 				
-			picker.add(picker_dataDestino); 
+			picker2.add(picker_dataDestino); 
 			
-			picker_view.add(toolbar);
-			picker_view.add(picker);
+			picker_view2.add(toolbar);
+			picker_view2.add(picker2);
 				
 			var slide_in =  Titanium.UI.createAnimation({bottom:0});
 			var slide_out =  Titanium.UI.createAnimation({bottom:-351});
 				
 			$.comboHowArrivedDestino.addEventListener('focus', function() {
-					picker_view.animate(slide_in);
+					picker_view2.animate(slide_in);
 					$.comboHowArrivedDestino.blur();
 			});
 				
 				
 			cancel.addEventListener('click',function() {
-					picker_view.animate(slide_out);
+					picker_view2.animate(slide_out);
 			});
 				
 			done.addEventListener('click',function() {
-					$.comboHowArrivedDestino.value =  picker.getSelectedRow(0).title;
-					picker_view.animate(slide_out);	
-					station_destino = Alloy.Collections.model__MetroStations.result[ picker.getSelectedRow(0).id - 1];	
+					$.comboHowArrivedDestino.value =  picker2.getSelectedRow(0).title;
+					picker_view2.animate(slide_out);	
+					station_destino = Alloy.Collections.model__MetroStations.result[ picker2.getSelectedRow(0).id - 1];	
 					$.textMinutes.text = managment_Timer.timeFromTo(station_origen, station_destino);	
 					var routes = managment_route.createRoute(station_origen, station_destino);
-					console.log(station_origen.title);
-					console.log(station_destino.title);	
-					console.log(routes);
+					//console.log(station_origen.title);
+					//console.log(station_destino.title);	
+					//console.log(routes);
 					if (routes.length !== 0)
 					{
 					   if (lastRoute !== '')
@@ -930,7 +938,7 @@ function loadComboDestino(){
 				
 
 				
-			$.viewMap.add(picker_view);
+			$.viewMap.add(picker_view2);
 		}
 }
 
@@ -981,7 +989,7 @@ function createDrawLine(){
 	   var route1 = MapModule.createRoute({
 	        name : '',
 	        points : drawLines1,
-	        color : "#50FF0000",
+	        color : "#80FF0000",
 	        width : 10,
 	        region: "es"
 	        
@@ -992,7 +1000,7 @@ function createDrawLine(){
 	   var route2 = MapModule.createRoute({
 	        name : '',
 	        points : drawLines2,
-	        color : "#50003bc0",
+	        color : "#80003bc0",
 	        width : 10,
 	        region: "es"
 	        
@@ -1023,6 +1031,27 @@ function handlerArrivedView(){
 		
 		openArrivedView = 'true';
 		$.viewHowArrived.animate(MoveUp_Opacity);
+	}
+	
+}
+
+function handlerResetTime(ev){
+	
+	
+	$.textMinutes.text = '00\'00"';
+	map.removeRoute(lastRoute);
+	station_origen = "";
+	station_destino = "";
+	
+	if (Ti.Platform.osname === "android")
+	{
+		picker2.setSelectedRow(0,0);
+		picker1.setSelectedRow(0,0);		
+	}
+	else
+	{
+		$.comboHowArrivedDestino.value = L('text_24');
+		$.comboHowArrivedOrigen.value = L('text_23');
 	}
 	
 }

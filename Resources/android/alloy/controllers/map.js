@@ -176,11 +176,14 @@ function Controller() {
         });
         Titanium.Geolocation.addEventListener("location", locationCallback);
         map.addEventListener("complete", function() {
-            createDrawLine();
-            $.viewHowArrivedTitle.addEventListener("click", handlerArrivedView);
-            loadComboOrigen();
-            loadComboDestino();
-            Ti.App.fireEvent("closeLoading");
+            if ("false" === onlyOneTime || true) {
+                onlyOneTime = "true";
+                createDrawLine();
+                $.viewHowArrivedTitle.addEventListener("click", handlerArrivedView);
+                loadComboOrigen();
+                loadComboDestino();
+                Ti.App.fireEvent("closeLoading");
+            }
         });
         map.addEventListener("click", function(evt) {
             Ti.API.info("Annotation " + evt.title + " clicked, id: " + evt.annotation.myid + " clickSource: " + evt.clicksource);
@@ -192,18 +195,17 @@ function Controller() {
         $.viewGoogleMap.add(map);
     }
     function loadComboOrigen() {
-        var picker;
         var imagen1;
         var pickerStyle = $.createStyle({
             classes: [ "pickerStyle" ]
         });
-        var picker = Titanium.UI.createPicker({});
-        picker.selectionIndicator = true;
-        picker.applyProperties(pickerStyle);
-        picker.add(picker_dataOrigen);
-        picker.addEventListener("change", function() {
-            if (0 !== picker.getSelectedRow(0).id) {
-                station_origen = Alloy.Collections.model__MetroStations.result[picker.getSelectedRow(0).id - 1];
+        picker1 = Titanium.UI.createPicker({});
+        picker1.selectionIndicator = true;
+        picker1.applyProperties(pickerStyle);
+        picker1.add(picker_dataOrigen);
+        picker1.addEventListener("change", function() {
+            if (0 !== picker1.getSelectedRow(0).id) {
+                station_origen = Alloy.Collections.model__MetroStations.result[picker1.getSelectedRow(0).id - 1];
                 $.textMinutes.text = managment_Timer.timeFromTo(station_origen, station_destino);
                 var routes = managment_route.createRoute(station_origen, station_destino);
                 console.log(station_origen.title);
@@ -228,21 +230,21 @@ function Controller() {
             right: 10
         });
         $.comboHowArrivedOrigen.add(imagen1);
-        $.comboHowArrivedOrigen.add(picker);
+        $.comboHowArrivedOrigen.add(picker1);
     }
     function loadComboDestino() {
-        var picker;
+        var picker2;
         var imagen1;
         var pickerStyle = $.createStyle({
             classes: [ "pickerStyle" ]
         });
-        var picker = Titanium.UI.createPicker({});
-        picker.selectionIndicator = true;
-        picker.applyProperties(pickerStyle);
-        picker.add(picker_dataDestino);
-        picker.addEventListener("change", function() {
-            if (0 !== picker.getSelectedRow(0).id) {
-                station_destino = Alloy.Collections.model__MetroStations.result[picker.getSelectedRow(0).id - 1];
+        picker2 = Titanium.UI.createPicker({});
+        picker2.selectionIndicator = true;
+        picker2.applyProperties(pickerStyle);
+        picker2.add(picker_dataDestino);
+        picker2.addEventListener("change", function() {
+            if (0 !== picker2.getSelectedRow(0).id) {
+                station_destino = Alloy.Collections.model__MetroStations.result[picker2.getSelectedRow(0).id - 1];
                 $.textMinutes.text = managment_Timer.timeFromTo(station_origen, station_destino);
                 var routes = managment_route.createRoute(station_origen, station_destino);
                 console.log(station_origen.title);
@@ -267,7 +269,7 @@ function Controller() {
             right: 10
         });
         $.comboHowArrivedDestino.add(imagen1);
-        $.comboHowArrivedDestino.add(picker);
+        $.comboHowArrivedDestino.add(picker2);
     }
     function createDrawLine() {
         var drawLines1 = [];
@@ -293,7 +295,7 @@ function Controller() {
         var route1 = MapModule.createRoute({
             name: "",
             points: drawLines1,
-            color: "#50FF0000",
+            color: "#80FF0000",
             width: 10,
             region: "es"
         });
@@ -301,7 +303,7 @@ function Controller() {
         var route2 = MapModule.createRoute({
             name: "",
             points: drawLines2,
-            color: "#50003bc0",
+            color: "#80003bc0",
             width: 10,
             region: "es"
         });
@@ -315,6 +317,14 @@ function Controller() {
             openArrivedView = "true";
             $.viewHowArrived.animate(MoveUp_Opacity);
         }
+    }
+    function handlerResetTime() {
+        $.textMinutes.text = "00'00\"";
+        map.removeRoute(lastRoute);
+        station_origen = "";
+        station_destino = "";
+        picker2.setSelectedRow(0, 0);
+        picker1.setSelectedRow(0, 0);
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "map";
@@ -331,6 +341,7 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
+    var __defers = {};
     $.__views.viewMap = Ti.UI.createView({
         width: Alloy.CFG.WidthDeviceAndroid,
         backgroundColor: Alloy.CFG.WHITE,
@@ -440,7 +451,7 @@ function Controller() {
     });
     $.__views.viewHowArrivedContainerDestino.add($.__views.comboHowArrivedDestino);
     $.__views.viewContainerTime = Ti.UI.createView({
-        height: 65,
+        height: 150,
         width: 100,
         right: 10,
         top: "-110",
@@ -454,12 +465,27 @@ function Controller() {
             fontSize: 30,
             fontWeight: "normal"
         },
-        bottom: 0,
-        right: 0,
+        top: 0,
         text: "",
         id: "textMinutes"
     });
     $.__views.viewContainerTime.add($.__views.textMinutes);
+    $.__views.__alloyId7 = Ti.UI.createButton({
+        height: 40,
+        width: 65,
+        top: 50,
+        backgroundColor: Alloy.CFG.GREEN,
+        color: Alloy.CFG.WHITE,
+        font: {
+            fontFamily: Alloy.CFG.MYRIAD_REGULAR,
+            fontSize: 14,
+            fontWeight: "normal"
+        },
+        title: "Limpiar",
+        id: "__alloyId7"
+    });
+    $.__views.viewContainerTime.add($.__views.__alloyId7);
+    handlerResetTime ? $.__views.__alloyId7.addEventListener("click", handlerResetTime) : __defers["$.__views.__alloyId7!click!handlerResetTime"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     require("managment_View");
@@ -474,9 +500,12 @@ function Controller() {
     var openArrivedView = "false";
     var picker_dataOrigen = [];
     var picker_dataDestino = [];
+    var picker1;
+    var picker2;
     var station_origen = "";
     var station_destino = "";
     var lastRoute = "";
+    var onlyOneTime = "false";
     var MoveUp_Opacity = Titanium.UI.createAnimation({
         curve: Ti.UI.ANIMATION_CURVE_EASE_OUT,
         duration: 300,
@@ -493,6 +522,7 @@ function Controller() {
         bottom: "-210"
     });
     show();
+    __defers["$.__views.__alloyId7!click!handlerResetTime"] && $.__views.__alloyId7.addEventListener("click", handlerResetTime);
     _.extend($, exports);
 }
 

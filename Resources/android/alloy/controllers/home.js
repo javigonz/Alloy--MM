@@ -130,8 +130,8 @@ function Controller() {
         color: Alloy.CFG.BLACK,
         font: {
             fontFamily: Alloy.CFG.MYRIAD_REGULAR,
-            fontSize: 15,
-            fontWeight: "normal"
+            fontSize: 16,
+            fontWeight: "bold"
         },
         left: 10,
         right: 10,

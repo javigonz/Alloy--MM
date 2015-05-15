@@ -25,7 +25,7 @@
 	}
 	
 	".viewContainerTime[platform=android]": { 
-		height: 65,
+		height: 150,
 		width: 100,
 		right: 10,
 		top: '-110'
@@ -38,9 +38,22 @@
 				fontSize: 	30,
 				fontWeight: 'normal'
 			},
-			bottom: 0,
-			right: 0
+			top: 0,
 			
+			
+		}
+		
+		".buttonMini[platform=android]": {
+		    height: 40,
+		    width: 65,
+		    top: 50,
+		    backgroundColor: Alloy.CFG.GREEN,
+		    color: Alloy.CFG.WHITE,
+		    font: {
+				fontFamily: Alloy.CFG.MYRIAD_REGULAR, 
+				fontSize: 	14,
+				fontWeight: 'normal'
+			}
 		}
 		
 		".textPeque[platform=android]": {
@@ -119,6 +132,8 @@
 
 
 
+
+
 // IPHONE *********************************************************
 
 ".viewMap[platform=ios]": { 
@@ -145,22 +160,35 @@
 		left: 0
 	}
 	".viewContainerTime[platform=ios]": { 
-		height: 60,
+		height: 130,
 		width: 90,
 		right: 10,
 		top: '-110'
 		
 		}
 		".textMinutes[platform=ios]": {
+			top: 0,
 		    color: Alloy.CFG.GREY6,
 		    font: {
 				fontFamily: Alloy.CFG.MYRIAD_REGULAR, 
 				fontSize: 	30,
 				fontWeight: 'normal'
-			},
-			bottom: 0,
-			right: 0
+			}
 			
+			
+		}
+		
+		".buttonMini[platform=ios]": {
+		    height: 40,
+		    width: 65,
+		    top: 40,
+		    backgroundColor: Alloy.CFG.GREEN,
+		    color: Alloy.CFG.WHITE,
+		    font: {
+				fontFamily: Alloy.CFG.MYRIAD_REGULAR, 
+				fontSize: 	14,
+				fontWeight: 'normal'
+			}
 		}
 		
 		".textPeque[platform=ios]": {

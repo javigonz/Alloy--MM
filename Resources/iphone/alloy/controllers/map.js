@@ -85,7 +85,7 @@ function Controller() {
                 longitude: element.longitude,
                 image: "/images/pinStation.png",
                 title: element.title,
-                subtitle: L("text_26") + " " + element.line,
+                subtitle: element.subtitle,
                 myid: element.id,
                 rightButton: Ti.UI.iPhone.SystemButton.DISCLOSURE,
                 leftButton: element.image,
@@ -95,7 +95,7 @@ function Controller() {
                 longitude: element.longitude,
                 image: "/images/pinStation.png",
                 title: element.title,
-                subtitle: L("text_26") + " " + element.line,
+                subtitle: element.subtitle,
                 myid: element.id,
                 rightView: Ti.UI.createLabel({
                     text: L("text_19"),
@@ -199,11 +199,14 @@ function Controller() {
         }
         "android" === Ti.Platform.osname ? Titanium.Geolocation.addEventListener("location", locationCallback) : currentLocationIphone();
         map.addEventListener("complete", function() {
-            createDrawLine();
-            $.viewHowArrivedTitle.addEventListener("click", handlerArrivedView);
-            loadComboOrigen();
-            loadComboDestino();
-            Ti.App.fireEvent("closeLoading");
+            if ("false" === onlyOneTime) {
+                onlyOneTime = "true";
+                createDrawLine();
+                $.viewHowArrivedTitle.addEventListener("click", handlerArrivedView);
+                loadComboOrigen();
+                loadComboDestino();
+                Ti.App.fireEvent("closeLoading");
+            }
         });
         map.addEventListener("click", function(evt) {
             Ti.API.info("Annotation " + evt.title + " clicked, id: " + evt.annotation.myid + " clickSource: " + evt.clicksource);
@@ -243,13 +246,13 @@ function Controller() {
             var pickerStyle = $.createStyle({
                 classes: [ "pickerStyle" ]
             });
-            var picker = Titanium.UI.createPicker({});
-            picker.selectionIndicator = true;
-            picker.applyProperties(pickerStyle);
-            picker.add(picker_dataOrigen);
-            picker.addEventListener("change", function() {
-                if (0 !== picker.getSelectedRow(0).id) {
-                    station_origen = Alloy.Collections.model__MetroStations.result[picker.getSelectedRow(0).id - 1];
+            picker1 = Titanium.UI.createPicker({});
+            picker1.selectionIndicator = true;
+            picker1.applyProperties(pickerStyle);
+            picker1.add(picker_dataOrigen);
+            picker1.addEventListener("change", function() {
+                if (0 !== picker1.getSelectedRow(0).id) {
+                    station_origen = Alloy.Collections.model__MetroStations.result[picker1.getSelectedRow(0).id - 1];
                     $.textMinutes.text = managment_Timer.timeFromTo(station_origen, station_destino);
                     var routes = managment_route.createRoute(station_origen, station_destino);
                     console.log(station_origen.title);
@@ -274,7 +277,7 @@ function Controller() {
                 right: 10
             });
             $.comboHowArrivedOrigen.add(imagen1);
-            $.comboHowArrivedOrigen.add(picker);
+            $.comboHowArrivedOrigen.add(picker1);
         } else {
             var picker_view = Titanium.UI.createView({
                 height: 251,
@@ -321,9 +324,6 @@ function Controller() {
                 station_origen = Alloy.Collections.model__MetroStations.result[picker.getSelectedRow(0).id - 1];
                 $.textMinutes.text = managment_Timer.timeFromTo(station_origen, station_destino);
                 var routes = managment_route.createRoute(station_origen, station_destino);
-                console.log(station_origen.title);
-                console.log(station_destino.title);
-                console.log(routes);
                 if (0 !== routes.length) {
                     "" !== lastRoute && map.removeRoute(lastRoute);
                     var route = MapModule.createRoute({
@@ -350,13 +350,13 @@ function Controller() {
             var pickerStyle = $.createStyle({
                 classes: [ "pickerStyle" ]
             });
-            var picker = Titanium.UI.createPicker({});
-            picker.selectionIndicator = true;
-            picker.applyProperties(pickerStyle);
-            picker.add(picker_dataDestino);
-            picker.addEventListener("change", function() {
-                if (0 !== picker.getSelectedRow(0).id) {
-                    station_destino = Alloy.Collections.model__MetroStations.result[picker.getSelectedRow(0).id - 1];
+            picker2 = Titanium.UI.createPicker({});
+            picker2.selectionIndicator = true;
+            picker2.applyProperties(pickerStyle);
+            picker2.add(picker_dataDestino);
+            picker2.addEventListener("change", function() {
+                if (0 !== picker2.getSelectedRow(0).id) {
+                    station_destino = Alloy.Collections.model__MetroStations.result[picker2.getSelectedRow(0).id - 1];
                     $.textMinutes.text = managment_Timer.timeFromTo(station_origen, station_destino);
                     var routes = managment_route.createRoute(station_origen, station_destino);
                     console.log(station_origen.title);
@@ -381,9 +381,9 @@ function Controller() {
                 right: 10
             });
             $.comboHowArrivedDestino.add(imagen1);
-            $.comboHowArrivedDestino.add(picker);
+            $.comboHowArrivedDestino.add(picker2);
         } else {
-            var picker_view = Titanium.UI.createView({
+            var picker_view2 = Titanium.UI.createView({
                 height: 251,
                 bottom: -351
             });
@@ -402,13 +402,13 @@ function Controller() {
                 top: 0,
                 items: [ cancel, spacer, done ]
             });
-            var picker = Titanium.UI.createPicker({
+            var picker2 = Titanium.UI.createPicker({
                 top: 43
             });
-            picker.selectionIndicator = true;
-            picker.add(picker_dataDestino);
-            picker_view.add(toolbar);
-            picker_view.add(picker);
+            picker2.selectionIndicator = true;
+            picker2.add(picker_dataDestino);
+            picker_view2.add(toolbar);
+            picker_view2.add(picker2);
             var slide_in = Titanium.UI.createAnimation({
                 bottom: 0
             });
@@ -416,21 +416,18 @@ function Controller() {
                 bottom: -351
             });
             $.comboHowArrivedDestino.addEventListener("focus", function() {
-                picker_view.animate(slide_in);
+                picker_view2.animate(slide_in);
                 $.comboHowArrivedDestino.blur();
             });
             cancel.addEventListener("click", function() {
-                picker_view.animate(slide_out);
+                picker_view2.animate(slide_out);
             });
             done.addEventListener("click", function() {
-                $.comboHowArrivedDestino.value = picker.getSelectedRow(0).title;
-                picker_view.animate(slide_out);
-                station_destino = Alloy.Collections.model__MetroStations.result[picker.getSelectedRow(0).id - 1];
+                $.comboHowArrivedDestino.value = picker2.getSelectedRow(0).title;
+                picker_view2.animate(slide_out);
+                station_destino = Alloy.Collections.model__MetroStations.result[picker2.getSelectedRow(0).id - 1];
                 $.textMinutes.text = managment_Timer.timeFromTo(station_origen, station_destino);
                 var routes = managment_route.createRoute(station_origen, station_destino);
-                console.log(station_origen.title);
-                console.log(station_destino.title);
-                console.log(routes);
                 if (0 !== routes.length) {
                     "" !== lastRoute && map.removeRoute(lastRoute);
                     var route = MapModule.createRoute({
@@ -449,7 +446,7 @@ function Controller() {
                 right: 10
             });
             $.comboHowArrivedDestino.add(imagen1);
-            $.viewMap.add(picker_view);
+            $.viewMap.add(picker_view2);
         }
     }
     function createDrawLine() {
@@ -476,7 +473,7 @@ function Controller() {
         var route1 = MapModule.createRoute({
             name: "",
             points: drawLines1,
-            color: "#50FF0000",
+            color: "#80FF0000",
             width: 10,
             region: "es"
         });
@@ -484,7 +481,7 @@ function Controller() {
         var route2 = MapModule.createRoute({
             name: "",
             points: drawLines2,
-            color: "#50003bc0",
+            color: "#80003bc0",
             width: 10,
             region: "es"
         });
@@ -497,6 +494,19 @@ function Controller() {
         } else {
             openArrivedView = "true";
             $.viewHowArrived.animate(MoveUp_Opacity);
+        }
+    }
+    function handlerResetTime() {
+        $.textMinutes.text = "00'00\"";
+        map.removeRoute(lastRoute);
+        station_origen = "";
+        station_destino = "";
+        if ("android" === Ti.Platform.osname) {
+            picker2.setSelectedRow(0, 0);
+            picker1.setSelectedRow(0, 0);
+        } else {
+            $.comboHowArrivedDestino.value = L("text_24");
+            $.comboHowArrivedOrigen.value = L("text_23");
         }
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
@@ -514,6 +524,7 @@ function Controller() {
     }
     var $ = this;
     var exports = {};
+    var __defers = {};
     $.__views.viewMap = Ti.UI.createView({
         width: Alloy.CFG.WidthDeviceIphone,
         backgroundColor: Alloy.CFG.WHITE,
@@ -625,7 +636,7 @@ function Controller() {
     });
     $.__views.viewHowArrivedContainerDestino.add($.__views.comboHowArrivedDestino);
     $.__views.viewContainerTime = Ti.UI.createView({
-        height: 60,
+        height: 130,
         width: 90,
         right: 10,
         top: "-110",
@@ -633,18 +644,33 @@ function Controller() {
     });
     $.__views.viewHowArrived.add($.__views.viewContainerTime);
     $.__views.textMinutes = Ti.UI.createLabel({
+        top: 0,
         color: Alloy.CFG.GREY6,
         font: {
             fontFamily: Alloy.CFG.MYRIAD_REGULAR,
             fontSize: 30,
             fontWeight: "normal"
         },
-        bottom: 0,
-        right: 0,
         text: "",
         id: "textMinutes"
     });
     $.__views.viewContainerTime.add($.__views.textMinutes);
+    $.__views.__alloyId7 = Ti.UI.createButton({
+        height: 40,
+        width: 65,
+        top: 40,
+        backgroundColor: Alloy.CFG.GREEN,
+        color: Alloy.CFG.WHITE,
+        font: {
+            fontFamily: Alloy.CFG.MYRIAD_REGULAR,
+            fontSize: 14,
+            fontWeight: "normal"
+        },
+        title: "Limpiar",
+        id: "__alloyId7"
+    });
+    $.__views.viewContainerTime.add($.__views.__alloyId7);
+    handlerResetTime ? $.__views.__alloyId7.addEventListener("click", handlerResetTime) : __defers["$.__views.__alloyId7!click!handlerResetTime"] = true;
     exports.destroy = function() {};
     _.extend($, $.__views);
     var managment_View = require("managment_View");
@@ -659,9 +685,12 @@ function Controller() {
     var openArrivedView = "false";
     var picker_dataOrigen = [];
     var picker_dataDestino = [];
+    var picker1;
+    var picker2;
     var station_origen = "";
     var station_destino = "";
     var lastRoute = "";
+    var onlyOneTime = "false";
     var MoveUp_Opacity = Titanium.UI.createAnimation({
         curve: Ti.UI.ANIMATION_CURVE_EASE_OUT,
         duration: 300,
@@ -678,6 +707,7 @@ function Controller() {
         bottom: "-210"
     });
     show();
+    __defers["$.__views.__alloyId7!click!handlerResetTime"] && $.__views.__alloyId7.addEventListener("click", handlerResetTime);
     _.extend($, exports);
 }
 
