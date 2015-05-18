@@ -161,7 +161,7 @@ function Controller() {
                 Titanium.Geolocation.reverseGeocoder(latitude, longitude, function(evt) {
                     if (evt.success) {
                         var places = evt.places;
-                        console.log(places);
+                        console.log("Location in android ok: ", places);
                     }
                 });
                 locationAdded = true;
@@ -199,7 +199,7 @@ function Controller() {
         }
         "android" === Ti.Platform.osname ? Titanium.Geolocation.addEventListener("location", locationCallback) : currentLocationIphone();
         map.addEventListener("complete", function() {
-            if ("false" === onlyOneTime) {
+            if ("false" === onlyOneTime || "android" === Ti.Platform.osname) {
                 onlyOneTime = "true";
                 createDrawLine();
                 $.viewHowArrivedTitle.addEventListener("click", handlerArrivedView);
@@ -402,13 +402,13 @@ function Controller() {
                 top: 0,
                 items: [ cancel, spacer, done ]
             });
-            var picker2 = Titanium.UI.createPicker({
+            var picker2Ios = Titanium.UI.createPicker({
                 top: 43
             });
-            picker2.selectionIndicator = true;
-            picker2.add(picker_dataDestino);
+            picker2Ios.selectionIndicator = true;
+            picker2Ios.add(picker_dataDestino);
             picker_view2.add(toolbar);
-            picker_view2.add(picker2);
+            picker_view2.add(picker2Ios);
             var slide_in = Titanium.UI.createAnimation({
                 bottom: 0
             });
@@ -423,9 +423,9 @@ function Controller() {
                 picker_view2.animate(slide_out);
             });
             done.addEventListener("click", function() {
-                $.comboHowArrivedDestino.value = picker2.getSelectedRow(0).title;
+                $.comboHowArrivedDestino.value = picker2Ios.getSelectedRow(0).title;
                 picker_view2.animate(slide_out);
-                station_destino = Alloy.Collections.model__MetroStations.result[picker2.getSelectedRow(0).id - 1];
+                station_destino = Alloy.Collections.model__MetroStations.result[picker2Ios.getSelectedRow(0).id - 1];
                 $.textMinutes.text = managment_Timer.timeFromTo(station_origen, station_destino);
                 var routes = managment_route.createRoute(station_origen, station_destino);
                 if (0 !== routes.length) {
@@ -497,16 +497,18 @@ function Controller() {
         }
     }
     function handlerResetTime() {
-        $.textMinutes.text = "00'00\"";
-        map.removeRoute(lastRoute);
-        station_origen = "";
-        station_destino = "";
-        if ("android" === Ti.Platform.osname) {
-            picker2.setSelectedRow(0, 0);
-            picker1.setSelectedRow(0, 0);
-        } else {
-            $.comboHowArrivedDestino.value = L("text_24");
-            $.comboHowArrivedOrigen.value = L("text_23");
+        if ("" !== station_origen && "" !== station_destino) {
+            $.textMinutes.text = "00'00\"";
+            map.removeRoute(lastRoute);
+            station_origen = "";
+            station_destino = "";
+            if ("android" === Ti.Platform.osname) {
+                picker2.setSelectedRow(0, 0);
+                picker1.setSelectedRow(0, 0);
+            } else {
+                $.comboHowArrivedDestino.value = L("text_24");
+                $.comboHowArrivedOrigen.value = L("text_23");
+            }
         }
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));

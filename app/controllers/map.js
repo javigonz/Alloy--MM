@@ -235,7 +235,7 @@ function createMapModule()
 			Titanium.Geolocation.reverseGeocoder(latitude,longitude,function(evt) {
 				if (evt.success) {
 					var places = evt.places;
-					console.log(places);
+					console.log('Location in android ok: ', places);
 				}
 				else {
 					
@@ -875,16 +875,16 @@ function loadComboDestino(){
 					items:[cancel,spacer,done]
 			});
 				
-			var picker2 = Titanium.UI.createPicker({
+			var picker2Ios = Titanium.UI.createPicker({
 						top:43
 			});
 				
-			picker2.selectionIndicator=true;
+			picker2Ios.selectionIndicator=true;
 				
-			picker2.add(picker_dataDestino); 
+			picker2Ios.add(picker_dataDestino); 
 			
 			picker_view2.add(toolbar);
-			picker_view2.add(picker2);
+			picker_view2.add(picker2Ios);
 				
 			var slide_in =  Titanium.UI.createAnimation({bottom:0});
 			var slide_out =  Titanium.UI.createAnimation({bottom:-351});
@@ -900,9 +900,9 @@ function loadComboDestino(){
 			});
 				
 			done.addEventListener('click',function() {
-					$.comboHowArrivedDestino.value =  picker2.getSelectedRow(0).title;
+					$.comboHowArrivedDestino.value =  picker2Ios.getSelectedRow(0).title;
 					picker_view2.animate(slide_out);	
-					station_destino = Alloy.Collections.model__MetroStations.result[ picker2.getSelectedRow(0).id - 1];	
+					station_destino = Alloy.Collections.model__MetroStations.result[ picker2Ios.getSelectedRow(0).id - 1];	
 					$.textMinutes.text = managment_Timer.timeFromTo(station_origen, station_destino);	
 					var routes = managment_route.createRoute(station_origen, station_destino);
 					//console.log(station_origen.title);
@@ -1037,21 +1037,25 @@ function handlerArrivedView(){
 
 function handlerResetTime(ev){
 	
-	
-	$.textMinutes.text = '00\'00"';
-	map.removeRoute(lastRoute);
-	station_origen = "";
-	station_destino = "";
-	
-	if (Ti.Platform.osname === "android")
+	if (station_origen !== "" && station_destino !== "")
 	{
-		picker2.setSelectedRow(0,0);
-		picker1.setSelectedRow(0,0);		
-	}
-	else
-	{
-		$.comboHowArrivedDestino.value = L('text_24');
-		$.comboHowArrivedOrigen.value = L('text_23');
+		$.textMinutes.text = '00\'00"';
+		map.removeRoute(lastRoute);
+		station_origen = "";
+		station_destino = "";
+		
+		if (Ti.Platform.osname === "android")
+		{
+			//console.log('Picker2: ', picker2);
+			//console.log('Picker1: ', picker1);
+			picker2.setSelectedRow(0,0);
+			picker1.setSelectedRow(0,0);		
+		}
+		else
+		{
+			$.comboHowArrivedDestino.value = L('text_24');
+			$.comboHowArrivedOrigen.value = L('text_23');
+		}
 	}
 	
 }

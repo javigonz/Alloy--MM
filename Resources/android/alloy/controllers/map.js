@@ -139,7 +139,7 @@ function Controller() {
             Titanium.Geolocation.reverseGeocoder(latitude, longitude, function(evt) {
                 if (evt.success) {
                     var places = evt.places;
-                    console.log(places);
+                    console.log("Location in android ok: ", places);
                 }
             });
             locationAdded = true;
@@ -233,7 +233,6 @@ function Controller() {
         $.comboHowArrivedOrigen.add(picker1);
     }
     function loadComboDestino() {
-        var picker2;
         var imagen1;
         var pickerStyle = $.createStyle({
             classes: [ "pickerStyle" ]
@@ -319,12 +318,14 @@ function Controller() {
         }
     }
     function handlerResetTime() {
-        $.textMinutes.text = "00'00\"";
-        map.removeRoute(lastRoute);
-        station_origen = "";
-        station_destino = "";
-        picker2.setSelectedRow(0, 0);
-        picker1.setSelectedRow(0, 0);
+        if ("" !== station_origen && "" !== station_destino) {
+            $.textMinutes.text = "00'00\"";
+            map.removeRoute(lastRoute);
+            station_origen = "";
+            station_destino = "";
+            picker2.setSelectedRow(0, 0);
+            picker1.setSelectedRow(0, 0);
+        }
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
     this.__controllerPath = "map";

@@ -44,7 +44,8 @@ function Controller() {
     });
     $.__views.viewRegulation && $.addTopLevelView($.__views.viewRegulation);
     $.__views.viewWeb = Ti.UI.createWebView({
-        width: Ti.UI.FILL,
+        left: 10,
+        right: 10,
         top: 0,
         id: "viewWeb",
         enableZoomControls: "false"
