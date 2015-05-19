@@ -35,7 +35,7 @@
 			
 			<View id="viewContainerTime" class="viewContainerTime">
 				<Label text="" class="textMinutes" id="textMinutes"></Label>
-				<Button title="Limpiar" class="buttonMini" onClick="handlerResetTime"></Button>
+				<Button title="L('text_32')" class="buttonMini" onClick="handlerResetTime"></Button>
 			</View>
 			
 		</View>

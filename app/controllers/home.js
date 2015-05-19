@@ -6,6 +6,10 @@ var textAlertOrange = $.createStyle({classes: ['textAlertOrange']});
 var textAlertRed = $.createStyle({classes: ['textAlertRed']});
 var textAlertGreen = $.createStyle({classes: ['textAlertGreen']});
 var textAlert = $.createStyle({classes: ['textAlert']});
+var viewAlert = $.createStyle({classes: ['viewAlert']});
+var viewAlertGreen = $.createStyle({classes: ['viewAlertGreen']});
+var viewAlertOrange = $.createStyle({classes: ['viewAlertOrange']});
+var viewAlertRed = $.createStyle({classes: ['viewAlertRed']});
 
 show();
 
@@ -49,6 +53,23 @@ function show(){
 	{
 		$.viewRoundedContainerLogo.height = 200;
 	}
+	
+	if (Ti.Platform.osname === "iphone")
+	{
+		$.scrollableHomeSlider.height = Ti.Platform.displayCaps.platformHeight - 130;
+		
+	}
+	else
+	{
+		if (Titanium.Platform.displayCaps.dpi <= 240)
+		{
+			$.scrollableHomeSlider.height = Alloy.CFG.HeightDevice - 135;
+		}
+		else
+		{
+			$.scrollableHomeSlider.height = Alloy.CFG.HeightDevice - 50;
+		}
+	}	
 
 	//Carga WebServie de Alerta
 	Ti.App.addEventListener('loadAlert', loadAlert);
@@ -76,15 +97,19 @@ function loadAlert()
 		switch (Alloy.Collections.model__Alert[5].value)
 		{
 			case 'Verde': 		$.textAlert.applyProperties(textAlertGreen);
+								$.viewAlert.applyProperties(viewAlertGreen);
 								$.trafficGreen.image = '/images/trafficGreen_on.png';
 								break;
 			case 'ambar': 		$.textAlert.applyProperties(textAlertOrange);
+								$.viewAlert.applyProperties(viewAlertOrange);
 								$.trafficOrange.image = '/images/trafficOrange_on.png';
 								break;	
 			case 'Rojo': 		$.textAlert.applyProperties(textAlertRed);
+								$.viewAlert.applyProperties(viewAlertRed);
 								$.trafficRed.image = '/images/trafficRed_on.png';
 								break;	
 			case 'Ninguno': 	$.textAlert.applyProperties(textAlert);
+								$.viewAlert.applyProperties(viewAlert);
 								$.trafficRed.image = '/images/trafficRed.png';
 								$.trafficOrange.image = '/images/trafficOrange.png';
 								$.trafficGreen.image = '/images/trafficGreen.png';

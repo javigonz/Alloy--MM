@@ -64,7 +64,7 @@ Alloy.CFG.HeightDeviceIphone = Ti.Platform.displayCaps.platformHeight;
 
 Alloy.CFG.leftTrafficAndroid = (Alloy.CFG.WidthDeviceAndroid - 245) / 2;
 
-Alloy.CFG.leftTrafficIphone = (Alloy.CFG.WidthDeviceIphone - 245) / 2;
+Alloy.CFG.leftTrafficIphone = 117.5;
 
 Alloy.CFG.ARIAL_NORMAL = "Arial";
 

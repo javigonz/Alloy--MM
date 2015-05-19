@@ -13,6 +13,7 @@ function Controller() {
         Alloy.Globals.ActualSection = "home";
         Alloy.Globals.Header.children[0].children[1].text = L("text_1");
         Alloy.CFG.HeightDeviceIphone <= 480 && "iphone" == Ti.Platform.osname && ($.viewRoundedContainerLogo.height = 200);
+        $.scrollableHomeSlider.height = "iphone" === Ti.Platform.osname ? Ti.Platform.displayCaps.platformHeight - 130 : Titanium.Platform.displayCaps.dpi <= 240 ? Alloy.CFG.HeightDevice - 135 : Alloy.CFG.HeightDevice - 50;
         Ti.App.addEventListener("loadAlert", loadAlert);
         managment_Data.LoadWebService_Alert();
         require("managment_Push");
@@ -25,21 +26,25 @@ function Controller() {
             switch (Alloy.Collections.model__Alert[5].value) {
               case "Verde":
                 $.textAlert.applyProperties(textAlertGreen);
+                $.viewAlert.applyProperties(viewAlertGreen);
                 $.trafficGreen.image = "/images/trafficGreen_on.png";
                 break;
 
               case "ambar":
                 $.textAlert.applyProperties(textAlertOrange);
+                $.viewAlert.applyProperties(viewAlertOrange);
                 $.trafficOrange.image = "/images/trafficOrange_on.png";
                 break;
 
               case "Rojo":
                 $.textAlert.applyProperties(textAlertRed);
+                $.viewAlert.applyProperties(viewAlertRed);
                 $.trafficRed.image = "/images/trafficRed_on.png";
                 break;
 
               case "Ninguno":
                 $.textAlert.applyProperties(textAlert);
+                $.viewAlert.applyProperties(viewAlert);
                 $.trafficRed.image = "/images/trafficRed.png";
                 $.trafficOrange.image = "/images/trafficOrange.png";
                 $.trafficGreen.image = "/images/trafficGreen.png";
@@ -63,7 +68,7 @@ function Controller() {
     var $ = this;
     var exports = {};
     $.__views.viewHome = Ti.UI.createView({
-        width: Alloy.CFG.WidthDeviceIphone,
+        height: Ti.UI.FILL,
         backgroundColor: Alloy.CFG.WHITE,
         backgroundImage: "/images/backgroundHome.png",
         backgroundRepeat: "false",
@@ -73,13 +78,24 @@ function Controller() {
         id: "viewHome"
     });
     $.__views.viewHome && $.addTopLevelView($.__views.viewHome);
+    $.__views.scrollableHomeSlider = Ti.UI.createScrollView({
+        height: Ti.UI.FILL,
+        contentWidth: Ti.UI.SIZE,
+        showVerticalScrollIndicator: "true",
+        scrollType: "vertical",
+        width: 480,
+        verticalBounce: "false",
+        layout: "vertical",
+        showPagingControl: "false",
+        id: "scrollableHomeSlider"
+    });
+    $.__views.viewHome.add($.__views.scrollableHomeSlider);
     $.__views.viewRoundedContainerLogo = Ti.UI.createView({
         top: 0,
-        width: "100%",
         height: 265,
         id: "viewRoundedContainerLogo"
     });
-    $.__views.viewHome.add($.__views.viewRoundedContainerLogo);
+    $.__views.scrollableHomeSlider.add($.__views.viewRoundedContainerLogo);
     $.__views.__alloyId2 = Ti.UI.createImageView({
         image: "/images/bigLogo.png",
         id: "__alloyId2"
@@ -87,18 +103,18 @@ function Controller() {
     $.__views.viewRoundedContainerLogo.add($.__views.__alloyId2);
     $.__views.viewRoundedContainerTraffic = Ti.UI.createView({
         top: 10,
-        height: 300,
         layout: "vertical",
+        width: 480,
+        height: 180,
         id: "viewRoundedContainerTraffic",
         visible: "false"
     });
-    $.__views.viewHome.add($.__views.viewRoundedContainerTraffic);
+    $.__views.scrollableHomeSlider.add($.__views.viewRoundedContainerTraffic);
     $.__views.viewTraffic = Ti.UI.createView({
-        width: Alloy.CFG.WidthDeviceIphone,
+        left: Alloy.CFG.leftTrafficIphone,
         top: 10,
         height: 85,
         layout: "horizontal",
-        left: Alloy.CFG.leftTrafficIphone,
         id: "viewTraffic"
     });
     $.__views.viewRoundedContainerTraffic.add($.__views.viewTraffic);
@@ -126,6 +142,13 @@ function Controller() {
         id: "trafficRed"
     });
     $.__views.viewTraffic.add($.__views.trafficRed);
+    $.__views.viewAlert = Ti.UI.createView({
+        textAlign: "center",
+        borderRadius: 5,
+        width: 300,
+        id: "viewAlert"
+    });
+    $.__views.viewRoundedContainerTraffic.add($.__views.viewAlert);
     $.__views.textAlert = Ti.UI.createLabel({
         color: Alloy.CFG.BLACK,
         font: {
@@ -133,12 +156,12 @@ function Controller() {
             fontSize: 16,
             fontWeight: "bold"
         },
-        left: 10,
-        right: 10,
         textAlign: "center",
+        top: 10,
+        bottom: 10,
         id: "textAlert"
     });
-    $.__views.viewRoundedContainerTraffic.add($.__views.textAlert);
+    $.__views.viewAlert.add($.__views.textAlert);
     exports.destroy = function() {};
     _.extend($, $.__views);
     require("managment_View");
@@ -154,6 +177,18 @@ function Controller() {
     });
     var textAlert = $.createStyle({
         classes: [ "textAlert" ]
+    });
+    var viewAlert = $.createStyle({
+        classes: [ "viewAlert" ]
+    });
+    var viewAlertGreen = $.createStyle({
+        classes: [ "viewAlertGreen" ]
+    });
+    var viewAlertOrange = $.createStyle({
+        classes: [ "viewAlertOrange" ]
+    });
+    var viewAlertRed = $.createStyle({
+        classes: [ "viewAlertRed" ]
     });
     show();
     _.extend($, exports);

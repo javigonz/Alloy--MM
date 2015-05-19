@@ -482,7 +482,7 @@ function Controller() {
             fontSize: 14,
             fontWeight: "normal"
         },
-        title: "Limpiar",
+        title: L("text_32"),
         id: "__alloyId7"
     });
     $.__views.viewContainerTime.add($.__views.__alloyId7);
