@@ -24,17 +24,15 @@
 }
 
 ".viewTraffic[platform=android]": { 
-   width: Alloy.CFG.WidthDeviceAndroid,
+   width: 75,
    top: 10, 
    height: 85,
-   layout: 'horizontal',
-   left: Alloy.CFG.leftTrafficAndroid
+   layout: 'horizontal'
 }
 
 ".iconTraffic[platform=android]": {  
    height: 77,
-   width: 75,
-   right: 10
+   width: 75
 }
 
 ".viewRoundedContainerLogo[platform=android]": { 
@@ -264,7 +262,7 @@
 }
 
 ".viewTraffic[platform=ios]": { 
-   left: Alloy.CFG.leftTrafficIphone,
+   width: 75,
    top: 10, 
    height: 85,
    layout: 'horizontal'
@@ -272,8 +270,7 @@
 
 ".iconTraffic[platform=ios]": {  
    height: 77,
-   width: 75,
-   right: 10
+   width: 75
 }
 
 ".viewRoundedContainerLogo[platform=ios]": { 

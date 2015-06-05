@@ -98,21 +98,19 @@ function loadAlert()
 		{
 			case 'Verde': 		$.textAlert.applyProperties(textAlertGreen);
 								$.viewAlert.applyProperties(viewAlertGreen);
-								$.trafficGreen.image = '/images/trafficGreen_on.png';
+								$.traffic.image = '/images/trafficGreen_on.png';
 								break;
 			case 'ambar': 		$.textAlert.applyProperties(textAlertOrange);
 								$.viewAlert.applyProperties(viewAlertOrange);
-								$.trafficOrange.image = '/images/trafficOrange_on.png';
+								$.traffic.image = '/images/trafficOrange_on.png';
 								break;	
 			case 'Rojo': 		$.textAlert.applyProperties(textAlertRed);
 								$.viewAlert.applyProperties(viewAlertRed);
-								$.trafficRed.image = '/images/trafficRed_on.png';
+								$.traffic.image = '/images/trafficRed_on.png';
 								break;	
-			case 'Ninguno': 	$.textAlert.applyProperties(textAlert);
+			case 'Ninguno': 	$.viewRoundedContainerTraffic.visible = 'false';
+								$.textAlert.applyProperties(textAlert);
 								$.viewAlert.applyProperties(viewAlert);
-								$.trafficRed.image = '/images/trafficRed.png';
-								$.trafficOrange.image = '/images/trafficOrange.png';
-								$.trafficGreen.image = '/images/trafficGreen.png';
 								break;										
 		}
 	}

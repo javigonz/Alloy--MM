@@ -27,27 +27,25 @@ function Controller() {
               case "Verde":
                 $.textAlert.applyProperties(textAlertGreen);
                 $.viewAlert.applyProperties(viewAlertGreen);
-                $.trafficGreen.image = "/images/trafficGreen_on.png";
+                $.traffic.image = "/images/trafficGreen_on.png";
                 break;
 
               case "ambar":
                 $.textAlert.applyProperties(textAlertOrange);
                 $.viewAlert.applyProperties(viewAlertOrange);
-                $.trafficOrange.image = "/images/trafficOrange_on.png";
+                $.traffic.image = "/images/trafficOrange_on.png";
                 break;
 
               case "Rojo":
                 $.textAlert.applyProperties(textAlertRed);
                 $.viewAlert.applyProperties(viewAlertRed);
-                $.trafficRed.image = "/images/trafficRed_on.png";
+                $.traffic.image = "/images/trafficRed_on.png";
                 break;
 
               case "Ninguno":
+                $.viewRoundedContainerTraffic.visible = "false";
                 $.textAlert.applyProperties(textAlert);
                 $.viewAlert.applyProperties(viewAlert);
-                $.trafficRed.image = "/images/trafficRed.png";
-                $.trafficOrange.image = "/images/trafficOrange.png";
-                $.trafficGreen.image = "/images/trafficGreen.png";
             }
         }
         Ti.App.fireEvent("closeLoading");
@@ -111,37 +109,19 @@ function Controller() {
     });
     $.__views.scrollableHomeSlider.add($.__views.viewRoundedContainerTraffic);
     $.__views.viewTraffic = Ti.UI.createView({
-        left: Alloy.CFG.leftTrafficIphone,
+        width: 75,
         top: 10,
         height: 85,
         layout: "horizontal",
         id: "viewTraffic"
     });
     $.__views.viewRoundedContainerTraffic.add($.__views.viewTraffic);
-    $.__views.trafficGreen = Ti.UI.createImageView({
+    $.__views.traffic = Ti.UI.createImageView({
         height: 77,
         width: 75,
-        right: 10,
-        image: "/images/trafficGreen.png",
-        id: "trafficGreen"
+        id: "traffic"
     });
-    $.__views.viewTraffic.add($.__views.trafficGreen);
-    $.__views.trafficOrange = Ti.UI.createImageView({
-        height: 77,
-        width: 75,
-        right: 10,
-        image: "/images/trafficOrange.png",
-        id: "trafficOrange"
-    });
-    $.__views.viewTraffic.add($.__views.trafficOrange);
-    $.__views.trafficRed = Ti.UI.createImageView({
-        height: 77,
-        width: 75,
-        right: 10,
-        image: "/images/trafficRed.png",
-        id: "trafficRed"
-    });
-    $.__views.viewTraffic.add($.__views.trafficRed);
+    $.__views.viewTraffic.add($.__views.traffic);
     $.__views.viewAlert = Ti.UI.createView({
         textAlign: "center",
         borderRadius: 5,

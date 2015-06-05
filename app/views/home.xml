@@ -10,9 +10,9 @@
 			
 			<View class="viewRoundedContainerTraffic" id="viewRoundedContainerTraffic" visible="false">	
 				<View class="viewTraffic" id="viewTraffic">
-					<ImageView image="/images/trafficGreen.png" class="iconTraffic" id="trafficGreen"></ImageView>
-					<ImageView image="/images/trafficOrange.png" class="iconTraffic" id="trafficOrange"></ImageView>
-					<ImageView image="/images/trafficRed.png" class="iconTraffic" id="trafficRed"></ImageView>
+					<!--<ImageView image="/images/trafficGreen.png" class="iconTraffic" id="trafficGreen"></ImageView>-->
+					<ImageView  class="iconTraffic" id="traffic"></ImageView>
+					<!--<ImageView image="/images/trafficRed.png" class="iconTraffic" id="trafficRed"></ImageView>-->
 				</View>
 				<View class="viewAlert" id="viewAlert">
 					<Label class="textAlert" id="textAlert" ></Label>
